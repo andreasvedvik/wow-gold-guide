@@ -80,9 +80,25 @@ body::before {
   background: var(--bg-panel);
   border-right: 1px solid var(--border);
   overflow-y: auto;
+  overflow-x: hidden;
   z-index: 100;
   display: flex;
   flex-direction: column;
+}
+
+/* === SIDEBAR OVERLAY === */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.sidebar-overlay.visible {
+  display: block;
+  opacity: 1;
 }
 
 .sidebar-header {
@@ -367,9 +383,9 @@ section {
 }
 
 .profit-tag.high {
-  background: rgba(34, 197, 94, 0.1);
-  color: var(--uncommon);
-  border: 1px solid rgba(34, 197, 94, 0.2);
+  background: rgba(34, 197, 94, 0.12);
+  color: #4ADE80;
+  border: 1px solid rgba(34, 197, 94, 0.25);
 }
 
 .profit-tag.very-high {
@@ -435,15 +451,23 @@ section {
 .expandable.open .arrow { transform: rotate(180deg); }
 
 .expandable-body {
-  display: none;
-  padding: 24px;
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 24px;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-top: none;
   border-radius: 0 0 8px 8px;
+  opacity: 0;
+  transition: max-height 0.35s ease-out, opacity 0.25s ease-out, padding 0.35s ease-out;
 }
 
-.expandable.open .expandable-body { display: block; }
+.expandable.open .expandable-body {
+  max-height: 2000px;
+  padding: 24px;
+  opacity: 1;
+  transition: max-height 0.5s ease-in, opacity 0.3s ease-in 0.1s, padding 0.35s ease-in;
+}
 
 /* === TABLE === */
 .data-table {
@@ -598,7 +622,7 @@ section {
 /* === FOOTER === */
 .footer {
   margin-top: 96px;
-  padding-top: 32px;
+  padding: 32px 24px 48px;
   border-top: 1px solid var(--border);
   text-align: center;
   color: var(--text-dim);
@@ -607,6 +631,38 @@ section {
 
 .footer .gold-text { color: var(--gold); font-family: 'Cinzel', serif; }
 
+.footer-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.footer-btn:hover {
+  color: var(--gold);
+  border-color: var(--border-gold);
+  background: var(--bg-card-hover);
+}
+
 /* === MOBILE === */
 .mobile-toggle {
   display: none;
@@ -614,23 +670,68 @@ section {
   top: 16px;
   left: 16px;
   z-index: 200;
-  background: var(--bg-panel);
+  background: rgba(17, 17, 24, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 10px 14px;
   color: var(--gold);
   cursor: pointer;
   font-size: 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
 }
 
 @media (max-width: 900px) {
   .app { grid-template-columns: 1fr; }
   .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
   .sidebar.open { transform: translateX(0); }
-  .main { grid-column: 1; padding: 32px 24px 80px; }
-  .mobile-toggle { display: block; }
+  .main { grid-column: 1; padding: calc(32px + env(safe-area-inset-top, 0px)) 24px calc(80px + env(safe-area-inset-bottom, 0px)); }
+  .mobile-toggle { display: block; top: calc(16px + env(safe-area-inset-top, 0px)); }
   .hero h1 { font-size: 36px; }
   .card-grid.cols-2 { grid-template-columns: 1fr; }
+
+  /* Fix section spacing */
+  section { margin-top: 56px; }
+  section:first-child { margin-top: 0; }
+
+  /* Filter pills: 44pt minimum touch targets */
+  .filter-tab { padding: 12px 20px; font-size: 13px; min-height: 44px; }
+  .filter-tabs { gap: 10px; }
+
+  /* Back-to-top: avoid collision with filter pills */
+  .back-to-top { bottom: calc(24px + env(safe-area-inset-bottom, 0px)); right: 20px; }
+
+  /* Tables: responsive card layout on mobile */
+  .data-table { display: block; }
+  .data-table thead { display: none; }
+  .data-table tbody { display: block; }
+  .data-table tr {
+    display: block;
+    padding: 16px;
+    margin-bottom: 8px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .data-table td {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(42, 42, 58, 0.3);
+  }
+  .data-table td:last-child { border-bottom: none; }
+  .data-table td::before {
+    content: attr(data-label);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    font-weight: 500;
+    flex-shrink: 0;
+    margin-right: 12px;
+  }
 }
 
 /* === ANIMATIONS === */
@@ -736,7 +837,8 @@ section { animation: fadeInUp 0.5s ease both; }
 </head>
 <body>
 
-<button class="mobile-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
+<button class="mobile-toggle" onclick="toggleSidebar()" aria-label="Toggle navigation menu">☰</button>
+<div class="sidebar-overlay" onclick="toggleSidebar()"></div>
 
 <div class="app">
   <!-- SIDEBAR -->
@@ -1652,6 +1754,10 @@ section { animation: fadeInUp 0.5s ease both; }
     <div class="footer">
       <p class="gold-text">May your bags overflow with gold.</p>
       <p style="margin-top: 8px;">Guide compiled for The War Within Season 2 · Patch 11.1+</p>
+      <div class="footer-actions">
+        <button class="footer-btn" onclick="navigator.clipboard.writeText(window.location.href).then(()=>{this.textContent='✓ Copied!';setTimeout(()=>{this.textContent='📋 Copy Link'},2000)})">📋 Copy Link</button>
+        <button class="footer-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Back to Top</button>
+      </div>
     </div>
   </main>
 
@@ -1659,6 +1765,18 @@ section { animation: fadeInUp 0.5s ease both; }
 </div>
 
 <script>
+// Sidebar toggle with overlay
+function toggleSidebar() {
+  const sidebar = document.querySelector('.sidebar');
+  const overlay = document.querySelector('.sidebar-overlay');
+  const isOpen = sidebar.classList.toggle('open');
+  if (isOpen) {
+    overlay.classList.add('visible');
+  } else {
+    overlay.classList.remove('visible');
+  }
+}
+
 // Expandable sections
 function toggleExpand(el) {
   el.classList.toggle('open');
@@ -1716,13 +1834,33 @@ sections.forEach(section => observer.observe(section));
 navLinks.forEach(link => {
   link.addEventListener('click', () => {
     document.querySelector('.sidebar').classList.remove('open');
+    document.querySelector('.sidebar-overlay').classList.remove('visible');
   });
 });
 
-// Back to top button
+// Back to top button — only show after scrolling past first viewport
 const backBtn = document.getElementById('backToTop');
 window.addEventListener('scroll', () => {
-  backBtn.classList.toggle('visible', window.scrollY > 600);
+  backBtn.classList.toggle('visible', window.scrollY > window.innerHeight);
+});
+
+// Accessibility: add aria-labels to rating bars
+document.querySelectorAll('.rating').forEach(rating => {
+  const label = rating.querySelector('span')?.textContent.trim() || '';
+  const filled = rating.querySelectorAll('.rating-pip.filled').length;
+  const total = rating.querySelectorAll('.rating-pip').length;
+  rating.setAttribute('role', 'img');
+  rating.setAttribute('aria-label', label + ': ' + filled + ' out of ' + total);
+});
+
+// Mobile table: add data-label attributes from <th> headers
+document.querySelectorAll('.data-table').forEach(table => {
+  const headers = Array.from(table.querySelectorAll('th')).map(th => th.textContent.trim());
+  table.querySelectorAll('tbody tr, tr:not(:first-child)').forEach(row => {
+    row.querySelectorAll('td').forEach((td, i) => {
+      if (headers[i]) td.setAttribute('data-label', headers[i]);
+    });
+  });
 });
 </script>
 
