@@ -1,0 +1,1785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Midnight — Gold Making Compendium</title>
+<meta property="og:title" content="The Gold Compendium — WoW Midnight Gold Guide">
+<meta property="og:description" content="Every gold method ranked for Patch 12.0.1. Professions, farming routes, AH flipping, housing decor crafting, and an interactive daily checklist. Updated for launch week.">
+<meta property="og:type" content="website">
+<meta name="description" content="Comprehensive WoW Midnight gold-making guide. All professions ranked, gathering routes across Quel'Thalas, dungeon farms, AH strategies, player housing economy, and more.">
+<meta name="theme-color" content="#D4A847">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --gold: #D4A847;
+  --gold-light: #F0D078;
+  --gold-dark: #8B6914;
+  --bg-deep: #0A0A0F;
+  --bg-panel: #111118;
+  --bg-card: #16161F;
+  --bg-card-hover: #1C1C28;
+  --border: #2A2A3A;
+  --border-gold: rgba(212, 168, 71, 0.25);
+  --text: #C8C8D4;
+  --text-dim: #7A7A8E;
+  --text-bright: #EEEEF4;
+  --epic: #A855F7;
+  --rare: #3B82F6;
+  --uncommon: #22C55E;
+  --common: #9CA3AF;
+  --legendary: #FF8000;
+  --void: #7C3AED;
+  --void-dim: rgba(124, 58, 237, 0.15);
+  --void-glow: rgba(124, 58, 237, 0.3);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Crimson Pro', Georgia, serif;
+  background: var(--bg-deep);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 18px;
+  overflow-x: hidden;
+}
+
+/* === NOISE OVERLAY === */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+/* === LAYOUT === */
+.app {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 100vh;
+}
+
+/* === SIDEBAR === */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100vh;
+  background: var(--bg-panel);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  padding: 32px 24px 24px;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+
+.sidebar-header .coin {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, var(--gold-light), var(--gold), var(--gold-dark));
+  box-shadow: 0 0 30px rgba(212, 168, 71, 0.3), inset 0 -3px 6px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: 24px;
+  color: var(--bg-deep);
+  animation: coin-glow 3s ease-in-out infinite;
+}
+
+@keyframes coin-glow {
+  0%, 100% { box-shadow: 0 0 30px rgba(212, 168, 71, 0.3), inset 0 -3px 6px rgba(0,0,0,0.3); }
+  50% { box-shadow: 0 0 50px rgba(212, 168, 71, 0.5), inset 0 -3px 6px rgba(0,0,0,0.3); }
+}
+
+.sidebar-header h1 {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.sidebar-header .subtitle {
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+  margin-top: 4px;
+  text-transform: uppercase;
+}
+
+.nav { padding: 16px 0; flex: 1; }
+
+.nav-group { margin-bottom: 8px; }
+
+.nav-group-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  padding: 8px 24px;
+}
+
+.nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  color: var(--text);
+  text-decoration: none;
+  font-family: 'Crimson Pro', serif;
+  font-size: 15px;
+  transition: all 0.2s;
+  border-left: 2px solid transparent;
+}
+
+.nav a:hover {
+  color: var(--gold-light);
+  background: rgba(212, 168, 71, 0.05);
+  border-left-color: var(--gold);
+}
+
+.nav a.active {
+  color: var(--gold);
+  background: rgba(212, 168, 71, 0.08);
+  border-left-color: var(--gold);
+}
+
+.nav a .icon { font-size: 16px; width: 20px; text-align: center; }
+
+/* === MAIN === */
+.main {
+  grid-column: 2;
+  padding: 48px 64px 120px;
+  max-width: 960px;
+}
+
+/* === HERO === */
+.hero {
+  text-align: center;
+  padding: 80px 0 64px;
+  position: relative;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.hero h1 {
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: 52px;
+  line-height: 1.1;
+  color: var(--gold);
+  text-shadow: 0 0 80px rgba(212, 168, 71, 0.2);
+  letter-spacing: 2px;
+}
+
+.hero .tagline {
+  font-family: 'Crimson Pro', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 22px;
+  color: var(--text-dim);
+  margin-top: 16px;
+}
+
+.hero .version-badge {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 6px 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--border-gold);
+  border-radius: 999px;
+  background: rgba(212, 168, 71, 0.05);
+}
+
+/* === SECTIONS === */
+section {
+  margin-top: 72px;
+  scroll-margin-top: 32px;
+}
+
+.section-header {
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-header h2 {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 32px;
+  color: var(--text-bright);
+  letter-spacing: 1px;
+}
+
+.section-header p {
+  margin-top: 8px;
+  color: var(--text-dim);
+  font-size: 17px;
+}
+
+/* === CARDS === */
+.card-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.card-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  transition: all 0.3s;
+  cursor: default;
+}
+
+.card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.card-title {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--text-bright);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-title .emoji { font-size: 22px; }
+
+.card p { color: var(--text); font-size: 16px; line-height: 1.65; }
+
+.card ul {
+  list-style: none;
+  margin-top: 12px;
+}
+
+.card ul li {
+  padding: 6px 0;
+  padding-left: 18px;
+  position: relative;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.card ul li::before {
+  content: '◆';
+  position: absolute;
+  left: 0;
+  color: var(--gold-dark);
+  font-size: 8px;
+  top: 11px;
+}
+
+/* === RATING BARS === */
+.ratings {
+  display: flex;
+  gap: 24px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+}
+
+.rating-bar {
+  display: flex;
+  gap: 3px;
+}
+
+.rating-pip {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: var(--border);
+  transition: background 0.3s;
+}
+
+.rating-pip.filled { background: var(--gold); }
+.rating-pip.filled.green { background: var(--uncommon); }
+.rating-pip.filled.blue { background: var(--rare); }
+.rating-pip.filled.purple { background: var(--epic); }
+
+/* === PROFIT TAG === */
+.profit-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin-top: 12px;
+}
+
+.profit-tag.high {
+  background: rgba(34, 197, 94, 0.1);
+  color: var(--uncommon);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.profit-tag.very-high {
+  background: rgba(168, 85, 247, 0.1);
+  color: var(--epic);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+.profit-tag.medium {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--rare);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.profit-tag.legendary {
+  background: rgba(255, 128, 0, 0.1);
+  color: var(--legendary);
+  border: 1px solid rgba(255, 128, 0, 0.2);
+}
+
+/* === EXPANDABLE === */
+.expandable { margin-bottom: 8px; }
+
+.expandable-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.expandable-header:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-gold);
+}
+
+.expandable-header h3 {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--text-bright);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.expandable-header .arrow {
+  color: var(--gold);
+  font-size: 14px;
+  transition: transform 0.3s;
+}
+
+.expandable.open .expandable-header {
+  border-radius: 8px 8px 0 0;
+  border-bottom-color: transparent;
+}
+
+.expandable.open .arrow { transform: rotate(180deg); }
+
+.expandable-body {
+  display: none;
+  padding: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+}
+
+.expandable.open .expandable-body { display: block; }
+
+/* === TABLE === */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+  font-size: 15px;
+}
+
+.data-table th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.data-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(42, 42, 58, 0.5);
+  color: var(--text);
+}
+
+.data-table tr:hover td { background: rgba(212, 168, 71, 0.03); }
+
+.quality-common { color: var(--common); }
+.quality-uncommon { color: var(--uncommon); }
+.quality-rare { color: var(--rare); }
+.quality-epic { color: var(--epic); }
+.quality-legendary { color: var(--legendary); }
+
+/* === TIP BOX === */
+.tip-box {
+  background: rgba(212, 168, 71, 0.05);
+  border-left: 3px solid var(--gold);
+  padding: 20px 24px;
+  border-radius: 0 8px 8px 0;
+  margin: 24px 0;
+}
+
+.tip-box .tip-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.tip-box p { font-size: 15px; color: var(--text); }
+
+.warning-box {
+  background: rgba(239, 68, 68, 0.05);
+  border-left: 3px solid #EF4444;
+  padding: 20px 24px;
+  border-radius: 0 8px 8px 0;
+  margin: 24px 0;
+}
+
+.warning-box .tip-label { color: #EF4444; }
+
+/* === CHECKLIST === */
+.checklist { margin-top: 16px; }
+
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(42, 42, 58, 0.3);
+  font-size: 15px;
+}
+
+.checklist-item:last-child { border-bottom: none; }
+
+.check-box {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border);
+  border-radius: 3px;
+  flex-shrink: 0;
+  margin-top: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  font-size: 11px;
+  color: transparent;
+}
+
+.check-box:hover { border-color: var(--gold); }
+.check-box.checked {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--bg-deep);
+}
+
+/* === FILTER TABS === */
+.filter-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.filter-tab {
+  padding: 8px 18px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-tab:hover {
+  color: var(--text);
+  border-color: var(--border-gold);
+}
+
+.filter-tab.active {
+  color: var(--gold);
+  border-color: var(--gold);
+  background: rgba(212, 168, 71, 0.08);
+}
+
+/* === PROGRESS TRACKER === */
+.progress-track {
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+.progress-fill.gold-fill { background: linear-gradient(90deg, var(--gold-dark), var(--gold-light)); }
+
+/* === FOOTER === */
+.footer {
+  margin-top: 96px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 13px;
+}
+
+.footer .gold-text { color: var(--gold); font-family: 'Cinzel', serif; }
+
+/* === MOBILE === */
+.mobile-toggle {
+  display: none;
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 200;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: var(--gold);
+  cursor: pointer;
+  font-size: 20px;
+}
+
+@media (max-width: 900px) {
+  .app { grid-template-columns: 1fr; }
+  .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
+  .sidebar.open { transform: translateX(0); }
+  .main { grid-column: 1; padding: 32px 24px 80px; }
+  .mobile-toggle { display: block; }
+  .hero h1 { font-size: 36px; }
+  .card-grid.cols-2 { grid-template-columns: 1fr; }
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+section { animation: fadeInUp 0.5s ease both; }
+
+/* === VOID THEME TOUCHES === */
+.hero {
+  background: radial-gradient(ellipse at 50% 120%, var(--void-dim) 0%, transparent 60%);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, var(--void-glow) 0%, transparent 70%);
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.section-header {
+  border-bottom-image: linear-gradient(90deg, var(--gold), var(--void), var(--gold));
+}
+
+.section-header h2 {
+  background: linear-gradient(135deg, var(--text-bright) 60%, var(--void) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* === TLDR CARD === */
+.tldr-card {
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.08) 0%, rgba(212, 168, 71, 0.08) 100%);
+  border: 1px solid rgba(124, 58, 237, 0.25);
+  border-radius: 12px;
+  padding: 28px 32px;
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.tldr-stat {
+  text-align: center;
+}
+
+.tldr-stat .number {
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: 32px;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.tldr-stat .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-top: 6px;
+}
+
+/* === TIER-COLORED CARD BORDERS === */
+.card.tier-s {
+  border-left: 3px solid var(--epic);
+}
+
+.card.tier-a {
+  border-left: 3px solid var(--rare);
+}
+
+.card.tier-b {
+  border-left: 3px solid var(--uncommon);
+}
+
+/* === PROMINENT PROFIT TAGS === */
+.card-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.card-header-row .card-title {
+  margin-bottom: 0;
+}
+
+.profit-badge {
+  flex-shrink: 0;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.profit-badge.s-tier {
+  background: rgba(168, 85, 247, 0.15);
+  color: var(--epic);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+.profit-badge.a-tier {
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--rare);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+/* === BACK TO TOP === */
+.back-to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-gold);
+  color: var(--gold);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s;
+  z-index: 90;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: rgba(212, 168, 71, 0.1);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+
+/* === RESPONSIVE TABLES === */
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 16px -4px;
+  padding: 0 4px;
+}
+
+.data-table tr:nth-child(even) td {
+  background: rgba(255, 255, 255, 0.015);
+}
+
+@media (max-width: 900px) {
+  .tldr-card { grid-template-columns: repeat(2, 1fr); padding: 20px; }
+  .back-to-top { bottom: 20px; right: 20px; }
+  .data-table { font-size: 13px; }
+  .data-table th, .data-table td { padding: 8px 10px; }
+  .card-header-row { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<button class="mobile-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
+
+<div class="app">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="coin">G</div>
+      <h1>Gold Compendium</h1>
+      <div class="subtitle">Midnight</div>
+    </div>
+    <nav class="nav">
+      <div class="nav-group">
+        <div class="nav-group-label">Overview</div>
+        <a href="#fundamentals" class="active"><span class="icon">⚔</span> Fundamentals</a>
+        <a href="#quick-start"><span class="icon">⚡</span> Quick Start</a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-label">Professions</div>
+        <a href="#gathering"><span class="icon">⛏</span> Gathering</a>
+        <a href="#crafting"><span class="icon">🔨</span> Crafting</a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-label">Farming</div>
+        <a href="#dungeon-farms"><span class="icon">🏰</span> Dungeon Farms</a>
+        <a href="#open-world"><span class="icon">🌍</span> Open World</a>
+        <a href="#legacy"><span class="icon">📜</span> Legacy Content</a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-label">Advanced</div>
+        <a href="#housing"><span class="icon">🏠</span> Player Housing</a>
+        <a href="#ah-flipping"><span class="icon">📈</span> AH Flipping</a>
+        <a href="#crafting-orders"><span class="icon">📋</span> Crafting Orders</a>
+        <a href="#passive"><span class="icon">🔄</span> Passive Income</a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-label">Resources</div>
+        <a href="#addons"><span class="icon">🔧</span> Essential Addons</a>
+        <a href="#economy"><span class="icon">💹</span> Economy Tips</a>
+        <a href="#checklist"><span class="icon">✅</span> Daily Checklist</a>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+    <div class="hero">
+      <h1>The Gold<br>Compendium</h1>
+      <p class="tagline">A comprehensive guide to wealth in Midnight</p>
+      <span class="version-badge">Patch 12.0.1 · Build 66102</span>
+
+      <div class="tldr-card">
+        <div class="tldr-stat">
+          <div class="number">3</div>
+          <div class="label">S-Tier Professions</div>
+        </div>
+        <div class="tldr-stat">
+          <div class="number">4</div>
+          <div class="label">Zones Ranked</div>
+        </div>
+        <div class="tldr-stat">
+          <div class="number">14</div>
+          <div class="label">Strategies Covered</div>
+        </div>
+        <div class="tldr-stat">
+          <div class="number">✅</div>
+          <div class="label">Interactive Checklist</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FUNDAMENTALS -->
+    <section id="fundamentals">
+      <div class="section-header">
+        <h2>⚔ Gold-Making Fundamentals</h2>
+        <p>Core principles that separate the wealthy from the broke</p>
+      </div>
+
+      <div class="card-grid cols-2">
+        <div class="card">
+          <div class="card-title"><span class="emoji">📊</span> Diversify Income</div>
+          <p>Never rely on a single gold source. Markets crash, farms get nerfed, and patches shift demand. Spread your efforts across gathering, crafting, and flipping to stay resilient.</p>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="emoji">⏱</span> Gold Per Hour</div>
+          <p>Track your GPH (gold per hour) for every activity. Time spent flying between nodes or waiting on AH sales counts. Always ask: "Is this the best use of my time?"</p>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="emoji">📅</span> Timing Is Everything</div>
+          <p>Prices spike on Tuesday resets and when new content drops. Consumables surge on raid nights. Gather materials early in the week and sell into Tuesday/Wednesday demand.</p>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="emoji">🧠</span> Knowledge = Gold</div>
+          <p>Invest in learning your server's economy. Watch prices for a week before committing to a strategy. The Auction House rewards patience and punishes impulse.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK START -->
+    <section id="quick-start">
+      <div class="section-header">
+        <h2>⚡ Quick Start Tier List</h2>
+        <p>What to focus on based on where you are right now</p>
+      </div>
+
+      <div id="tier-filter" class="filter-tabs">
+        <button class="filter-tab active" onclick="filterTier('all')">All</button>
+        <button class="filter-tab" onclick="filterTier('beginner')">Beginner</button>
+        <button class="filter-tab" onclick="filterTier('intermediate')">Intermediate</button>
+        <button class="filter-tab" onclick="filterTier('advanced')">Advanced</button>
+      </div>
+
+      <div class="card-grid" id="tier-list">
+        <div class="card" data-tier="beginner">
+          <div class="card-title"><span class="emoji">🌿</span> Dual Gathering</div>
+          <p>Pick up Herbalism + Mining on your main. Fly loops in Eversong Woods and Zul'Aman. Sell everything raw on the AH. New expansion launch means sky-high material prices.</p>
+          <div class="ratings">
+            <div class="rating">
+              <span>Effort</span>
+              <div class="rating-bar">
+                <div class="rating-pip filled green"></div>
+                <div class="rating-pip filled green"></div>
+                <div class="rating-pip"></div>
+                <div class="rating-pip"></div>
+                <div class="rating-pip"></div>
+              </div>
+            </div>
+            <div class="rating">
+              <span>Startup</span>
+              <div class="rating-bar">
+                <div class="rating-pip filled green"></div>
+                <div class="rating-pip"></div>
+                <div class="rating-pip"></div>
+                <div class="rating-pip"></div>
+                <div class="rating-pip"></div>
+              </div>
+            </div>
+          </div>
+          <div class="profit-tag high">10k–20k GPH</div>
+        </div>
+
+        <div class="card" data-tier="beginner">
+          <div class="card-title"><span class="emoji">🏰</span> The Motherlode</div>
+          <p>Solo legacy dungeon farm. Vendor everything for raw gold — no AH dependency. Build a speed set for maximum runs per hour. Consistent and relaxing.</p>
+          <div class="ratings">
+            <div class="rating">
+              <span>Effort</span>
+              <div class="rating-bar">
+                <div class="rating-pip filled green"></div>
+                <div class="rating-pip"></div>
+                <div class="rating-pip"></div>
+                <div class="rating-pip"></div>
+                <div class="rating-pip"></div>
+              </div>
+            </div>
+            <div class="rating">
+              <span>Startup</span>
+              <div class="rating-bar">
+                <div class="rating-pip filled green"></div>
+                <div class="rating-pip"></div>
+                <div class="rating-pip"></div>
+                <div class="rating-pip"></div>
+                <div class="rating-pip"></div>
+              </div>
+            </div>
+          </div>
+          <div class="profit-tag medium">10k–17k GPH</div>
+        </div>
+
+        <div class="card" data-tier="intermediate">
+          <div class="card-title"><span class="emoji">🧪</span> Alchemy Consumables</div>
+          <p>Craft flasks, potions, and cauldrons for the raiding market. Alchemy remains king in Midnight — raiders always need consumables, and housing decor recipes add a new income stream.</p>
+          <div class="ratings">
+            <div class="rating">
+              <span>Effort</span>
+              <div class="rating-bar">
+                <div class="rating-pip filled blue"></div>
+                <div class="rating-pip filled blue"></div>
+                <div class="rating-pip filled blue"></div>
+                <div class="rating-pip"></div>
+                <div class="rating-pip"></div>
+              </div>
+            </div>
+            <div class="rating">
+              <span>Startup</span>
+              <div class="rating-bar">
+                <div class="rating-pip filled blue"></div>
+                <div class="rating-pip filled blue"></div>
+                <div class="rating-pip filled blue"></div>
+                <div class="rating-pip"></div>
+                <div class="rating-pip"></div>
+              </div>
+            </div>
+          </div>
+          <div class="profit-tag very-high">20k–60k+ GPH</div>
+        </div>
+
+        <div class="card" data-tier="intermediate">
+          <div class="card-title"><span class="emoji">🏠</span> Housing Decor Crafting</div>
+          <p>Player housing is Midnight's headline feature and every profession can craft decor. Inscription leads the pack for versatile interior items, but all crafters have something to sell into this brand-new market.</p>
+          <div class="ratings">
+            <div class="rating">
+              <span>Effort</span>
+              <div class="rating-bar">
+                <div class="rating-pip filled blue"></div>
+                <div class="rating-pip filled blue"></div>
+                <div class="rating-pip filled blue"></div>
+                <div class="rating-pip"></div>
+                <div class="rating-pip"></div>
+              </div>
+            </div>
+            <div class="rating">
+              <span>Startup</span>
+              <div class="rating-bar">
+                <div class="rating-pip filled blue"></div>
+                <div class="rating-pip filled blue"></div>
+                <div class="rating-pip"></div>
+                <div class="rating-pip"></div>
+                <div class="rating-pip"></div>
+              </div>
+            </div>
+          </div>
+          <div class="profit-tag high">15k–30k GPH</div>
+        </div>
+
+        <div class="card" data-tier="advanced">
+          <div class="card-title"><span class="emoji">📈</span> AH Flipping</div>
+          <p>Buy low, sell high. Requires market knowledge, starting capital, and patience. The highest ceiling of any gold method — top goblins make millions per week.</p>
+          <div class="ratings">
+            <div class="rating">
+              <span>Effort</span>
+              <div class="rating-bar">
+                <div class="rating-pip filled purple"></div>
+                <div class="rating-pip filled purple"></div>
+                <div class="rating-pip filled purple"></div>
+                <div class="rating-pip filled purple"></div>
+                <div class="rating-pip filled purple"></div>
+              </div>
+            </div>
+            <div class="rating">
+              <span>Startup</span>
+              <div class="rating-bar">
+                <div class="rating-pip filled purple"></div>
+                <div class="rating-pip filled purple"></div>
+                <div class="rating-pip filled purple"></div>
+                <div class="rating-pip filled purple"></div>
+                <div class="rating-pip"></div>
+              </div>
+            </div>
+          </div>
+          <div class="profit-tag legendary">Unlimited ceiling</div>
+        </div>
+
+        <div class="card" data-tier="advanced">
+          <div class="card-title"><span class="emoji">⚒</span> Max-Rank Crafting</div>
+          <p>Invest knowledge into max-rank crafting for Blacksmithing, Leatherworking, or Jewelcrafting. Fill high-rank crafting orders for massive per-item profits. Midnight's simplified quality tiers (Silver/Gold only) make this more accessible.</p>
+          <div class="ratings">
+            <div class="rating">
+              <span>Effort</span>
+              <div class="rating-bar">
+                <div class="rating-pip filled purple"></div>
+                <div class="rating-pip filled purple"></div>
+                <div class="rating-pip filled purple"></div>
+                <div class="rating-pip filled purple"></div>
+                <div class="rating-pip"></div>
+              </div>
+            </div>
+            <div class="rating">
+              <span>Startup</span>
+              <div class="rating-bar">
+                <div class="rating-pip filled purple"></div>
+                <div class="rating-pip filled purple"></div>
+                <div class="rating-pip filled purple"></div>
+                <div class="rating-pip filled purple"></div>
+                <div class="rating-pip filled purple"></div>
+              </div>
+            </div>
+          </div>
+          <div class="profit-tag very-high">50k–200k+ per order</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GATHERING -->
+    <section id="gathering">
+      <div class="section-header">
+        <h2>⛏ Gathering Professions</h2>
+        <p>Always the best early-expansion earners — and Midnight is no exception</p>
+      </div>
+
+      <div class="expandable open" onclick="toggleExpand(this)">
+        <div class="expandable-header">
+          <h3>🌿 Herbalism</h3>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="expandable-body" onclick="event.stopPropagation()">
+          <p>Herbalism is one of the top gold-makers at Midnight launch. Five new base herbs grow across Quel'Thalas, and every one of them can spawn in any zone — though densities vary. Quality tiers are now simplified to just Silver and Gold (Bronze is gone). Watch for gathering traps on rare nodes, and collect Motes of Pure Void while you farm.</p>
+
+          <div class="table-scroll"><table class="data-table">
+            <thead>
+              <tr><th>Herb</th><th>Best Zone</th><th>Demand</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="quality-uncommon">Tranquility Bloom</td><td>Eversong Woods</td><td>Very High</td><td>Flask staple, high-volume seller</td></tr>
+              <tr><td class="quality-uncommon">Argentleaf</td><td>Harandar</td><td>High</td><td>Used in most potion recipes</td></tr>
+              <tr><td class="quality-rare">Azeroot</td><td>Zul'Aman</td><td>High</td><td>Key raid consumable ingredient</td></tr>
+              <tr><td class="quality-uncommon">Mana Lily</td><td>Eversong Woods</td><td>High</td><td>Mana potion base, housing dyes</td></tr>
+              <tr><td class="quality-epic">Sanguithorn</td><td>Voidstorm</td><td>Very High</td><td>Rare herb, premium flask ingredient</td></tr>
+            </tbody>
+          </table></div>
+
+          <div class="tip-box">
+            <div class="tip-label">Pro Tip</div>
+            <p>Eversong Woods has the smoothest terrain and most beginner-friendly loops in the expansion. For herb-specific dyes used in housing decor, check which colors are selling highest — Mana Lily and Sanguithorn dyes tend to command premiums. Rare nodes may trigger traps, so stay alert.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="expandable" onclick="toggleExpand(this)">
+        <div class="expandable-header">
+          <h3>⛏ Mining</h3>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="expandable-body" onclick="event.stopPropagation()">
+          <p>Midnight streamlines mining to three base ores, plus a rare bonus ore. Every ore can be found in all four zones, with Rich and Seam variants spawning along ridgelines. Housing construction requires massive amounts of materials, keeping demand sky-high.</p>
+
+          <div class="table-scroll"><table class="data-table">
+            <thead>
+              <tr><th>Ore</th><th>Best Zone</th><th>Demand</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="quality-uncommon">Refulgent Copper</td><td>Eversong Woods</td><td>Very High</td><td>Universal base ore, massive housing demand</td></tr>
+              <tr><td class="quality-rare">Umbral Tin</td><td>Zul'Aman</td><td>High</td><td>Mid-tier crafting and gear</td></tr>
+              <tr><td class="quality-epic">Brilliant Silver</td><td>Harandar</td><td>High</td><td>High-end gear and JC recipes</td></tr>
+              <tr><td class="quality-legendary">Dazzling Thorium</td><td>All Zones (rare)</td><td>Very High</td><td>Rare proc from any node, premium price</td></tr>
+            </tbody>
+          </table></div>
+
+          <div class="tip-box">
+            <div class="tip-label">Pro Tip</div>
+            <p>The "Ridge Rail" technique is the gold-standard mining route: ride the high ridgelines, harvest edges, and never drop into valleys without a plan. Zul'Aman's vertical terrain is ideal for this. You can also find Motes of Pure Void while mining — save these for rare crafting recipes.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="expandable" onclick="toggleExpand(this)">
+        <div class="expandable-header">
+          <h3>🔪 Skinning</h3>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="expandable-body" onclick="event.stopPropagation()">
+          <p>Skinning in Midnight yields Void-Tempered materials from the beasts and dragonkin of Quel'Thalas. Like other gathering, quality tiers are now just Silver and Gold. Species-specific bonus reagents like Fantastic Fur and Peerless Plumage add extra value.</p>
+
+          <div class="table-scroll"><table class="data-table">
+            <thead>
+              <tr><th>Material</th><th>Source</th><th>Demand</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="quality-uncommon">Void-Tempered Leather</td><td>Beasts</td><td>Very High</td><td>Leatherworking base material</td></tr>
+              <tr><td class="quality-rare">Void-Tempered Scales</td><td>Dragonkin</td><td>High</td><td>Mail armor crafting</td></tr>
+              <tr><td class="quality-epic">Void-Tempered Plating</td><td>Rare beasts</td><td>Very High</td><td>Premium material, high per-unit value</td></tr>
+              <tr><td class="quality-rare">Fantastic Fur / Peerless Plumage</td><td>Species-specific</td><td>Medium</td><td>Bonus procs, niche recipes & housing</td></tr>
+            </tbody>
+          </table></div>
+
+          <div class="tip-box">
+            <div class="tip-label">Pro Tip</div>
+            <p>Midnight simplifies Leatherworking reagents — no more multiple elemental leather types. Scalewoven Hide (crafted from rare leathers) is the premium material. Look for group skinning farms via the Group Finder in beast-dense areas of Eversong and Zul'Aman.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CRAFTING -->
+    <section id="crafting">
+      <div class="section-header">
+        <h2>🔨 Crafting Professions</h2>
+        <p>Midnight simplifies quality tiers to Silver/Gold and every profession now crafts housing decor</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="card tier-s">
+          <div class="card-header-row">
+            <div class="card-title"><span class="emoji">✨</span> <span class="quality-epic">Enchanting</span></div>
+            <span class="profit-badge s-tier">S-Tier</span>
+          </div>
+          <p>The #1 gold-maker at Midnight launch. Every player needs to re-enchant all their gear with zero pre-existing supply. Enchanting has excellent Concentration build potential and the highest sale rates of any profession early on.</p>
+          <ul>
+            <li>Weapon and armor enchants (massive launch demand)</li>
+            <li>Enchanted Crests for gear upgrades</li>
+            <li>Housing enchantments and decor items</li>
+            <li>Disenchanting replaced gear for materials</li>
+          </ul>
+          <div class="profit-tag very-high">Best launch profession</div>
+        </div>
+
+        <div class="card tier-s">
+          <div class="card-header-row">
+            <div class="card-title"><span class="emoji">🧪</span> <span class="quality-epic">Alchemy</span></div>
+            <span class="profit-badge s-tier">S-Tier</span>
+          </div>
+          <p>The king of consistent income returns again. Everyone needs flasks, potions, and cauldrons for Midnight's new raids and dungeons. RNG recipes have been removed, making crafting more predictable. Housing decor recipes add a new income lane.</p>
+          <ul>
+            <li>Flasks and phials (constant raid demand)</li>
+            <li>Combat potions (M+ and raid essentials)</li>
+            <li>Cauldrons (high margin guild supplies)</li>
+            <li>Housing decor items and transmutations</li>
+          </ul>
+          <div class="profit-tag very-high">Evergreen gold machine</div>
+        </div>
+
+        <div class="card tier-s">
+          <div class="card-header-row">
+            <div class="card-title"><span class="emoji">📜</span> <span class="quality-epic">Inscription</span></div>
+            <span class="profit-badge s-tier">S-Tier</span>
+          </div>
+          <p>Massively upgraded in Midnight. Now the primary crafter of ranged weapons (including bows) and accessories, plus the most versatile housing decor profession. Inscription covers the widest range of interior items — walls, floors, and foundational decor.</p>
+          <ul>
+            <li>Ranged weapons and accessories (NEW)</li>
+            <li>Vantus Runes and Missives</li>
+            <li>Housing decor — most versatile profession for interiors</li>
+            <li>Contracts for reputation gains</li>
+          </ul>
+          <div class="profit-tag very-high">Huge Midnight upgrade</div>
+        </div>
+
+        <div class="card tier-a">
+          <div class="card-header-row">
+            <div class="card-title"><span class="emoji">💎</span> <span class="quality-rare">Jewelcrafting</span></div>
+            <span class="profit-badge a-tier">A-Tier</span>
+          </div>
+          <p>Gems remain essential for every gear slot, and JC now crafts premium housing items too. Prospecting new ores provides rare gems, and crafted jewelry fills high-ticket orders.</p>
+          <ul>
+            <li>Cut gems for every gear slot (massive volume)</li>
+            <li>Housing jewelry and decorative items (NEW)</li>
+            <li>Prospecting Midnight ores for rare gems</li>
+            <li>Crafted jewelry via crafting orders</li>
+          </ul>
+          <div class="profit-tag high">High volume + housing</div>
+        </div>
+
+        <div class="card tier-a">
+          <div class="card-header-row">
+            <div class="card-title"><span class="emoji">⚒</span> <span class="quality-rare">Blacksmithing</span></div>
+            <span class="profit-badge a-tier">A-Tier</span>
+          </div>
+          <p>High-end crafted plate and weapons command top gold through crafting orders. Midnight's simplified quality system makes reaching max rank more accessible. Blacksmiths can now forge ornate light fixtures and metal decor for housing.</p>
+          <ul>
+            <li>Crafted weapons and plate armor (crafting orders)</li>
+            <li>Housing decor: light fixtures, metal furnishings</li>
+            <li>Alloy conversions for daily profit</li>
+            <li>Sharpening stones and weapon enhancements</li>
+          </ul>
+          <div class="profit-tag high">High per-item profit</div>
+        </div>
+
+        <div class="card tier-a">
+          <div class="card-header-row">
+            <div class="card-title"><span class="emoji">🧵</span> <span class="quality-rare">Tailoring</span></div>
+            <span class="profit-badge a-tier">A-Tier</span>
+          </div>
+          <p>Tailors retain exclusive cloth drops and the cloth unraveling step has been removed — one less intermediate step. Tailors now craft rugs, wall hangings, and fabric decor for housing alongside their usual armor and bags.</p>
+          <ul>
+            <li>Exclusive cloth drops (simplified processing)</li>
+            <li>Housing decor: rugs, tapestries, wall hangings</li>
+            <li>Crafted cloth armor and embellishments</li>
+            <li>Spellthread and bags (evergreen market)</li>
+          </ul>
+          <div class="profit-tag high">Cloth monopoly + housing</div>
+        </div>
+
+        <div class="card tier-a">
+          <div class="card-header-row">
+            <div class="card-title"><span class="emoji">🔧</span> <span class="quality-rare">Engineering</span></div>
+            <span class="profit-badge a-tier">A-Tier</span>
+          </div>
+          <p>Engineering gains a new Recycling skill in Midnight that converts other professions' materials — a unique gold-making angle. Engineers can also craft a warband-tradeable Spark of Beginnings for faster alt gearing, which will sell well.</p>
+          <ul>
+            <li>Recycling: convert surplus materials for profit (NEW)</li>
+            <li>Spark of Beginnings (warband-tradeable, NEW)</li>
+            <li>Gadgets, toys, and housing tech items</li>
+            <li>Quality-of-life items always in demand</li>
+          </ul>
+          <div class="profit-tag high">New recycling niche</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DUNGEON FARMS -->
+    <section id="dungeon-farms">
+      <div class="section-header">
+        <h2>🏰 Dungeon Farms</h2>
+        <p>Instanced content you can repeat for consistent returns</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-title"><span class="quality-legendary">★</span> Midnight Dungeons (Cloth + Material Farms)</div>
+          <p>Midnight launches with 8 new dungeons across Quel'Thalas. At launch, Follower Dungeon runs with Tailoring are extremely profitable due to exclusive cloth drops and brand-new material demand. Specific meta farms will emerge — check community guides as the first week settles.</p>
+          <div class="ratings">
+            <div class="rating"><span>Profit</span>
+              <div class="rating-bar"><div class="rating-pip filled" style="background:var(--legendary)"></div><div class="rating-pip filled" style="background:var(--legendary)"></div><div class="rating-pip filled" style="background:var(--legendary)"></div><div class="rating-pip filled" style="background:var(--legendary)"></div><div class="rating-pip filled" style="background:var(--legendary)"></div></div>
+            </div>
+            <div class="rating"><span>Difficulty</span>
+              <div class="rating-bar"><div class="rating-pip filled blue"></div><div class="rating-pip filled blue"></div><div class="rating-pip filled blue"></div><div class="rating-pip"></div><div class="rating-pip"></div></div>
+            </div>
+          </div>
+          <div class="profit-tag very-high">20k–50k+ GPH (launch prices)</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="quality-rare">★</span> The Motherlode (Legacy — Still Great)</div>
+          <p>The king of raw gold farms carries over into Midnight. Vendor everything for pure liquid gold — no AH dependency. Build a speed set for max runs per hour. Perfect "brain off" farm while the new expansion economy stabilizes.</p>
+          <div class="ratings">
+            <div class="rating"><span>Profit</span>
+              <div class="rating-bar"><div class="rating-pip filled blue"></div><div class="rating-pip filled blue"></div><div class="rating-pip filled blue"></div><div class="rating-pip"></div><div class="rating-pip"></div></div>
+            </div>
+            <div class="rating"><span>Difficulty</span>
+              <div class="rating-bar"><div class="rating-pip filled green"></div><div class="rating-pip"></div><div class="rating-pip"></div><div class="rating-pip"></div><div class="rating-pip"></div></div>
+            </div>
+          </div>
+          <div class="profit-tag high">10k–17k GPH (raw gold, zero risk)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OPEN WORLD -->
+    <section id="open-world">
+      <div class="section-header">
+        <h2>🌍 Open World Farming</h2>
+        <p>Gathering routes and mob farms across Quel'Thalas</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-title"><span class="emoji">🌳</span> Eversong Woods — Beginner Herb/Ore Loops</div>
+          <p>The smoothest terrain in Midnight with clear landmarks and manageable mob density. The loop route is the most beginner-friendly in years. Great for both herbs and ore. Start here.</p>
+          <div class="profit-tag high">15k–30k GPH (dual gathering, launch prices)</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="emoji">⛰</span> Zul'Aman — Ridge Rail Mining</div>
+          <p>Vertical terrain makes Zul'Aman the premier mining zone. Use "Ridge Rail" routes: ride the high ridgelines, harvest the edges, never drop into pits without a plan. Excellent ore volume and visibility.</p>
+          <div class="profit-tag high">15k–25k GPH (mining focused)</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="emoji">🌿</span> Harandar — Premium Gathering</div>
+          <p>Best zone for Argentleaf and Brilliant Silver — both high-demand materials. Unlocks the Haranir allied race questline while you farm. Less crowded than Eversong at launch.</p>
+          <div class="profit-tag high">12k–22k GPH</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="emoji">🌑</span> Voidstorm — Rare Material Farming</div>
+          <p>The endgame zone of Midnight. Home to Sanguithorn (premium herb) and Mote of Pure Void drops. More dangerous mobs but higher per-unit value. Best for geared characters at max level.</p>
+          <div class="profit-tag very-high">20k–40k GPH (rare materials)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEGACY -->
+    <section id="legacy">
+      <div class="section-header">
+        <h2>📜 Legacy Content</h2>
+        <p>Old dungeons and raids that still print gold — now including The War Within</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-title"><span class="quality-legendary">★</span> The Motherlode (BFA)</div>
+          <p>Still the king of raw gold farms. Vendor everything — no AH dependency means no risk. Build a speed set with movement enchants and sprint abilities. Perfect "brain off" farm while the new economy settles.</p>
+          <ul>
+            <li>10 runs per hour with a speed set</li>
+            <li>All vendor trash, zero AH interaction</li>
+            <li>Great for funding new Midnight ventures</li>
+            <li>Consistent through every expansion cycle</li>
+          </ul>
+          <div class="profit-tag high">10k–17k GPH (raw gold)</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="quality-rare">★</span> The War Within Dungeons (Now Legacy)</div>
+          <p>TWW content is now legacy-farmable at level 90. Darkflame Cleft cloth farms and Priory of the Sacred Flame runs are even faster with Midnight gear. TWW materials may still hold value for alts and catch-up crafting.</p>
+          <ul>
+            <li>Darkflame Cleft — cloth farm (still requires Tailoring)</li>
+            <li>TWW materials for alt catch-up demand</li>
+            <li>Faster clears at level 90 with Midnight gear</li>
+          </ul>
+          <div class="profit-tag medium">10k–25k GPH</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="quality-rare">★</span> Legacy Raids (Weekly)</div>
+          <p>Weekly lockout raids across expansions for raw gold vendoring plus rare transmog drops. Run on multiple alts for multiplied returns. TWW raids now join the legacy rotation.</p>
+          <ul>
+            <li>Molten Core, Black Temple, Firelands — classic transmog</li>
+            <li>WoD/Legion raids — high vendor gold</li>
+            <li>TWW raids — fresh transmog market (NEW)</li>
+            <li>Run across alts for weekly passive income</li>
+          </ul>
+          <div class="profit-tag medium">5k–15k per character per week</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLAYER HOUSING -->
+    <section id="housing">
+      <div class="section-header">
+        <h2>🏠 Player Housing</h2>
+        <p>Midnight's headline feature — and the biggest new gold sink in years</p>
+      </div>
+
+      <div class="card" style="margin-bottom: 24px;">
+        <p>Player housing is the defining feature of Midnight, and it creates massive, long-term demand across every single profession. Players can obtain and customize personal spaces using items earned through gameplay, professions, and achievements. Wood (lumber) is the universal building currency — crafters need thousands of units for modular housing units and rotundas. This market will only grow as more players reach max level and start decorating.</p>
+      </div>
+
+      <div class="card-grid cols-2">
+        <div class="card">
+          <div class="card-title"><span class="emoji">📜</span> Inscription (Best for Housing)</div>
+          <p>The most versatile housing decor profession. Covers the widest range of foundational interior items — walls, floors, and core furnishings. If you can only pick one housing-focused profession, this is it.</p>
+          <div class="profit-tag very-high">Highest decor variety</div>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="emoji">⚒</span> Blacksmithing</div>
+          <p>Forge ornate light fixtures, metal gates, candelabras, and structural metalwork. Premium items that sell well to players going for a refined aesthetic.</p>
+          <div class="profit-tag high">Metal fixtures & lighting</div>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="emoji">🧵</span> Tailoring</div>
+          <p>Craft rugs, wall hangings, curtains, tapestries, and fabric furnishings. Soft goods that complete any housing theme. Cloth exclusivity keeps supply controlled.</p>
+          <div class="profit-tag high">Fabric decor & textiles</div>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="emoji">💎</span> Jewelcrafting</div>
+          <p>Create decorative gems, crystal displays, and luxury housing items. Premium aesthetic pieces for players who want their house to sparkle.</p>
+          <div class="profit-tag high">Luxury decor items</div>
+        </div>
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-label">Housing Economy Insight</div>
+        <p>Unlike gear, housing decor is a cosmetic market — it grows over time instead of resetting each season. "Housing Pack" recipes are expected to be primary gold-makers for the first several months. Invest in learning these recipes early. Players who establish themselves as housing decor crafters now will have a permanent customer base.</p>
+      </div>
+
+      <div class="warning-box">
+        <div class="tip-label">⚠ Lumber Demand</div>
+        <p>Wood is the universal housing material and demand is enormous. If you're a gatherer, selling lumber in bulk is one of the simplest gold strategies at launch. Don't underestimate the volume players will need — modular units and rotundas consume thousands of units each.</p>
+      </div>
+    </section>
+
+    <!-- AH FLIPPING -->
+    <section id="ah-flipping">
+      <div class="section-header">
+        <h2>📈 Auction House Flipping</h2>
+        <p>The highest ceiling gold method — especially potent during an expansion launch</p>
+      </div>
+
+      <div class="card" style="margin-bottom: 24px;">
+        <p>AH flipping is the art of buying items below market value and reselling at a profit. Expansion launches like Midnight are the best time to flip — prices are volatile, new players flood the AH with underpriced materials, and demand shifts daily. Top "goblins" make millions per week through flipping alone.</p>
+      </div>
+
+      <div class="expandable" onclick="toggleExpand(this)">
+        <div class="expandable-header">
+          <h3>📊 Getting Started with Flipping</h3>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="expandable-body" onclick="event.stopPropagation()">
+          <p><strong>Step 1: Build capital.</strong> You need at least 50k–100k gold to start flipping effectively. Use gathering or dungeon farms to build your starting fund.</p>
+          <p style="margin-top: 12px;"><strong>Step 2: Install TSM.</strong> TradeSkillMaster is non-negotiable for serious AH work. Set up pricing operations, sniper scans, and shopping lists.</p>
+          <p style="margin-top: 12px;"><strong>Step 3: Learn your markets.</strong> Spend a full week just watching prices. Note daily patterns, reset-day spikes, and which items have the widest price swings.</p>
+          <p style="margin-top: 12px;"><strong>Step 4: Start small.</strong> Begin with high-volume commodities (herbs, ores, cloth) where you can buy in bulk at low points and sell into demand. The margins are thin but the volume is safe.</p>
+        </div>
+      </div>
+
+      <div class="expandable" onclick="toggleExpand(this)">
+        <div class="expandable-header">
+          <h3>🎯 Flipping Strategies</h3>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="expandable-body" onclick="event.stopPropagation()">
+          <div class="table-scroll"><table class="data-table">
+            <thead>
+              <tr><th>Strategy</th><th>Risk</th><th>Capital Needed</th><th>Potential</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Commodity Flipping</strong><br><small>Buy herbs/ores low, sell high</small></td><td class="quality-uncommon">Low</td><td>50k+</td><td class="quality-uncommon">Steady 5–15% margins</td></tr>
+              <tr><td><strong>Reset Markets</strong><br><small>Buy out all supply, relist higher</small></td><td class="quality-rare">Medium</td><td>200k+</td><td class="quality-rare">20–50% margins</td></tr>
+              <tr><td><strong>Transmog Flipping</strong><br><small>Buy rare appearances cheap</small></td><td class="quality-epic">High</td><td>100k+</td><td class="quality-epic">100–1000% margins (slow sales)</td></tr>
+              <tr><td><strong>Patch Speculation</strong><br><small>Stockpile before content drops</small></td><td class="quality-legendary">Very High</td><td>500k+</td><td class="quality-legendary">Massive (if you're right)</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </div>
+
+      <div class="warning-box">
+        <div class="tip-label">⚠ Warning</div>
+        <p>The region-wide commodity AH means you're competing with every player in your region, not just your server. Margins on commodities are thinner than ever. Focus on learning price patterns and timing your purchases rather than trying to undercut constantly.</p>
+      </div>
+    </section>
+
+    <!-- CRAFTING ORDERS -->
+    <section id="crafting-orders">
+      <div class="section-header">
+        <h2>📋 Crafting Orders</h2>
+        <p>Midnight's streamlined commission system</p>
+      </div>
+
+      <div class="card" style="margin-bottom: 24px;">
+        <p>Crafting Orders return in Midnight with a streamlined system. Fractured Sparks are gone — whole Sparks now drop directly (with doubled costs). If you've invested knowledge points to reach max-rank crafting, this is the highest per-item gold method in the game. Build your reputation early while the market is fresh.</p>
+      </div>
+
+      <div class="card-grid cols-2">
+        <div class="card">
+          <div class="card-title">Public Orders</div>
+          <p>Listed on the crafting order board for anyone to fill. Lower tips but higher volume. Great for leveling your skill and building patron reputation.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Personal Orders</div>
+          <p>Direct commissions from players who trust your skill level. Higher tips (often 5k–50k+ per craft). Build your reputation in trade chat and community discords.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Guild Orders</div>
+          <p>Fulfill orders for your guild members. Tips may be lower but volume is steady. Position yourself as the go-to crafter in your guild for reliable income.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Patron Orders</div>
+          <p>Weekly NPC crafting orders that provide free materials and guaranteed income. Complete these first every week — they're essentially free gold. Check all your alts.</p>
+        </div>
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-label">Pro Tip</div>
+        <p>Advertise your max-rank specializations in Trade Chat with a clear format: profession, what you can craft at max rank, and your typical tip range. Players will add you to their friends list for repeat business. Consistency builds a customer base that pays for itself.</p>
+      </div>
+    </section>
+
+    <!-- PASSIVE -->
+    <section id="passive">
+      <div class="section-header">
+        <h2>🔄 Passive Income</h2>
+        <p>Gold that comes in while you focus on other things</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-title"><span class="emoji">📅</span> Daily Patron Orders</div>
+          <p>Check the crafting order board daily across all characters. NPC patron orders provide free materials — you just craft and collect the reward. Takes 5 minutes per character.</p>
+          <div class="profit-tag medium">2k–5k per character per day</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="emoji">⚗</span> Profession Cooldowns</div>
+          <p>Several professions have daily or weekly cooldowns that generate value. Alchemy transmutes and Blacksmithing alloy conversions all add up across alts. Midnight's simplified crafting system makes these even easier to manage.</p>
+          <div class="profit-tag medium">1k–5k per cooldown</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="emoji">🏠</span> Mission Tables (Legacy)</div>
+          <p>If you still have Warlords of Draenor or Legion mission tables set up on alts, these provide a small but zero-effort gold stream. Not worth setting up from scratch, but maintain if you have them.</p>
+          <div class="profit-tag medium">500–2k per character per day</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="emoji">🎯</span> Weekly Activities</div>
+          <p>Callings, weekly quests, and world boss kills provide raw gold. Combined with legacy raid clears on alts, this adds up to significant passive income each week.</p>
+          <div class="profit-tag medium">5k–15k per character per week</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADDONS -->
+    <section id="addons">
+      <div class="section-header">
+        <h2>🔧 Essential Addons</h2>
+        <p>The tools every gold-maker needs installed</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-title"><span class="quality-legendary">★</span> TradeSkillMaster (TSM)</div>
+          <p>The gold standard (pun intended) for AH operations. Provides real-time pricing data, automated posting/canceling, sniper scans for underpriced items, crafting cost calculations, and mail management. Steep learning curve but absolutely essential for serious gold-making.</p>
+          <ul>
+            <li>Auctioning operations for automated listing</li>
+            <li>Sniper module for finding deals in real-time</li>
+            <li>Crafting module to calculate profit margins</li>
+            <li>Accounting to track your income over time</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="quality-epic">★</span> CraftSim</div>
+          <p>Handles the math behind Midnight's crafting system. Calculates the probability of reaching different quality levels (now just Silver/Gold) based on your skill, shows expected profit per craft, and helps you decide which specialization paths to invest knowledge points in.</p>
+          <ul>
+            <li>Profit calculations per craft</li>
+            <li>Quality probability breakdowns</li>
+            <li>Knowledge point optimization suggestions</li>
+            <li>Works alongside TSM for complete coverage</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="quality-rare">★</span> Routes / GatherMate2</div>
+          <p>Create and share optimized gathering routes. GatherMate2 tracks node locations on your minimap, while Routes draws the most efficient path between them. Essential for maximizing GPH on gathering runs.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="quality-rare">★</span> Auctionator</div>
+          <p>Lighter alternative to TSM for casual AH users. Cleaner interface for buying and selling, with shopping lists and price history. Great if TSM feels overwhelming.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ECONOMY TIPS -->
+    <section id="economy">
+      <div class="section-header">
+        <h2>💹 Economy Tips</h2>
+        <p>Understanding the meta-game of WoW's economy</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-title"><span class="emoji">🌐</span> Region-Wide Commodity AH</div>
+          <p>All commodities (herbs, ores, cloth, consumables) sell on a region-wide AH. More buyers but more competition. At Midnight launch, prices will be chaotic for the first 1–2 weeks before stabilizing. Time your sales carefully.</p>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="emoji">📆</span> The Weekly Cycle</div>
+          <p>Prices follow a predictable weekly pattern. Materials are cheapest on weekends (more farmers online). Consumables spike Tuesday–Wednesday (raid resets). Craft and list consumables Monday night. Buy materials on Saturday.</p>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="emoji">🏠</span> Housing Creates Permanent Demand</div>
+          <p>Unlike gear, housing decor doesn't reset with each season. This is a cosmetic market that grows over time as more players build and customize. Housing materials (especially lumber) will be in demand for months — potentially the entire expansion.</p>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="emoji">📢</span> Expansion Launch Economy</div>
+          <p>Midnight launch is the single most profitable time to be a gold-maker. Everyone needs new enchants, gems, consumables, and crafted gear simultaneously with zero existing supply. Crafters and gatherers who are ready on day one will make a fortune.</p>
+        </div>
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-label">Golden Rule</div>
+        <p>At launch, sell everything immediately — prices are at their peak and will only go down. Once the economy stabilizes (2–3 weeks in), switch to the normal cycle: buy materials on weekends, sell consumables and enchants Tuesday through Thursday. This timing discipline alone can boost profits by 20–30%.</p>
+      </div>
+    </section>
+
+    <!-- DAILY CHECKLIST -->
+    <section id="checklist">
+      <div class="section-header">
+        <h2>✅ Daily Gold-Making Checklist</h2>
+        <p>Click to track your progress — resets when you reload</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Daily Tasks</div>
+        <div class="checklist" id="daily-checklist">
+          <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)">✓</div><span>Complete patron crafting orders on all characters</span></div>
+          <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)">✓</div><span>Do profession daily cooldowns (transmutes, alloys, cloth)</span></div>
+          <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)">✓</div><span>Check TSM sniper for underpriced items</span></div>
+          <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)">✓</div><span>Cancel and repost expired auctions</span></div>
+          <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)">✓</div><span>Collect AH mail (sold items + expired returns)</span></div>
+          <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)">✓</div><span>Do one gathering loop in Quel'Thalas or dungeon farm session</span></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 16px;">
+        <div class="card-title">Weekly Tasks</div>
+        <div class="checklist" id="weekly-checklist">
+          <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)">✓</div><span>Clear legacy raids on all alts (vendor + transmog)</span></div>
+          <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)">✓</div><span>Complete weekly profession knowledge quests</span></div>
+          <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)">✓</div><span>Stock up on materials (buy low on weekends)</span></div>
+          <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)">✓</div><span>Craft and list consumables + housing decor for reset-day demand</span></div>
+          <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)">✓</div><span>Check crafting order board for high-tip personal orders</span></div>
+          <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)">✓</div><span>Review TSM Accounting — which items made the most gold?</span></div>
+          <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)">✓</div><span>Adjust strategy based on last week's data</span></div>
+        </div>
+      </div>
+
+      <div style="margin-top: 24px; text-align: center;">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-dim);">
+          DAILY PROGRESS
+        </span>
+        <div class="progress-track" style="margin-top: 8px;">
+          <div class="progress-fill gold-fill" id="daily-progress" style="width: 0%"></div>
+        </div>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-dim); margin-top: 24px; display: block;">
+          WEEKLY PROGRESS
+        </span>
+        <div class="progress-track" style="margin-top: 8px;">
+          <div class="progress-fill gold-fill" id="weekly-progress" style="width: 0%"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      <p class="gold-text">May your bags overflow with gold.</p>
+      <p style="margin-top: 8px;">Guide compiled for Midnight · Patch 12.0.1 · Build 66102</p>
+    </div>
+  </main>
+</div>
+
+<script>
+// Expandable sections
+function toggleExpand(el) {
+  el.classList.toggle('open');
+}
+
+// Checklist
+function toggleCheck(el) {
+  el.classList.toggle('checked');
+  updateProgress();
+}
+
+function updateProgress() {
+  const dailyChecks = document.querySelectorAll('#daily-checklist .check-box');
+  const dailyChecked = document.querySelectorAll('#daily-checklist .check-box.checked');
+  const dailyPct = (dailyChecked.length / dailyChecks.length) * 100;
+  document.getElementById('daily-progress').style.width = dailyPct + '%';
+
+  const weeklyChecks = document.querySelectorAll('#weekly-checklist .check-box');
+  const weeklyChecked = document.querySelectorAll('#weekly-checklist .check-box.checked');
+  const weeklyPct = (weeklyChecked.length / weeklyChecks.length) * 100;
+  document.getElementById('weekly-progress').style.width = weeklyPct + '%';
+}
+
+// Tier filter
+function filterTier(tier) {
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+
+  document.querySelectorAll('#tier-list .card').forEach(card => {
+    if (tier === 'all' || card.dataset.tier === tier) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// Active nav tracking
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('.nav a');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+      });
+    }
+  });
+}, { rootMargin: '-20% 0px -60% 0px' });
+
+sections.forEach(section => observer.observe(section));
+
+// Back to top button
+const backToTop = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 600) {
+    backToTop.classList.add('visible');
+  } else {
+    backToTop.classList.remove('visible');
+  }
+}, { passive: true });
+
+// Close mobile nav on link click
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelector('.sidebar').classList.remove('open');
+  });
+});
+</script>
+
+</body>
+</html>
