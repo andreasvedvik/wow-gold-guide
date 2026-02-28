@@ -942,6 +942,7 @@ section { animation: fadeInUp 0.5s ease both; }
         <div class="nav-group-label">Advanced</div>
         <a href="#ah-flipping"><span class="icon">📈</span> AH Flipping</a>
         <a href="#crafting-orders"><span class="icon">📋</span> Crafting Orders</a>
+        <a href="#housing"><span class="icon">🏠</span> Housing Economy</a>
         <a href="#passive"><span class="icon">🔄</span> Passive Income</a>
       </div>
       <div class="nav-group">
@@ -960,6 +961,7 @@ section { animation: fadeInUp 0.5s ease both; }
       <h1>The Gold<br>Compendium</h1>
       <p class="tagline">A comprehensive guide to wealth in Midnight</p>
       <span class="version-badge">Season 1 · Patch 12.0</span>
+      <div style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-dim);letter-spacing:1px;">LAST UPDATED: FEBRUARY 2026</div>
     </div>
 
     <div class="tldr-card">
@@ -1036,8 +1038,8 @@ section { animation: fadeInUp 0.5s ease both; }
               </div>
             </div>
           </div>
-          <div class="profit-tag high">10k–20k GPH</div>
-          <div class="gph-disclaimer">* Launch-week estimates. Expect 40-60% decline after month 1 as supply stabilizes.</div>
+          <div class="profit-tag high">8k–15k GPH</div>
+          <div class="gph-disclaimer">* Varies by server economy and time since launch. Early weeks will be higher.</div>
         </div>
 
         <div class="card" data-tier="beginner">
@@ -1065,8 +1067,8 @@ section { animation: fadeInUp 0.5s ease both; }
               </div>
             </div>
           </div>
-          <div class="profit-tag medium">8k–14k GPH (raw gold)</div>
-          <div class="gph-disclaimer">* Launch-week estimates. Expect 40-60% decline after month 1 as supply stabilizes.</div>
+          <div class="profit-tag medium">7k–12k GPH (raw gold)</div>
+          <div class="gph-disclaimer">* Varies by server economy and time since launch. Early weeks will be higher.</div>
         </div>
 
         <div class="card" data-tier="intermediate">
@@ -1094,13 +1096,13 @@ section { animation: fadeInUp 0.5s ease both; }
               </div>
             </div>
           </div>
-          <div class="profit-tag very-high">20k–60k+ GPH</div>
-          <div class="gph-disclaimer">* Launch-week estimates. Expect 40-60% decline after month 1 as supply stabilizes.</div>
+          <div class="profit-tag very-high">Batch profit varies — 5k-30k+ per crafting session</div>
+          <div class="gph-disclaimer">* Alchemy is batch crafting, not hourly farming. Profit depends on material costs and sale timing.</div>
         </div>
 
         <div class="card" data-tier="intermediate">
           <div class="card-title"><span class="emoji">🧵</span> Cloth Farming (Tailor)</div>
-          <p>Only Tailors can loot cloth in Midnight, making supply limited and prices high. Run Darkflame Cleft via the Follower Dungeon system for optimized cloth drops.</p>
+          <p>Tailors get dramatically more cloth drops through Unraveling, making Tailoring essential for cloth farming. Run Midnight dungeons like Windrunner Spire or Maisara Caverns via the Follower Dungeon system for optimized cloth drops.</p>
           <div class="ratings">
             <div class="rating">
               <span>Effort</span>
@@ -1123,8 +1125,8 @@ section { animation: fadeInUp 0.5s ease both; }
               </div>
             </div>
           </div>
-          <div class="profit-tag high">15k–30k GPH</div>
-          <div class="gph-disclaimer">* Launch-week estimates. Expect 40-60% decline after month 1 as supply stabilizes.</div>
+          <div class="profit-tag high">12k–25k GPH</div>
+          <div class="gph-disclaimer">* Varies by server economy and time since launch. Early weeks will be higher.</div>
         </div>
 
         <div class="card" data-tier="advanced">
@@ -1220,13 +1222,8 @@ section { animation: fadeInUp 0.5s ease both; }
           </div>
 
           <div class="route-box">
-            <div class="route-label">Eversong Woods Loop — /way coords</div>
-            <p style="color:var(--text);font-size:14px;margin-bottom:8px;">Optimized herb loop (~5 min per circuit). Import into Routes addon:</p>
-            <code>/way Eversong Woods 45.2 32.1 Start here (near Sunsail Anchorage)</code><br>
-            <code>/way Eversong Woods 52.8 41.3 Follow river north</code><br>
-            <code>/way Eversong Woods 60.1 35.7 Dense herb cluster</code><br>
-            <code>/way Eversong Woods 55.4 28.9 Loop back south</code><br>
-            <code>/way Eversong Woods 48.6 24.5 Rare node spawn</code>
+            <div class="route-label">Farming Route Tip</div>
+            <p style="color:var(--text);font-size:14px;">Install <strong>GatherMate2</strong> and <strong>Routes</strong> addons to generate optimized farming paths based on real node data. Fly a full loop of Eversong Woods once to populate your map, then let Routes calculate the most efficient circuit. Community-shared route data is also available on CurseForge.</p>
           </div>
         </div>
       </div>
@@ -1271,9 +1268,10 @@ section { animation: fadeInUp 0.5s ease both; }
               <tr><th>Material</th><th>Source</th><th>Demand</th><th>Notes</th></tr>
             </thead>
             <tbody>
-              <tr><td class="quality-uncommon">Stormcharged Leather</td><td>Various beasts</td><td>High</td><td>Leatherworking staple</td></tr>
-              <tr><td class="quality-rare">Concrete Chitin</td><td>Insectoid mobs</td><td>High</td><td>Required for mail gear crafts</td></tr>
-              <tr><td class="quality-epic">Luxurious Leather</td><td>Rare procs</td><td>Very High</td><td>Invest in Tanning spec for these</td></tr>
+              <tr><td class="quality-uncommon">Void-Tempered Leather</td><td>Various beasts</td><td>High</td><td>Primary Leatherworking material</td></tr>
+              <tr><td class="quality-uncommon">Void-Tempered Scales</td><td>Dragonkin / reptiles</td><td>High</td><td>Required for mail gear crafts</td></tr>
+              <tr><td class="quality-rare">Fantastic Fur / Peerless Plumage</td><td>Species-specific drops</td><td>Medium</td><td>Bonus reagents from specific creature types</td></tr>
+              <tr><td class="quality-epic">Majestic Claw / Hide / Fin</td><td>Lured beast kills</td><td>Very High</td><td>Epic materials — use Lure items to attract rare beasts</td></tr>
             </tbody>
           </table>
 
@@ -1389,7 +1387,7 @@ section { animation: fadeInUp 0.5s ease both; }
             <li>Gadgets and utility items</li>
             <li>Ammunition and weapon attachments</li>
           </ul>
-          <div class="profit-tag very-high">Tier S — New recycling mechanic</div>
+          <div class="profit-tag high">Tier A — Recycling mechanic has potential</div>
         </div>
 
         <div class="card">
@@ -1417,7 +1415,7 @@ section { animation: fadeInUp 0.5s ease both; }
 
         <div class="card">
           <div class="card-title"><span class="emoji">🧵</span> <span class="quality-epic">Tailoring</span></div>
-          <p>A major change in Midnight: only Tailors can loot cloth from mobs. This means the cloth supply is limited, driving up prices. Tailoring is now both a gathering and crafting profession in one. Combined with dungeon farming, this is S-tier profitable.</p>
+          <p>Tailoring gets a massive boost in Midnight: Tailors gain bonus cloth through the Unraveling mechanic, dramatically increasing drop rates compared to non-tailors. This supply advantage drives up the value of having Tailoring.</p>
           <ul>
             <li>Exclusive cloth drops (sell raw or craft)</li>
             <li>Crafted cloth armor and embellishments</li>
@@ -1429,12 +1427,12 @@ section { animation: fadeInUp 0.5s ease both; }
 
         <div class="card">
           <div class="card-title"><span class="emoji">📜</span> <span class="quality-epic">Inscription</span></div>
-          <p>Scribes cover a massive range of crafted goods in Midnight: stat missives for gear customization, profession consumables, mail items, research scrolls, and much more. Most versatile profession with consistent demand across all player types. Covers everything raiders and crafters need.</p>
+          <p>The most versatile gold-making profession in Midnight. The core pipeline: mill herbs into pigments, craft pigments into inks, then produce Missives that control secondary stat rolls on every piece of crafted gear. Since every crafter needs Missives for their orders, demand is constant and enormous. On top of that, Inscription covers profession consumables, Vantus Runes for raiders, contracts, and housing decor items.</p>
           <ul>
-            <li>Stat Missives for crafted gear optimization</li>
-            <li>Profession consumables (pigments, inks)</li>
-            <li>Research scrolls and mail items</li>
-            <li>Niche seasonal and event items</li>
+            <li>Missives for crafted gear stat customization (highest demand)</li>
+            <li>Herb milling pipeline (pigments → inks → finished goods)</li>
+            <li>Vantus Runes for raid progression weeks</li>
+            <li>Housing decor items and contracts</li>
           </ul>
           <div class="profit-tag very-high">Tier S — Most versatile profession</div>
         </div>
@@ -1451,7 +1449,7 @@ section { animation: fadeInUp 0.5s ease both; }
       <div class="card-grid">
         <div class="card">
           <div class="card-title"><span class="quality-legendary">★</span> Midnight Dungeons (Follower Dungeon)</div>
-          <p>Midnight launches with new dungeon farmable via Follower Dungeon system. The limited cloth supply in Midnight makes exclusive Tailor drops incredibly profitable. Use solo at your own pace with optimized routes.</p>
+          <p>Midnight's eight new dungeons (Magister's Terrace, Windrunner Spire, Den of Nalorakk, Maisara Caverns, and more) are farmable via the Follower Dungeon system. The limited cloth supply in Midnight makes exclusive Tailor drops incredibly profitable. Use solo at your own pace with optimized routes.</p>
           <div class="ratings">
             <div class="rating"><span>Profit</span>
               <div class="rating-bar"><div class="rating-pip filled" style="background:var(--legendary)"></div><div class="rating-pip filled" style="background:var(--legendary)"></div><div class="rating-pip filled" style="background:var(--legendary)"></div><div class="rating-pip filled" style="background:var(--legendary)"></div><div class="rating-pip filled" style="background:var(--legendary)"></div></div>
@@ -1531,7 +1529,7 @@ section { animation: fadeInUp 0.5s ease both; }
           <div class="card-title"><span class="quality-legendary">★</span> The Motherlode (BFA)</div>
           <p>The king of raw gold farms. Vendor everything — no AH dependency means no risk. Build a speed set with movement enchants, Straddling items, and sprint abilities to maximize runs per lockout hour.</p>
           <ul>
-            <li>10 runs per hour with a speed set</li>
+            <li>8-9 runs per hour with a speed set (10/hr instance cap)</li>
             <li>All vendor trash, zero AH interaction</li>
             <li>Great for funding other ventures</li>
             <li>Perfect "brain off" farm while watching content</li>
@@ -1700,8 +1698,44 @@ section { animation: fadeInUp 0.5s ease both; }
           <li><strong>Mid-week (Wed-Thu):</strong> Many crafters have exhausted their weekly public order quota. Less competition = bigger tips on remaining orders.</li>
           <li><strong>Before raid hours:</strong> Players rush to get gear crafted before raid night. They'll pay premium tips for fast turnaround.</li>
           <li><strong>After raid hours:</strong> Raiders want upgrades after getting new crests. Quick crafters catch the post-raid rush.</li>
-          <li><strong>Save Concentration:</strong> Use your daily Concentration charge on the highest-value craft — whichever item needs it most to hit Gold quality. Never waste it on items you can already naturally hit Silver on.</li>
+          <li><strong>Save Concentration:</strong> Concentration is a resource pool (not a single charge) that regenerates slowly over time. Different crafts cost different amounts. Spend it on your highest-value craft that needs the quality boost most — never waste Concentration on items you can already naturally hit Silver on.</li>
         </ul>
+      </div>
+    </section>
+
+    <!-- HOUSING ECONOMY -->
+    <section id="housing">
+      <div class="section-header">
+        <h2>🏠 Player Housing Economy</h2>
+        <p>Midnight's newest gold frontier — decorating is big business</p>
+      </div>
+
+      <div class="card" style="margin-bottom: 24px;">
+        <p>Player Housing is one of Midnight's headline features, and every profession can craft placeable decor items. Housing decor recipes span all expansion tiers (Classic through Midnight), meaning old profession skills suddenly have new value. This is a brand-new market with volatile prices and huge opportunity.</p>
+      </div>
+
+      <div class="card-grid cols-2">
+        <div class="card">
+          <div class="card-title"><span class="emoji">🪵</span> Lumber</div>
+          <p>All housing decor requires Lumber alongside profession materials. Lumber gathering doesn't require a profession — you get an axe from your neighborhood NPC. Farm lumber while doing other activities for free crafting materials.</p>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="emoji">🎨</span> Dyes (Alchemy)</div>
+          <p>Alchemy can create dyes used to recolor housing items. This is a unique niche that adds another revenue stream on top of the usual consumable market.</p>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="emoji">📜</span> Decor Crafting</div>
+          <p>Inscription, Blacksmithing, Tailoring, Engineering, Jewelcrafting, and Leatherworking all have housing decor recipes. Check your recipe list — some of the most expensive decor items come from obscure old-world recipe tiers.</p>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="emoji">💰</span> Market Opportunity</div>
+          <p>Housing decor is a brand-new market with no established price history. Early crafters setting prices have an advantage. Watch for which decor items trend on social media — popular designs sell at premium prices.</p>
+        </div>
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-label">Goblin Insight</div>
+        <p>Don't sleep on old-world profession tiers. Housing decor recipes pull from Classic, TBC, Wrath, and other expansion skill trees. If you have a neglected alt with maxed Pandaria Enchanting or Wrath Blacksmithing, they might suddenly be sitting on a gold mine of exclusive decor recipes.</p>
       </div>
     </section>
 
@@ -1733,7 +1767,7 @@ section { animation: fadeInUp 0.5s ease both; }
 
         <div class="card">
           <div class="card-title"><span class="emoji">🎯</span> Weekly Activities</div>
-          <p>Callings, weekly quests, and world boss kills provide raw gold. Combined with legacy raid clears on alts, this adds up to significant passive income each week.</p>
+          <p>Weekly quests, world boss kills, and zone events provide raw gold. Combined with legacy raid clears on alts, this adds up to significant passive income each week.</p>
           <div class="profit-tag medium">5k–15k per character per week</div>
         </div>
 
@@ -1862,7 +1896,7 @@ section { animation: fadeInUp 0.5s ease both; }
         <ul>
           <li><strong>Cheapest:</strong> Mid-week (Tuesday-Thursday), mid-month, during content droughts</li>
           <li><strong>Most expensive:</strong> Expansion launches, major patch drops, holiday events, beginning of month</li>
-          <li><strong>Midnight launch:</strong> Token prices will spike 30-50% at launch. Buy your tokens 2-3 weeks before release if possible</li>
+          <li><strong>Season resets & patches:</strong> Token prices spike 30-50% when new seasons and major patches drop. Buy tokens during content droughts when prices are lowest</li>
           <li><strong>Track prices</strong> at wowtoken.info — set alerts for price drops below your threshold</li>
         </ul>
         <div class="tip-box" style="margin-top:16px;">
@@ -1885,12 +1919,12 @@ section { animation: fadeInUp 0.5s ease both; }
 
       <div class="card" style="margin-top: 24px;">
         <div class="card-title"><span class="emoji">🔮</span> Understanding Concentration</div>
-        <p>Concentration is Midnight's system for guaranteeing higher-quality crafts. Every crafter gets a daily Concentration charge that, when spent, significantly boosts your chance of crafting at a higher quality tier.</p>
+        <p>Concentration is Midnight's system for guaranteeing higher-quality crafts. It's a resource pool (up to 1000 points) that regenerates slowly over time — roughly 100 points per day. When spent on a craft, it significantly boosts your chance of reaching a higher quality tier.</p>
         <ul>
-          <li><strong>One charge per day</strong> — it's your most valuable crafting resource</li>
-          <li><strong>Use it on your highest-value craft</strong> — the item furthest from guaranteed Gold quality without help</li>
+          <li><strong>It's a pool, not a charge</strong> — different crafts cost different amounts of Concentration (some high-end items cost 200+)</li>
+          <li><strong>Spend it on your highest-value craft</strong> — the item furthest from guaranteed Gold quality without help</li>
           <li><strong>Never waste it</strong> on cheap items you can already hit Silver quality on naturally</li>
-          <li><strong>Gear crafter alts</strong> save Concentration for high-volume periods where competition runs out of charges quickly, giving you pricing power</li>
+          <li><strong>Gear crafter alts</strong> each have their own Concentration pool — more alts = more high-quality crafts per day</li>
         </ul>
       </div>
 
