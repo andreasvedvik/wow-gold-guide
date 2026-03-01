@@ -631,7 +631,135 @@ a[href*="wowhead.com/skill"]:hover {
   font-size: 20px;
 }
 
+/* === GPH CALCULATOR === */
+.calc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.calc-input-group h4 {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  color: var(--gold);
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+
+.calc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.calc-field label {
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.calc-field label a {
+  font-size: 10px;
+  color: var(--text-dim);
+  text-decoration: none;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.calc-field label a:hover { color: var(--gold); }
+
+.calc-field input {
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 8px 12px;
+  color: var(--gold-light);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  width: 100%;
+  transition: border-color 0.2s;
+}
+
+.calc-field input:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.calc-field input::placeholder {
+  color: var(--text-dim);
+  opacity: 0.5;
+}
+
+.calc-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0 8px;
+  padding: 12px 16px;
+  background: var(--bg-deep);
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+.calc-toggle label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  cursor: pointer;
+}
+
+.calc-toggle input[type="checkbox"] {
+  accent-color: var(--gold);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.calc-result {
+  text-align: center;
+  padding: 20px;
+}
+
+.calc-gph {
+  font-family: 'Cinzel', serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--gold);
+  text-shadow: 0 0 30px rgba(212, 168, 71, 0.3);
+}
+
+.calc-gph.zero { color: var(--text-dim); text-shadow: none; }
+
+.calc-breakdown {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 8px;
+  letter-spacing: 0.5px;
+}
+
+.calc-rank {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 3px 12px;
+  border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.calc-rank.rank-1 { background: rgba(212,168,71,0.15); color: var(--gold); border: 1px solid var(--gold); }
+.calc-rank.rank-2 { background: rgba(34,197,94,0.1); color: var(--uncommon); border: 1px solid rgba(34,197,94,0.3); }
+.calc-rank.rank-3 { background: rgba(59,130,246,0.1); color: var(--rare); border: 1px solid rgba(59,130,246,0.3); }
+.calc-rank.rank-4 { background: rgba(122,122,142,0.1); color: var(--text-dim); border: 1px solid var(--border); }
+
 @media (max-width: 900px) {
+  .calc-grid { grid-template-columns: repeat(2, 1fr); }
   .app { grid-template-columns: 1fr; }
   .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
   .sidebar.open { transform: translateX(0); }
@@ -680,6 +808,7 @@ section { animation: fadeInUp 0.5s ease both; }
       <div class="nav-group">
         <div class="nav-group-label">Farming</div>
         <a href="#dungeon-farms"><span class="icon">🏰</span> Dungeon Farms</a>
+        <a href="#gph-calc"><span class="icon">🧮</span> GPH Calculator</a>
         <a href="#open-world"><span class="icon">🌍</span> Open World</a>
         <a href="#legacy"><span class="icon">📜</span> Legacy Content</a>
         <a href="#speed-set"><span class="icon">💨</span> Speed Set</a>
@@ -1286,6 +1415,190 @@ section { animation: fadeInUp 0.5s ease both; }
           </div>
           <div class="profit-tag high">15k–35k GPH</div>
         </div>
+      </div>
+    </section>
+
+    <!-- GPH CALCULATOR -->
+    <section id="gph-calc">
+      <div class="section-header">
+        <h2>🧮 GPH Calculator</h2>
+        <p>Calculate your gold per hour across all major gathering routes</p>
+      </div>
+
+      <!-- Price Input Panel -->
+      <div class="card">
+        <div class="card-title">Enter Your Server Prices</div>
+
+        <div class="calc-input-group">
+          <h4>Herbs</h4>
+          <div class="calc-grid">
+            <div class="calc-field">
+              <label for="price-tranquility">
+                <span class="quality-uncommon">Tranquility Bloom</span>
+                <a href="https://undermine.exchange/#item/236761" target="_blank" rel="noopener">check</a>
+              </label>
+              <input type="number" id="price-tranquility" class="calc-input" placeholder="0g" data-item="tranquility" min="0" step="1">
+            </div>
+            <div class="calc-field">
+              <label for="price-argentleaf">
+                <span class="quality-uncommon">Argentleaf</span>
+                <a href="https://undermine.exchange/#item/236776" target="_blank" rel="noopener">check</a>
+              </label>
+              <input type="number" id="price-argentleaf" class="calc-input" placeholder="0g" data-item="argentleaf" min="0" step="1">
+            </div>
+            <div class="calc-field">
+              <label for="price-azeroot">
+                <span class="quality-uncommon">Azeroot</span>
+                <a href="https://undermine.exchange/#item/236774" target="_blank" rel="noopener">check</a>
+              </label>
+              <input type="number" id="price-azeroot" class="calc-input" placeholder="0g" data-item="azeroot" min="0" step="1">
+            </div>
+            <div class="calc-field">
+              <label for="price-manalily">
+                <span class="quality-rare">Mana Lily</span>
+                <a href="https://undermine.exchange/#item/236779" target="_blank" rel="noopener">check</a>
+              </label>
+              <input type="number" id="price-manalily" class="calc-input" placeholder="0g" data-item="manalily" min="0" step="1">
+            </div>
+            <div class="calc-field">
+              <label for="price-sanguithorn">
+                <span class="quality-rare">Sanguithorn</span>
+                <a href="https://undermine.exchange/#item/236770" target="_blank" rel="noopener">check</a>
+              </label>
+              <input type="number" id="price-sanguithorn" class="calc-input" placeholder="0g" data-item="sanguithorn" min="0" step="1">
+            </div>
+            <div class="calc-field">
+              <label for="price-nocturnallotus">
+                <span class="quality-epic">Nocturnal Lotus</span>
+                <a href="https://undermine.exchange/#item/236780" target="_blank" rel="noopener">check</a>
+              </label>
+              <input type="number" id="price-nocturnallotus" class="calc-input" placeholder="0g" data-item="nocturnallotus" min="0" step="1">
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-input-group">
+          <h4>Ores</h4>
+          <div class="calc-grid">
+            <div class="calc-field">
+              <label for="price-copper">
+                <span class="quality-uncommon">Refulgent Copper Ore</span>
+                <a href="https://undermine.exchange/#item/237359" target="_blank" rel="noopener">check</a>
+              </label>
+              <input type="number" id="price-copper" class="calc-input" placeholder="0g" data-item="copper" min="0" step="1">
+            </div>
+            <div class="calc-field">
+              <label for="price-tin">
+                <span class="quality-uncommon">Umbral Tin Ore</span>
+                <a href="https://undermine.exchange/#item/237363" target="_blank" rel="noopener">check</a>
+              </label>
+              <input type="number" id="price-tin" class="calc-input" placeholder="0g" data-item="tin" min="0" step="1">
+            </div>
+            <div class="calc-field">
+              <label for="price-silver">
+                <span class="quality-rare">Brilliant Silver Ore</span>
+                <a href="https://undermine.exchange/#item/237365" target="_blank" rel="noopener">check</a>
+              </label>
+              <input type="number" id="price-silver" class="calc-input" placeholder="0g" data-item="silver" min="0" step="1">
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-input-group">
+          <h4>Motes</h4>
+          <div class="calc-grid">
+            <div class="calc-field">
+              <label for="price-light">
+                <span class="quality-rare">Mote of Light</span>
+                <a href="https://undermine.exchange/#item/236949" target="_blank" rel="noopener">check</a>
+              </label>
+              <input type="number" id="price-light" class="calc-input" placeholder="0g" data-item="light" min="0" step="1">
+            </div>
+            <div class="calc-field">
+              <label for="price-wild">
+                <span class="quality-rare">Mote of Wild Magic</span>
+                <a href="https://undermine.exchange/#item/236951" target="_blank" rel="noopener">check</a>
+              </label>
+              <input type="number" id="price-wild" class="calc-input" placeholder="0g" data-item="wild" min="0" step="1">
+            </div>
+            <div class="calc-field">
+              <label for="price-primal">
+                <span class="quality-epic">Mote of Primal Energy</span>
+                <a href="https://undermine.exchange/#item/236950" target="_blank" rel="noopener">check</a>
+              </label>
+              <input type="number" id="price-primal" class="calc-input" placeholder="0g" data-item="primal" min="0" step="1">
+            </div>
+            <div class="calc-field">
+              <label for="price-void">
+                <span class="quality-epic">Mote of Pure Void</span>
+                <a href="https://undermine.exchange/#item/236952" target="_blank" rel="noopener">check</a>
+              </label>
+              <input type="number" id="price-void" class="calc-input" placeholder="0g" data-item="void" min="0" step="1">
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-toggle">
+          <input type="checkbox" id="dual-gathering-toggle" checked>
+          <label for="dual-gathering-toggle">Dual Gathering (Herb + Mining)</label>
+        </div>
+      </div>
+
+      <!-- Results Panel -->
+      <div class="card-grid">
+        <div class="card">
+          <div class="calc-result">
+            <div class="card-title" style="justify-content: center; margin-bottom: 16px;">
+              <span class="emoji">🌳</span>
+              <span>Eversong Woods</span>
+            </div>
+            <div class="calc-gph zero" id="gph-eversong">0g</div>
+            <div class="calc-breakdown" id="breakdown-eversong">Herbs: 0g · Ores: 0g · Motes: 0g</div>
+            <span class="calc-rank" id="rank-eversong"></span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="calc-result">
+            <div class="card-title" style="justify-content: center; margin-bottom: 16px;">
+              <span class="emoji">🦖</span>
+              <span>Zul'Aman</span>
+            </div>
+            <div class="calc-gph zero" id="gph-zuaman">0g</div>
+            <div class="calc-breakdown" id="breakdown-zuaman">Herbs: 0g · Ores: 0g · Motes: 0g</div>
+            <span class="calc-rank" id="rank-zuaman"></span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="calc-result">
+            <div class="card-title" style="justify-content: center; margin-bottom: 16px;">
+              <span class="emoji">🏜</span>
+              <span>Harandar</span>
+            </div>
+            <div class="calc-gph zero" id="gph-harandar">0g</div>
+            <div class="calc-breakdown" id="breakdown-harandar">Herbs: 0g · Ores: 0g · Motes: 0g</div>
+            <span class="calc-rank" id="rank-harandar"></span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="calc-result">
+            <div class="card-title" style="justify-content: center; margin-bottom: 16px;">
+              <span class="emoji">⚡</span>
+              <span>Voidstorm</span>
+            </div>
+            <div class="calc-gph zero" id="gph-voidstorm">0g</div>
+            <div class="calc-breakdown" id="breakdown-voidstorm">Herbs: 0g · Ores: 0g · Motes: 0g</div>
+            <span class="calc-rank" id="rank-voidstorm"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tip Box -->
+      <div class="tip-box">
+        <div class="tip-label">GPH Estimates (Pre-AH Fee)</div>
+        <p>Prices change hourly. Check <a href="https://undermine.exchange" target="_blank" rel="noopener">Undermine Exchange</a> before each farming session for the most accurate estimates. These calculations assume mounted gathering with decent Finesse gear (~2.5 herbs/node, ~2.0 ore/node). Your actual results will vary based on competition, time of day, and spec. The GPH shown above does not account for the 5% AH cut when you sell your materials.</p>
       </div>
     </section>
 
@@ -1959,6 +2272,155 @@ navLinks.forEach(link => {
     document.querySelector('.sidebar').classList.remove('open');
   });
 });
+
+// === GPH CALCULATOR ===
+const zoneData = {
+  eversong: {
+    herbNodesPerHr: 160,
+    oreNodesPerHr: 90,
+    motePerHr: 12,
+    moteType: 'light',
+    herbDist: { tranquility: 0.30, argentleaf: 0.25, azeroot: 0.25, manalily: 0.10, sanguithorn: 0.08, nocturnallotus: 0.02 },
+    oreDist: { copper: 0.60, tin: 0.30, silver: 0.10 }
+  },
+  zuaman: {
+    herbNodesPerHr: 145,
+    oreNodesPerHr: 70,
+    motePerHr: 15,
+    moteType: 'wild',
+    herbDist: { tranquility: 0.28, argentleaf: 0.23, azeroot: 0.23, manalily: 0.10, sanguithorn: 0.14, nocturnallotus: 0.02 },
+    oreDist: { copper: 0.60, tin: 0.30, silver: 0.10 }
+  },
+  harandar: {
+    herbNodesPerHr: 185,
+    oreNodesPerHr: 80,
+    motePerHr: 10,
+    moteType: 'primal',
+    herbDist: { tranquility: 0.32, argentleaf: 0.24, azeroot: 0.26, manalily: 0.09, sanguithorn: 0.07, nocturnallotus: 0.02 },
+    oreDist: { copper: 0.60, tin: 0.30, silver: 0.10 }
+  },
+  voidstorm: {
+    herbNodesPerHr: 120,
+    oreNodesPerHr: 55,
+    motePerHr: 20,
+    moteType: 'void',
+    herbDist: { tranquility: 0.25, argentleaf: 0.22, azeroot: 0.22, manalily: 0.12, sanguithorn: 0.12, nocturnallotus: 0.07 },
+    oreDist: { copper: 0.50, tin: 0.30, silver: 0.20 }
+  }
+};
+
+const herbsPerNode = 2.5;
+const oresPerNode = 2.0;
+
+function calculateGPH() {
+  // Get prices
+  const prices = {
+    tranquility: parseFloat(document.getElementById('price-tranquility').value) || 0,
+    argentleaf: parseFloat(document.getElementById('price-argentleaf').value) || 0,
+    azeroot: parseFloat(document.getElementById('price-azeroot').value) || 0,
+    manalily: parseFloat(document.getElementById('price-manalily').value) || 0,
+    sanguithorn: parseFloat(document.getElementById('price-sanguithorn').value) || 0,
+    nocturnallotus: parseFloat(document.getElementById('price-nocturnallotus').value) || 0,
+    copper: parseFloat(document.getElementById('price-copper').value) || 0,
+    tin: parseFloat(document.getElementById('price-tin').value) || 0,
+    silver: parseFloat(document.getElementById('price-silver').value) || 0,
+    light: parseFloat(document.getElementById('price-light').value) || 0,
+    wild: parseFloat(document.getElementById('price-wild').value) || 0,
+    primal: parseFloat(document.getElementById('price-primal').value) || 0,
+    void: parseFloat(document.getElementById('price-void').value) || 0
+  };
+
+  const dualGathering = document.getElementById('dual-gathering-toggle').checked;
+
+  // Calculate for each zone
+  const results = {};
+
+  for (const [zoneName, zone] of Object.entries(zoneData)) {
+    // Calculate herb gold
+    let herbGold = 0;
+    herbGold += zone.herbNodesPerHr * herbsPerNode * zone.herbDist.tranquility * prices.tranquility;
+    herbGold += zone.herbNodesPerHr * herbsPerNode * zone.herbDist.argentleaf * prices.argentleaf;
+    herbGold += zone.herbNodesPerHr * herbsPerNode * zone.herbDist.azeroot * prices.azeroot;
+    herbGold += zone.herbNodesPerHr * herbsPerNode * zone.herbDist.manalily * prices.manalily;
+    herbGold += zone.herbNodesPerHr * herbsPerNode * zone.herbDist.sanguithorn * prices.sanguithorn;
+    herbGold += zone.herbNodesPerHr * herbsPerNode * zone.herbDist.nocturnallotus * prices.nocturnallotus;
+
+    // Calculate ore gold (only if dual gathering is enabled)
+    let oreGold = 0;
+    if (dualGathering) {
+      oreGold += zone.oreNodesPerHr * oresPerNode * zone.oreDist.copper * prices.copper;
+      oreGold += zone.oreNodesPerHr * oresPerNode * zone.oreDist.tin * prices.tin;
+      oreGold += zone.oreNodesPerHr * oresPerNode * zone.oreDist.silver * prices.silver;
+    }
+
+    // Calculate mote gold
+    const motePrice = prices[zone.moteType];
+    const moteGold = zone.motePerHr * motePrice;
+
+    // Total GPH
+    const totalGPH = Math.round(herbGold + oreGold + moteGold);
+
+    results[zoneName] = {
+      total: totalGPH,
+      herbGold: Math.round(herbGold),
+      oreGold: Math.round(oreGold),
+      moteGold: Math.round(moteGold)
+    };
+  }
+
+  // Update UI with results and rankings
+  updateResults(results);
+}
+
+function updateResults(results) {
+  // Sort zones by GPH
+  const sorted = Object.entries(results).sort((a, b) => b[1].total - a[1].total);
+
+  const zoneNames = {
+    eversong: { id: 'eversong', display: 'Eversong Woods' },
+    zuaman: { id: 'zuaman', display: "Zul'Aman" },
+    harandar: { id: 'harandar', display: 'Harandar' },
+    voidstorm: { id: 'voidstorm', display: 'Voidstorm' }
+  };
+
+  // Update each zone's display
+  for (let rank = 0; rank < sorted.length; rank++) {
+    const [zoneName, data] = sorted[rank];
+    const zoneInfo = zoneNames[zoneName];
+
+    const gphEl = document.getElementById(`gph-${zoneInfo.id}`);
+    const breakdownEl = document.getElementById(`breakdown-${zoneInfo.id}`);
+    const rankEl = document.getElementById(`rank-${zoneInfo.id}`);
+
+    if (data.total === 0) {
+      gphEl.textContent = '0g';
+      gphEl.classList.add('zero');
+      breakdownEl.textContent = 'Herbs: 0g · Ores: 0g · Motes: 0g';
+      rankEl.textContent = '';
+      rankEl.className = 'calc-rank';
+    } else {
+      gphEl.textContent = data.total.toLocaleString() + 'g';
+      gphEl.classList.remove('zero');
+      breakdownEl.textContent = `Herbs: ${data.herbGold.toLocaleString()}g · Ores: ${data.oreGold.toLocaleString()}g · Motes: ${data.moteGold.toLocaleString()}g`;
+
+      rankEl.className = `calc-rank rank-${rank + 1}`;
+      if (rank === 0) rankEl.textContent = '#1 BEST';
+      else if (rank === 1) rankEl.textContent = '#2';
+      else if (rank === 2) rankEl.textContent = '#3';
+      else rankEl.textContent = '#4';
+    }
+  }
+}
+
+// Setup event listeners for all calc inputs
+document.querySelectorAll('.calc-input').forEach(input => {
+  input.addEventListener('input', calculateGPH);
+});
+
+document.getElementById('dual-gathering-toggle').addEventListener('change', calculateGPH);
+
+// Initialize on page load
+window.addEventListener('load', calculateGPH);
 </script>
 
 </body>
