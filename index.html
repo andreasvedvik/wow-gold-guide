@@ -926,6 +926,38 @@ section:hover .section-header::after {
 
 .footer .gold-text { color: var(--gold); font-family: 'Cinzel', serif; }
 
+/* === KO-FI BUTTON === */
+.kofi-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  background: rgba(255, 209, 0, 0.08);
+  border: 1px solid rgba(255, 209, 0, 0.25);
+  border-radius: 6px;
+  color: var(--gold);
+  font-family: 'Crimson Pro', serif;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.kofi-btn:hover {
+  background: rgba(255, 209, 0, 0.15);
+  border-color: rgba(255, 209, 0, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 209, 0, 0.1);
+}
+.kofi-btn .kofi-icon { font-size: 18px; }
+.kofi-btn-small {
+  padding: 6px 16px;
+  font-size: 13px;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+.kofi-btn-small:hover { opacity: 1; }
+
 /* Wowhead item links */
 a[href*="wowhead.com/item"],
 a[href*="wowhead.com/spell"],
@@ -1189,6 +1221,9 @@ section { animation: fadeInUp 0.5s ease both; }
       <h1>The Gold<br>Compendium</h1>
       <p class="tagline">Everything I wish someone told me about making gold</p>
       <span class="version-badge">Patch 12.0 · Launch</span>
+      <a href="https://ko-fi.com/wowgoldguide" target="_blank" rel="noopener" class="kofi-btn" style="margin-top:20px;">
+        <span class="kofi-icon">☕</span> Buy me a coffee
+      </a>
     </div>
 
     <!-- NEW PLAYER BASICS -->
@@ -3000,7 +3035,10 @@ section { animation: fadeInUp 0.5s ease both; }
 
     <div class="footer">
       <p class="gold-text">May your bags overflow with gold.</p>
-      <p style="margin-top: 8px;">Made for Midnight · Patch 12.0 · GPH numbers are launch estimates and will change as the economy settles — don't @ me in 3 months when prices are different</p>
+      <a href="https://ko-fi.com/wowgoldguide" target="_blank" rel="noopener" class="kofi-btn kofi-btn-small" style="margin-top:14px;">
+        <span class="kofi-icon">☕</span> If this guide helped, consider buying me a coffee
+      </a>
+      <p style="margin-top: 12px;">Made for Midnight · Patch 12.0 · GPH numbers are launch estimates and will change as the economy settles — don't @ me in 3 months when prices are different</p>
     </div>
   </main>
 </div>
