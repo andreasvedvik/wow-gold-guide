@@ -11,24 +11,24 @@
 :root {
   --gold: #FFD100;
   --gold-light: #FFE566;
-  --gold-dark: #996300;
-  --bg-deep: #1a0f0a;
-  --bg-panel: #1e1410;
-  --bg-card: #2a1f17;
-  --bg-card-hover: #362a1f;
-  --border: #4a3828;
-  --border-gold: rgba(255, 209, 0, 0.3);
-  --text: #d4c4a8;
-  --text-dim: #8a7a60;
-  --text-bright: #f0e6d0;
+  --gold-dark: #D4A600;
+  --bg-deep: #0d0a1a;
+  --bg-panel: #13102a;
+  --bg-card: #1e1545;
+  --bg-card-hover: #2a1f5e;
+  --border: #3d2d6b;
+  --border-gold: rgba(255, 209, 0, 0.4);
+  --text: #c8c0e0;
+  --text-dim: #6b6090;
+  --text-bright: #e8e0ff;
   --epic: #A855F7;
   --rare: #0070FF;
   --uncommon: #1EFF00;
   --common: #9d9d9d;
   --legendary: #FF8000;
-  --void: #9B59B6;
-  --parchment: #d4c4a8;
-  --parchment-dark: #b8a080;
+  --void: #8B5CF6;
+  --void-dark: #5B21B6;
+  --crimson: #DC2626;
 }
 
 html { scroll-behavior: smooth; }
@@ -37,8 +37,8 @@ body {
   font-family: 'Crimson Pro', Georgia, serif;
   background: var(--bg-deep);
   background-image:
-    radial-gradient(ellipse at 20% 50%, rgba(42, 31, 23, 0.8) 0%, transparent 70%),
-    radial-gradient(ellipse at 80% 50%, rgba(42, 31, 23, 0.6) 0%, transparent 70%);
+    radial-gradient(ellipse at 20% 50%, rgba(91, 33, 182, 0.3) 0%, transparent 70%),
+    radial-gradient(ellipse at 80% 50%, rgba(139, 92, 246, 0.25) 0%, transparent 70%);
   color: var(--text);
   line-height: 1.7;
   font-size: 18px;
@@ -58,7 +58,7 @@ body::before {
 /* === SCROLLBAR === */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--bg-deep); }
-::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 4px; }
+::-webkit-scrollbar-thumb { background: var(--void); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 
 /* === LAYOUT === */
@@ -88,7 +88,7 @@ body::before {
   padding: 32px 24px 24px;
   border-bottom: 2px solid var(--border);
   text-align: center;
-  background: linear-gradient(180deg, rgba(255,209,0,0.03) 0%, transparent 100%);
+  background: linear-gradient(180deg, rgba(139, 92, 246, 0.08) 0%, transparent 100%);
 }
 
 .sidebar-header .coin {
@@ -97,7 +97,7 @@ body::before {
   margin: 0 auto 16px;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 35%, var(--gold-light), var(--gold), var(--gold-dark));
-  box-shadow: 0 0 30px rgba(255, 209, 0, 0.4), inset 0 -3px 6px rgba(0,0,0,0.4);
+  box-shadow: 0 0 20px rgba(255, 209, 0, 0.4), 0 0 40px rgba(139, 92, 246, 0.3), inset 0 -3px 6px rgba(0,0,0,0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,8 +109,8 @@ body::before {
 }
 
 @keyframes coin-glow {
-  0%, 100% { box-shadow: 0 0 30px rgba(255, 209, 0, 0.4), inset 0 -3px 6px rgba(0,0,0,0.4); }
-  50% { box-shadow: 0 0 50px rgba(255, 209, 0, 0.6), inset 0 -3px 6px rgba(0,0,0,0.4); }
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 209, 0, 0.4), 0 0 40px rgba(139, 92, 246, 0.3), inset 0 -3px 6px rgba(0,0,0,0.4); }
+  50% { box-shadow: 0 0 30px rgba(255, 209, 0, 0.5), 0 0 50px rgba(139, 92, 246, 0.4), inset 0 -3px 6px rgba(0,0,0,0.4); }
 }
 
 .sidebar-header h1 {
@@ -158,13 +158,13 @@ body::before {
 
 .nav a:hover {
   color: var(--gold-light);
-  background: rgba(255, 209, 0, 0.06);
+  background: rgba(139, 92, 246, 0.06);
   border-left-color: var(--gold);
 }
 
 .nav a.active {
   color: var(--gold);
-  background: rgba(255, 209, 0, 0.1);
+  background: rgba(139, 92, 246, 0.1);
   border-left-color: var(--gold);
 }
 
@@ -192,7 +192,7 @@ body::before {
   transform: translateX(-50%);
   width: 300px;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold-dark), var(--gold), var(--gold-dark), transparent);
+  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.5), var(--gold), rgba(139, 92, 246, 0.5), transparent);
 }
 
 .hero h1 {
@@ -201,7 +201,7 @@ body::before {
   font-size: 52px;
   line-height: 1.1;
   color: var(--gold);
-  text-shadow: 0 0 60px rgba(255, 209, 0, 0.25), 0 2px 4px rgba(0,0,0,0.5);
+  text-shadow: 0 0 30px rgba(255, 209, 0, 0.3), 0 0 60px rgba(139, 92, 246, 0.4), 0 2px 4px rgba(0,0,0,0.5);
   letter-spacing: 3px;
 }
 
@@ -245,7 +245,7 @@ section {
   content: '⚔ ◆ ⚔';
   display: block;
   text-align: center;
-  color: var(--gold-dark);
+  color: var(--void);
   font-size: 14px;
   letter-spacing: 8px;
   margin-top: 12px;
@@ -258,7 +258,7 @@ section {
   font-size: 32px;
   color: var(--gold);
   letter-spacing: 2px;
-  text-shadow: 0 0 40px rgba(255, 209, 0, 0.15);
+  text-shadow: 0 0 20px rgba(255, 209, 0, 0.2), 0 0 40px rgba(139, 92, 246, 0.25);
 }
 
 .section-header p {
@@ -282,14 +282,14 @@ section {
   padding: 24px;
   transition: all 0.3s;
   cursor: default;
-  box-shadow: inset 0 1px 0 rgba(255,209,0,0.05), 0 2px 8px rgba(0,0,0,0.3);
+  box-shadow: inset 0 1px 0 rgba(139, 92, 246, 0.08), 0 2px 8px rgba(0,0,0,0.3);
 }
 
 .card:hover {
   background: var(--bg-card-hover);
   border-color: var(--border-gold);
   transform: translateY(-1px);
-  box-shadow: inset 0 1px 0 rgba(255,209,0,0.08), 0 4px 16px rgba(0,0,0,0.4);
+  box-shadow: inset 0 1px 0 rgba(139, 92, 246, 0.12), 0 4px 16px rgba(0,0,0,0.4);
 }
 
 .card-title {
@@ -324,7 +324,7 @@ section {
   content: '◆';
   position: absolute;
   left: 0;
-  color: var(--gold-dark);
+  color: var(--void);
   font-size: 8px;
   top: 11px;
 }
@@ -418,7 +418,7 @@ section {
   cursor: pointer;
   transition: all 0.2s;
   user-select: none;
-  box-shadow: inset 0 1px 0 rgba(255,209,0,0.03);
+  box-shadow: inset 0 1px 0 rgba(139, 92, 246, 0.08);
 }
 
 .expandable-header:hover {
@@ -473,7 +473,7 @@ section {
   font-size: 11px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: var(--gold-dark);
+  color: var(--void);
   text-align: left;
   padding: 12px 16px;
   border-bottom: 2px solid var(--border);
@@ -485,7 +485,7 @@ section {
   color: var(--text);
 }
 
-.data-table tr:hover td { background: rgba(255, 209, 0, 0.03); }
+.data-table tr:hover td { background: rgba(139, 92, 246, 0.08); }
 
 .quality-common { color: var(--common); }
 .quality-uncommon { color: var(--uncommon); }
@@ -495,8 +495,9 @@ section {
 
 /* === TIP BOX === */
 .tip-box {
-  background: rgba(255, 209, 0, 0.04);
-  border-left: 3px solid var(--gold-dark);
+  background: rgba(139, 92, 246, 0.05);
+
+  border-left: 3px solid var(--void);
   padding: 20px 24px;
   border-radius: 0 4px 4px 0;
   margin: 24px 0;
@@ -700,7 +701,7 @@ a[href*="wowhead.com/skill"]:hover {
 .calc-field label a:hover { color: var(--gold); }
 
 .calc-field input {
-  background: rgba(26, 15, 10, 0.8);
+  background: rgba(13, 10, 26, 0.8);
   border: 1px solid var(--border);
   border-radius: 3px;
   padding: 8px 12px;
@@ -714,7 +715,7 @@ a[href*="wowhead.com/skill"]:hover {
 .calc-field input:focus {
   outline: none;
   border-color: var(--gold);
-  box-shadow: 0 0 8px rgba(255, 209, 0, 0.15);
+  box-shadow: 0 0 8px rgba(139, 92, 246, 0.25);
 }
 
 .calc-field input::placeholder {
@@ -759,7 +760,7 @@ a[href*="wowhead.com/skill"]:hover {
   font-size: 32px;
   font-weight: 700;
   color: var(--gold);
-  text-shadow: 0 0 30px rgba(255, 209, 0, 0.3);
+  text-shadow: 0 0 20px rgba(255, 209, 0, 0.3), 0 0 40px rgba(139, 92, 246, 0.3);
 }
 
 .calc-gph.zero { color: var(--text-dim); text-shadow: none; }
@@ -783,7 +784,7 @@ a[href*="wowhead.com/skill"]:hover {
   letter-spacing: 1px;
 }
 
-.calc-rank.rank-1 { background: rgba(255,209,0,0.15); color: var(--gold); border: 1px solid var(--gold); }
+.calc-rank.rank-1 { background: rgba(255,209,0,0.12); color: var(--gold); border: 1px solid rgba(139, 92, 246, 0.5); box-shadow: 0 0 12px rgba(139, 92, 246, 0.2); }
 .calc-rank.rank-2 { background: rgba(30,255,0,0.1); color: var(--uncommon); border: 1px solid rgba(30,255,0,0.3); }
 .calc-rank.rank-3 { background: rgba(0,112,255,0.1); color: var(--rare); border: 1px solid rgba(0,112,255,0.3); }
 .calc-rank.rank-4 { background: rgba(157,157,157,0.1); color: var(--text-dim); border: 1px solid var(--border); }
@@ -900,7 +901,7 @@ section { animation: fadeInUp 0.5s ease both; }
         <ul style="margin-top:12px;">
           <li><strong>2 Quality Levels for Consumables:</strong> Down from 3 tiers. This simplifies crafting and reduces the complexity of quality target calculation while maintaining profit differentiation.</li>
           <li><strong>Artisan's Moxie (New):</strong> Replaces Artisan's Acuity. This new currency is profession-specific — you can't share Alchemy Moxie with Enchanting. Plan knowledge builds around Moxie acquisition for each profession.</li>
-          <li><strong>Crafting Orders at Skill 15:</strong> Unlocked much earlier in the leveling process, meaning you can start taking orders and earning commission gold quickly on new characters.</li>
+          <li><strong>Crafting Orders at Midnight Skill 15:</strong> Unlocked at just skill level 15 in any Midnight profession (not overall skill — just 15 points in your Midnight expansion track). This means you can start taking crafting orders within minutes of picking up a new profession and earning commission gold on your first hour of leveling.</li>
           <li><strong>Patron Orders Contain Ingenious Identifier:</strong> New currency item that drops from patron crafting orders, useful for niche crafting requirements.</li>
           <li><strong>Reagent Bags in Dedicated Slot:</strong> New dedicated slot for reagent bags separate from regular bags, allowing you to carry more actual materials without bloating inventory.</li>
           <li><strong>Large Stack Sizes:</strong> Materials stack to 1000, consumables stack to 200. This means you need far fewer bag slots to store bulk materials compared to previous expansions.</li>
@@ -913,6 +914,19 @@ section { animation: fadeInUp 0.5s ease both; }
       <div class="section-header">
         <h2>🆕 New Player Basics</h2>
         <p>Foundation concepts that power all gold-making strategies</p>
+      <div class="card">
+        <div class="card-title"><span class="emoji">🚀</span> Your First Gold-Making Session — Do This Now</div>
+        <p><strong>This is your entire roadmap for the first hour.</strong> Follow these 5 steps and you'll have your first gold pile by tomorrow:</p>
+        <ol style="margin-top:12px;line-height:2;">
+          <li><strong>Pick Herbalism + Mining at the trainer</strong> in Silvermoon City (or your starting capital). No investment needed.</li>
+          <li><strong>Buy green profession equipment</strong> from the AH. Should cost under 500g total for both professions.</li>
+          <li><strong>Fly a loop around southern Eversong Woods</strong> gathering everything you see. Spend 30-60 minutes collecting herbs and ore.</li>
+          <li><strong>Return to the AH and list everything</strong> using "Post at Market Price" for simplicity. Don't overthink pricing — let the AH set it.</li>
+          <li><strong>Check the AH next day — your gold has arrived.</strong> Repeat daily, selling everything on Tuesdays for peak prices.</li>
+        </ol>
+        <p style="margin-top:16px;"><strong>Expected results:</strong> Week 1 casual farming = 10k-30k gold. This method is boring but reliable. It's your foundation for everything else.</p>
+      </div>
+
       </div>
 
       <div class="card-grid cols-2">
@@ -956,6 +970,20 @@ section { animation: fadeInUp 0.5s ease both; }
       <div class="card">
         <div class="card-title"><span class="emoji">🏦</span> Warband Bank & Cross-Character Gold Pooling</div>
         <p>The Warband Bank is shared storage accessible from all your characters. Use it to move materials and gold between toons. Strategy: gather on your main, send materials to a dedicated crafter alt, then consolidate all gold into your banking alt. This lets you scale up farming (main stays on gathering instead of selling), and you accumulate capital for bigger flipping operations. Without Warband Bank, each character's economy is isolated — with it, you're managing an account-wide operation.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="emoji">💰</span> How Much Gold Is Normal?</div>
+        <p><strong>Don't compare yourself to endgame goblins — here are realistic benchmarks for new players:</strong></p>
+        <ul>
+          <li><strong>First week (casual):</strong> 10k-30k (from questing + vendoring + selling a few herbs)</li>
+          <li><strong>First week (focused farming):</strong> 50k-150k</li>
+          <li><strong>First month (casual):</strong> 100k-300k</li>
+          <li><strong>First month (dedicated farming):</strong> 500k-1M+</li>
+        </ul>
+        <p style="margin-top:12px;"><strong>Gold cap:</strong> 10,000,000 per character (Warband shared) — you won't hit this for months.</p>
+        <p style="margin-top:12px;"><strong>For reference:</strong> WoW Token costs ~200-300k gold (varies by week). If you make 50k in week 1, that's 1/5 of a token — solid progress.</p>
+        <p style="margin-top:12px;"><strong>Golden rule:</strong> Don't compare yourself to r/woweconomy goblins — they play the AH like a full-time job and have months of capital stacked. You're starting from zero, and that's fine.</p>
       </div>
     </section>
 
@@ -1004,8 +1032,7 @@ section { animation: fadeInUp 0.5s ease both; }
 
         <div class="card" data-tier="beginner">
           <div class="card-title"><span class="emoji">🏰</span> The Motherlode</div>
-          <p>Farm old dungeons, vendor trash everything. Zero AH risk, pure gold. Chill.
-</p>
+          <p>The Motherlode!! is a BFA dungeon in Kezan (queue via Group Finder or walk directly). Solo at level 90 with ease — pull everything, AoE it down, vendor all drops instantly for pure gold. Note: 10 instance-per-hour lockout applies — run it 10 times then switch to another dungeon. Other good vendor-trash dungeons: Freehold (BFA), Atal'Dazar (BFA), any Legion dungeon. This is raw, risk-free gold with zero AH interaction needed. Perfect for alts with no professions.</p>
           <div class="ratings">
             <div class="rating">
               <span>Effort</span>
@@ -1170,16 +1197,21 @@ section { animation: fadeInUp 0.5s ease both; }
 
           <table class="data-table">
             <thead>
-              <tr><th>Herb</th><th>Zone</th><th>Demand</th><th>Notes</th></tr>
+              <tr><th>Herb</th><th>Zone</th><th>Demand</th><th>Price Range</th><th>Notes</th></tr>
             </thead>
             <tbody>
-              <tr><td class="quality-uncommon"><a href="https://www.wowhead.com/item=236761" target="_blank" rel="noopener">Tranquility Bloom</a></td><td>All Zones</td><td>Very High</td><td>Core flask and potion ingredient</td></tr>
-              <tr><td class="quality-uncommon"><a href="https://www.wowhead.com/item=236776" target="_blank" rel="noopener">Argentleaf</a></td><td>All Zones</td><td>High</td><td>Used in teas and potions</td></tr>
-              <tr><td class="quality-uncommon"><a href="https://www.wowhead.com/item=236774" target="_blank" rel="noopener">Azeroot</a></td><td>All Zones</td><td>High</td><td>Common crafting herb, high volume</td></tr>
-              <tr><td class="quality-rare"><a href="https://www.wowhead.com/item=236779" target="_blank" rel="noopener">Mana Lily</a></td><td>All Zones</td><td>High</td><td>Key Alchemy reagent, good price</td></tr>
-              <tr><td class="quality-rare"><a href="https://www.wowhead.com/item=236770" target="_blank" rel="noopener">Sanguithorn</a></td><td>All Zones</td><td>High</td><td>Blood-themed herb, raid consumables</td></tr>
-              <tr><td class="quality-epic"><a href="https://www.wowhead.com/item=236780" target="_blank" rel="noopener">Nocturnal Lotus</a></td><td>All Zones (rare)</td><td>Very High</td><td>Rare proc from any node — high gold per unit</td></tr>
+              <tr><td class="quality-uncommon"><a href="https://www.wowhead.com/item=236761" target="_blank" rel="noopener">Tranquility Bloom</a></td><td>All Zones</td><td>Very High</td><td>15-40g</td><td>Core flask and potion ingredient</td></tr>
+              <tr><td class="quality-uncommon"><a href="https://www.wowhead.com/item=236776" target="_blank" rel="noopener">Argentleaf</a></td><td>All Zones</td><td>High</td><td>15-35g</td><td>Used in teas and potions</td></tr>
+              <tr><td class="quality-uncommon"><a href="https://www.wowhead.com/item=236774" target="_blank" rel="noopener">Azeroot</a></td><td>All Zones</td><td>High</td><td>10-30g</td><td>Common crafting herb, high volume</td></tr>
+              <tr><td class="quality-rare"><a href="https://www.wowhead.com/item=236779" target="_blank" rel="noopener">Mana Lily</a></td><td>All Zones</td><td>High</td><td>20-50g</td><td>Key Alchemy reagent, good price</td></tr>
+              <tr><td class="quality-rare"><a href="https://www.wowhead.com/item=236770" target="_blank" rel="noopener">Sanguithorn</a></td><td>All Zones</td><td>High</td><td>20-50g</td><td>Blood-themed herb, raid consumables</td></tr>
+              <tr><td class="quality-epic"><a href="https://www.wowhead.com/item=236780" target="_blank" rel="noopener">Nocturnal Lotus</a></td><td>All Zones (rare)</td><td>Very High</td><td>200-800g</td><td>Rare proc from any node — high gold per unit</td></tr>
             </tbody>
+          <div class="tip-box">
+            <div class="tip-label">What Are Knowledge Points?</div>
+            <p>Knowledge Points (KP) are a separate progression system for each profession — they're NOT the same as skill levels. You spend KP in specialization trees to unlock abilities, improve quality, and unlock recipes. KP are TIME-GATED — you earn a limited amount per week, meaning early Knowledge Point investment decisions are CRITICAL. You can't easily respec, so choose wisely. The player who invests KP wisely reaches max quality first and makes the most gold while others are still grinding.</p>
+          </div>
+
           </table>
 
           <div class="tip-box">
@@ -1193,6 +1225,11 @@ section { animation: fadeInUp 0.5s ease both; }
               <li><strong>Lush Nodes:</strong> Found wherever base herbs grow and give extra resources beyond normal node yields.</li>
               <li><strong>Transplanted Nodes:</strong> Only found in Voidstorm, these are weaker versions of nodes from other zones.</li>
             </ul>
+          </div>
+          <div class="tip-box">
+            <div class="tip-label">Herb Modifiers — Difficulty Progression</div>
+            <p style="margin-top:12px;"><strong>Note for new players:</strong> Don't worry about node modifiers until you're around skill 50+. While leveling, just gather everything you see — the modifiers will make more sense once you've unlocked the Overload ability and have some KP invested.</p>
+
           </div>
 
           <div class="tip-box">
@@ -1297,12 +1334,12 @@ section { animation: fadeInUp 0.5s ease both; }
 
           <table class="data-table">
             <thead>
-              <tr><th>Ore</th><th>Zone</th><th>Demand</th><th>Notes</th></tr>
+              <tr><th>Ore</th><th>Zone</th><th>Demand</th><th>Price Range</th><th>Notes</th></tr>
             </thead>
             <tbody>
-              <tr><td class="quality-uncommon"><a href="https://www.wowhead.com/item=237359" target="_blank" rel="noopener">Refulgent Copper Ore</a></td><td>All Zones</td><td>Very High</td><td>Common ore, huge volume — BS/JC/Eng staple</td></tr>
-              <tr><td class="quality-rare"><a href="https://www.wowhead.com/item=237363" target="_blank" rel="noopener">Umbral Tin Ore</a></td><td>All Zones</td><td>High</td><td>Mid-tier ore, required for epic crafts</td></tr>
-              <tr><td class="quality-epic"><a href="https://www.wowhead.com/item=237365" target="_blank" rel="noopener">Brilliant Silver Ore</a></td><td>All Zones (rare)</td><td>Very High</td><td>Rare proc — highest gold per unit</td></tr>
+              <tr><td class="quality-uncommon"><a href="https://www.wowhead.com/item=237359" target="_blank" rel="noopener">Refulgent Copper Ore</a></td><td>All Zones</td><td>Very High</td><td>5-15g</td><td>Common ore, huge volume — BS/JC/Eng staple</td></tr>
+              <tr><td class="quality-rare"><a href="https://www.wowhead.com/item=237363" target="_blank" rel="noopener">Umbral Tin Ore</a></td><td>All Zones</td><td>High</td><td>10-25g</td><td>Mid-tier ore, required for epic crafts</td></tr>
+              <tr><td class="quality-epic"><a href="https://www.wowhead.com/item=237365" target="_blank" rel="noopener">Brilliant Silver Ore</a></td><td>All Zones (rare)</td><td>Very High</td><td>50-200g</td><td>Rare proc — highest gold per unit</td></tr>
             </tbody>
           </table>
 
@@ -1535,6 +1572,66 @@ section { animation: fadeInUp 0.5s ease both; }
         </div>
       </div>
 
+      <div class="card">
+        <div class="card-title"><span class="emoji">💰</span> Weekly Cost of Raiding — The Demand Engine</div>
+        <p><strong>This is the economic foundation that powers the entire WoW gold-making ecosystem.</strong> Understanding what raiders spend reveals where profit opportunities hide:</p>
+        <ul>
+          <li><strong>Flasks:</strong> 500-2000g per raid night (varies by flask type and prices)</li>
+          <li><strong>Potions:</strong> 200-1000g per raid night (2+ per pull × 20+ pulls minimum)</li>
+          <li><strong>Food/Feasts:</strong> Free if guild provides; 500g if buying individually</li>
+          <li><strong>Augment Runes:</strong> 2000-5000g per raid night (optional but expected in Cutting Edge guilds)</li>
+          <li><strong>Enchants:</strong> One-time cost per gear piece: 2-15k each (5-6 slots per character)</li>
+          <li><strong>Repair Costs:</strong> 500-1000g per progression night (wipes cost gold)</li>
+          <li><strong><strong>Weekly Total:</strong></strong>
+            <ul>
+              <li>Casual raider: 5k-10k per week</li>
+              <li>Hardcore/CE pusher: 15k-30k+ per week</li>
+            </ul>
+          </li>
+        </ul>
+        <p style="margin-top:12px;"><strong>Key insight:</strong> This is the demand engine that powers the entire WoW economy. The more raiders your server has, the more gold you can make by supplying their needs. This is why consumable prices spike on reset day — all these expenses hit at once.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="emoji">✨</span> Enchant Priority List — What Raiders Buy First</div>
+        <p><strong>Enchants are mandatory, and raiders prioritize them in a specific order.</strong> Understanding this hierarchy helps you predict demand spikes:</p>
+        <ul>
+          <li><strong>Weapon Enchant (MANDATORY):</strong> The biggest stat boost. Every raider enchants their weapon first. Most expensive per-item cost.</li>
+          <li><strong>Ring Enchants x2 (MANDATORY):</strong> Every raider needs both rings enchanted. 2 per character = massive volume.</li>
+          <li><strong>Chest Enchant (High Priority):</strong> Large stat boost, applies to main armor piece.</li>
+          <li><strong>Bracer Enchant (Medium Priority):</strong> Good stats, purchased after the essentials are covered.</li>
+          <li><strong>Cloak Enchant (Medium Priority):</strong> Optional for many builds but some specializations need it.</li>
+          <li><strong>Boot Enchant (Lower Priority):</strong> Stat vs. speed tradeoff. Purchased last, many raiders skip this.</li>
+        </ul>
+        <p style="margin-top:12px;"><strong>Sales strategy:</strong> Stock weapon and ring enchants first — these have guaranteed demand. Chest enchants follow. Don't waste crafting resources on boot enchants in week 1; focus on high-priority items where demand is unlimited.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="emoji">⚡</span> Crafted Gear BiS Breakpoints — Timing Your Sales</div>
+        <p><strong>The Runed Crest system fills 2 gear slots with a spark,</strong> making crafted gear temporarily BiS (Best in Slot) during the early weeks:</p>
+        <ul>
+          <li><strong>Week 1-2:</strong> Crafted gear is BiS in most slots (Heroic raid equivalent). Prices peak. Demand is highest because raiders want immediate upgrades.</li>
+          <li><strong>Week 3-4:</strong> Mythic raid drops start replacing crafted pieces. Prices crater as raiders no longer need them.</li>
+          <li><strong>Rule of thumb:</strong> Sell crafted gear HARD in weeks 1-3. Don't hold inventory past week 3 expecting prices to recover.</li>
+          <li><strong>Rank 5 premium:</strong> Rank 5 crafted gear commands premium tips in crafting orders because it minimizes the power loss compared to raid drops. Prioritize investing Knowledge Points to reach Rank 5 early.</li>
+        </ul>
+        <p style="margin-top:12px;"><strong>Pro strategy:</strong> Identify which gear slots have the longest "BiS window" (e.g., trinkets stay valuable longer than armor). Prioritize crafting those slots first.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="emoji">🛒</span> Raider Consumable Shopping List</div>
+        <p><strong>What raiders actually spend gold on = what you should be selling.</strong> Understanding raider demand drives every profitable gold-making strategy:</p>
+        <ul>
+          <li><strong>Flasks:</strong> Thallasian for combat stats, Haranir for professions. Raiders burn through these nightly.</li>
+          <li><strong>Combat Potions:</strong> Light and Void variants for damage/healing during key pulls. 20+ pots per raid night per player.</li>
+          <li><strong>Stat Food / Feasts:</strong> Guilds provide feasts; individual raiders buy food for pre-raid buffs. Massive weekly volume.</li>
+          <li><strong>Augment Runes:</strong> High-end raiders use 20+ per night. Essential for Cutting Edge guilds. 2-3k gold each during progression.</li>
+          <li><strong>Weapon & Armor Enchants:</strong> 1-per-character cost, but mandatory. Rings get double enchants. Total demand: 2-15k per character.</li>
+          <li><strong>Phials:</strong> Persistent potions lasting entire encounters. Different stat types for different specs.</li>
+        </ul>
+        <p style="margin-top:12px;"><strong>Key insight:</strong> The more you understand what raiders need weekly, the more profitable your craft specializations become. If you can supply cauldrons, you have a guaranteed customer base.</p>
+      </div>
+
       <div class="card-grid">
         <div class="card">
           <div class="card-title"><span class="emoji">🧪</span> <span class="quality-epic">Alchemy</span></div>
@@ -1584,6 +1681,16 @@ section { animation: fadeInUp 0.5s ease both; }
           <div class="tip-box" style="margin-top:8px;">
             <div class="tip-label">Alchemy Procs & Mixology</div>
             <p>Alchemists have a chance to proc extra items when crafting flasks and potions — this is a significant part of why Alchemy is Tier S. The Mixology passive also doubles your own flask duration, saving gold on personal consumables. Both effects scale with your specialization investment, so deeper spec = more free items over time.</p>
+          </div>
+          <div class="tip-box" style="margin-top:8px;">
+            <div class="tip-label">Cauldrons
+          <div class="tip-box" style="margin-top:8px;">
+            <div class="tip-label">Market Note: Flask Duration Advantage</div>
+            <p><strong>Important for market sizing:</strong> Players with Alchemy get 100% increased flask duration (2 hours instead of 1). This means raiders WITH Alchemy buy half as many flasks. Your total addressable market for flask sales is smaller than raw raider count suggests. However, most raiders don't have Alchemy on their main — they're running combat professions. So demand is still high, just not unlimited.</p>
+          </div>
+          <div class="tip-box" style="margin-top:8px;">
+            <div class="tip-label">Cauldrons — The Hidden Alchemy Goldmine</div>
+            <p>Cauldrons are the single biggest guild consumable expense. Each cauldron requires a Wondrous Synergist (daily cooldown craft) and feeds the entire raid group flasks. Guilds burn through 2-5 cauldrons per raid night, meaning consistent weekly demand. If you specialize in the Transmutation path to unlock Wondrous Synergist, you have a guaranteed customer base of every raiding guild on your server. This is why Transmutation Alchemy builds are so lucrative — you're not competing on volume, you're fulfilling essential weekly guild needs.</p>
           </div>
           <div class="profit-tag very-high">Tier S — Best consistent earner</div>
         </div>
@@ -1654,6 +1761,10 @@ section { animation: fadeInUp 0.5s ease both; }
             <li>Housing decor items (scrolls, paintings, banners) and contracts</li>
           </ul>
           <p style="margin-top:8px;font-size:14px;color:var(--text-dim);">Spec Trees: Darkmoon Sigils, Archiving, Pursuit of Knowledge, Rune Mastery</p>
+          <div class="tip-box" style="margin-top:8px;">
+            <div class="tip-label">Augment Runes — High-Margin Crafting</div>
+            <p>Serious raiders and M+ pushers burn through augment runes constantly — 20+ runes per raid night, each providing a flat stat boost. During progression, runes sell for 2-3k gold each. This is one of the highest gold-per-hour crafting markets available. Runes are consumable (used and gone), creating perpetual weekly demand. If you specialize in Rune Mastery within Inscription, you've found a profitable niche with relatively low competition since most players overlook this market.</p>
+          </div>
           <div class="profit-tag medium">Tier B — Niche but steady</div>
         </div>
 
@@ -1721,6 +1832,19 @@ section { animation: fadeInUp 0.5s ease both; }
             <div class="tip-label">Margin Warning</div>
             <p>Feast profit margins depend heavily on your material source. If you're buying fish at full AH prices, margins can be razor thin or even negative. Self-supplying through Fishing eliminates material costs and turns Cooking into a high-margin profession. Consider pairing Fishing + Cooking on a dedicated alt for maximum efficiency.</p>
           </div>
+          <div class="tip-box" style="margin-top:8px;">
+            <div class="tip-label">Feasts — Your Highest-Value Recipe</div>
+            <p><strong>Feasts are THE gold-making cooking recipe.</strong> One feast feeds the entire raid group, making them the highest-demand recipe in the game.</p>
+            <ul style="margin-top:8px;">
+              <li><strong>Guild consumption:</strong> Guilds burn 2-5 feasts per raid night (one per boss attempt that goes long)</li>
+              <li><strong>Material cost:</strong> Varies by feast tier, expect 500-2000g per feast to craft from AH-bought materials</li>
+              <li><strong>Profit margin:</strong> Typically 30-50% profit when selling on raid days (Tuesday-Wednesday)</li>
+              <li><strong>Weekly volume:</strong> Medium-pop server estimate: 50-100+ feasts per week = steady income</li>
+              <li><strong>Timing:</strong> Post feasts Monday night / Tuesday morning for maximum raid-prep panic buying</li>
+            </ul>
+            <p style="margin-top:8px;"><strong>Pro strat:</strong> Self-supply all fish through Fishing on a paired alt. This eliminates material costs and transforms feast-making from break-even to highly profitable.</p>
+          </div>
+
           <div class="profit-tag high">Tier A — Consistent weekly feast demand + tea sales</div>
         </div>
       </div>
@@ -2176,11 +2300,32 @@ section { animation: fadeInUp 0.5s ease both; }
               <tr><td><strong>Patch Speculation</strong><br><small>Stockpile before content drops</small></td><td class="quality-legendary">Very High</td><td>500k+</td><td class="quality-legendary">Massive (if you're right)</td></tr>
               <tr><td><strong>Realm Transfer Arbitrage</strong><br><small>Buy server-specific items cheap, transfer to sell high</small></td><td class="quality-epic">Medium-High</td><td>100k+ (plus transfer cost)</td><td class="quality-epic">30-100% margins on transmog, pets, crafted gear</td></tr>
             </tbody>
+          <div class="tip-box">
+            <div class="tip-label">Realm Transfer Arbitrage — When It Works</div>
+            <p><strong>Important distinction:</strong> Region-wide commodities (herbs, ore, cloth, enchanting mats) = NO arbitrage opportunity. Prices are identical across all servers.</p>
+            <p style="margin-top:8px;"><strong>Server-specific items:</strong> Crafted gear, transmog, battle pets, mounts = arbitrage opportunities exist.</p>
+            <p style="margin-top:8px;"><strong>Strategy:</strong> Check <a href="https://undermine.exchange" target="_blank" rel="noopener">Undermine Exchange</a> for price differences between your server and high-pop servers. Battle pets example: Buy cheap on high-pop realms → cage them → server transfer via alt → sell on low-pop realm for 2-5x markup.</p>
+            <p style="margin-top:8px;"><strong>⚠ Warning:</strong> Server transfer costs real money ($25 USD). Only worth it for large gold transfers. Do the math: is 2x profit on a battle pet worth $25? Usually not. But a $250 profit might be.</p>
+          </div>
+
           </table>
           <div class="tip-box">
             <div class="tip-label">Understanding Market Walls</div>
             <p>A "wall" is a massive stack of listings at a single price point, often placed intentionally by a major player to control the market. If a wall appears at a price you know is too high, either buy through it to break it (forcing the seller to relist lower) or wait for natural demand to sell through it. Walls at genuinely underpriced levels should be bought aggressively — they're profit opportunities.</p>
           </div>
+          <div class="tip-box">
+            <div class="tip-label">Worked Example: Reading a Commodity Wall</div>
+            <p><strong>Scenario:</strong> You open the AH and see 5,000 Tranquility Bloom at 22g, 200 at 18g, and 50 at 12g.</p>
+            <ul style="margin-top:8px;">
+              <li><strong>Analysis:</strong> The 12g and 18g listings are panic sellers or bait — ignore them</li>
+              <li><strong>Real market:</strong> 22g is where the wall sits — that's your actual market price</li>
+              <li><strong>Strategy:</strong> Buy everything under 20g (250 herbs × avg 16g = 4,000g investment)</li>
+              <li><strong>Execute:</strong> Relist at 21g99s → sell into the wall → profit ~1,500g minus AH cut</li>
+              <li><strong>Risk:</strong> If the wall breaks (someone dumps 10k herbs at 15g), you're underwater</li>
+            </ul>
+            <p style="margin-top:8px;"><strong>Key insight:</strong> Walls are opportunities only if you understand the difference between panic-seller noise and actual market price.</p>
+          </div>
+
         </div>
       </div>
 
@@ -2194,6 +2339,7 @@ section { animation: fadeInUp 0.5s ease both; }
           <p style="margin-top: 12px;"><strong>Strategic Deep Undercutting:</strong> Community reports show that some goblins deliberately undercut by 30–50% to crash the competition and force them to dump stock at the crashed price. They then buy the cheap listings and relist higher — a profitable strategy if you have capital to absorb the temporarily crashed market. This is valid but requires careful execution and enemy patience.</p>
           <p style="margin-top: 12px;"><strong>The Counter-Play:</strong> If a deep undercutter appears, you have two options: (1) let them sell their stock, then the market rebounds as scarcity returns, or (2) don't fight them — just cancel scan consistently at your price until their inventory dries up. Deep undercutters often run out of capital or get frustrated.</p>
           <p style="margin-top: 12px;"><strong>TSM's Cancel Scan Feature:</strong> TSM can automate this entire process. Set up a cancel scan operation and TSM automatically cancels your oldest listings and relists them fresh every hour. This keeps you competitive without manual effort. It's essential for commodity markets.</p>
+          <p style="margin-top: 12px;"><strong>Auctionator vs TSM for Cancel Scanning:</strong> TSM is the power tool with one-click operations and advanced filtering, but Auctionator has a simpler "Cancelling" tab showing your undercut listings. Auctionator is good enough for casual cancel scanning once or twice a day. If you cancel scan more than twice daily, TSM's automation saves time and frustration. Decision point: If cancel scanning becomes part of your daily routine, learn TSM.</p>
           <p style="margin-top: 12px;"><strong>Strategic Use:</strong> Cancel scanning is only profitable on fast-moving items (flipping rates of hours, not days). On slow items, your deposit cost will exceed the profit gain from staying at the front. Only cancel scan items that sell multiple copies per day. Players have reported making 800k in a single day buying underpriced items and relisting higher — the returns can be enormous if you identify the right market.</p>
         </div>
       </div>
@@ -2257,6 +2403,33 @@ section { animation: fadeInUp 0.5s ease both; }
         <div class="tip-label">Strategy Tip</div>
         <p>Watch r/woweconomy and community guides for the meta shuffle in the first week. Don't try to discover it yourself — by the time you find it, the margins are already ruined. Copy the established shuffle immediately and execute it efficiently. First-mover advantage matters more than innovation here.</p>
       </div>
+      <div class="tip-box">
+        <div class="tip-label">TSM Quick-Start Groups</div>
+        <p><strong>Don't build groups from scratch — import community-made ones:</strong></p>
+        <ul style="margin-top:8px;">
+          <li><strong>Official:</strong> Visit <a href="https://tradeskillmaster.com/group-maker/midnight" target="_blank" rel="noopener">TradeSkillMaster group-maker for Midnight</a> for pre-built groups</li>
+          <li><strong>Community:</strong> Search "Midnight TSM groups" on r/woweconomy or the TSM Discord — players share updated import strings constantly</li>
+          <li><strong>How to use:</strong> Copy the import string → Groups → Import → paste string → instant price tracking for all Midnight materials</li>
+        </ul>
+        <p style="margin-top:8px;"><strong>Categories to track:</strong> "Midnight Herbs", "Midnight Ores", "Midnight Consumables", "Midnight Crafting Materials" — these catch everything you need for pricing decisions.</p>
+      </div>
+
+
+
+      <div class="card" style="margin-bottom: 24px;">
+        <div class="card-title">The Classic Ore Shuffle (Midnight Edition)</div>
+        <p><strong>Step-by-step breakdown of the most reliable shuffle:</strong></p>
+        <ol style="margin-top:8px;line-height:1.8;">
+          <li><strong>Step 1: Buy/farm Refulgent Copper Ore</strong> (cheapest ore) on weekends when prices are lowest</li>
+          <li><strong>Step 2: Prospect ore into gems</strong> via Jewelcrafting (5 ore per prospect)</li>
+          <li><strong>Step 3: Cut gems into rings/necklaces</strong> using cheapest settings to maximize volume</li>
+          <li><strong>Step 4: Disenchant rings</strong> via Enchanting → Enchanting Materials</li>
+          <li><strong>Step 5: Craft enchants from materials</strong> → sell on AH for profit</li>
+        </ol>
+        <p style="margin-top:12px;"><strong>Breakeven calculation:</strong> (Ore cost × 5) + Prospect cost vs Enchant sale price minus AH cut. If the math doesn't work, the shuffle is unprofitable on your server.</p>
+        <p style="margin-top:8px;"><strong>Advanced tracking:</strong> Use CraftSim to track which step is most profitable on your server, then specialize KP into that bottleneck profession.</p>
+        <p style="margin-top:8px;"><strong>⚠ Requirements:</strong> This shuffle requires characters with BOTH Jewelcrafting AND Enchanting — ideal for alt army setup. If you only have one profession, the shuffle is broken at that step.</p>
+      </div>
 
       <div class="card" style="margin-bottom: 24px;">
         <div class="card-title">Classic Shuffle Example</div>
@@ -2294,6 +2467,19 @@ section { animation: fadeInUp 0.5s ease both; }
             <li><strong>Jewelcrafting:</strong> Crystal displays, gem-studded items, chandeliers, decorative stones</li>
             <li><strong>Leatherworking:</strong> Leather furniture, mounted trophies, rugs, saddlework</li>
             <li><strong>Alchemy:</strong> Dyes for recoloring any decor item (unique niche)</li>
+      <div class="card">
+        <div class="card-title"><span class="emoji">🏠</span> Housing Decor — The New Frontier</div>
+        <p><strong>Brand new in Midnight — no historical data means first movers print money.</strong></p>
+        <ul style="margin-top:8px;">
+          <li><strong>Multiple profession suppliers:</strong> Alchemy (level 80+), Leatherworking, Tailoring, Engineering, Blacksmithing, Woodworking all craft decor</li>
+          <li><strong>High material cost:</strong> Recipes require Lumber from leveling zones + rare materials</li>
+          <li><strong>Zero competition early:</strong> Most players haven't unlocked recipes yet — first movers have exclusive supply</li>
+          <li><strong>Price behavior:</strong> Commands premium prices weeks 1-2, crashes weeks 3-4 as recipes unlock</li>
+          <li><strong>Patch opportunity:</strong> Watch for housing-related patches — new decor recipes = new profit windows</li>
+        </ul>
+        <p style="margin-top:12px;"><strong>Risk:</strong> Market is completely unknown — prices could crash overnight once more players unlock recipes. Don't go all-in on decor speculation. Sell fast in weeks 1-2, don't hold.</p>
+      </div>
+
           </ul>
         </div>
       </div>
@@ -2386,8 +2572,10 @@ section { animation: fadeInUp 0.5s ease both; }
         </div>
 
         <div class="card">
-          <div class="card-title"><span class="quality-rare">★</span> Auctionator</div>
-          <p>A lighter alternative to TSM if you find the learning curve too steep. Auctionator handles basic AH operations, price scanning, and inventory tracking without the complexity of TSM. It won't give you the advanced features, but it's sufficient for casual flipping and basic gold-making. Less powerful than TSM but more intuitive for beginners.</p>
+          <div class="card-title"><span class="quality-rare">★</span> Auctionator vs TSM — Which Should You Use?</div>
+          <p><strong>For Beginners: Start with Auctionator.</strong> It's simpler, shows market prices clearly, and has an easy posting interface. You'll learn the AH basics without drowning in advanced options.</p>
+          <p style="margin-top:8px;"><strong>TSM (TradeSkillMaster) is the power tool</strong> for serious goblins, but has a steep learning curve. After mastering the AH for your first month with Auctionator, graduate to TSM for advanced operations.</p>
+          <p style="margin-top:8px;"><strong>Decision point:</strong> If you cancel scan more than twice a day, invest the time in learning TSM. Otherwise, Auctionator handles it fine.</p>
         </div>
 
         <div class="card">
@@ -2448,6 +2636,32 @@ section { animation: fadeInUp 0.5s ease both; }
         <div class="card">
           <div class="card-title"><span class="emoji">⚡</span> Early Access Economy Reality</div>
           <p><strong>Community Data (EA Period):</strong> Early Access represents approximately 30% of the player base, but this population skews heavily toward goblins and professional farmers. This creates unique dynamics: massive gathering supply with zero initial demand (no raids, no M+, no raiders needing consumables). The savvy play is stockpiling materials during the EA price crash, then selling when Season 1 raids create demand spikes. However, community consensus warns: many goblins are already executing this strategy, so expect a flooded market at the "sell window." Take profits where you can rather than perfect-timing the market. Additionally, Blizzard can change material requirements or add vendor alternatives overnight, making stockpiles worthless — diversify rather than going all-in on a single material.</p>
+      <div class="card">
+        <div class="card-title"><span class="emoji">📊</span> When to Hold vs When to Dump</div>
+        <p><strong>Not all items should be held — know when to sell immediately and when to stockpile:</strong></p>
+        <ul style="margin-top:8px;">
+          <li><strong>HOLD:</strong> Consumables (flasks, potions, food, runes) → demand spikes at Season 1 raid/M+ opening. Supply is finite.</li>
+          <li><strong>HOLD:</strong> Rare crafting materials with daily cooldowns (Wondrous Synergist) → supply can't flood market</li>
+          <li><strong>DUMP NOW:</strong> Common gathering materials (herbs, ore) → supply only increases as more players join</li>
+          <li><strong>DUMP NOW:</strong> Rapidly depreciating items (Majestic materials, early-expansion exclusives) → price is cratering daily</li>
+          <li><strong>SELL STEADY:</strong> Enchants, gems, consumables → always in demand, post daily rather than hoarding</li>
+        </ul>
+        <p style="margin-top:12px;"><strong>Golden rule:</strong> "If you can't explain WHY the price will go up, sell now." Holding requires a reason.</p>
+      </div>
+
+        <div class="card">
+          <div class="card-title"><span class="emoji">💳</span> WoW Token Timing — When to Buy/Sell</div>
+          <p><strong>Token prices follow predictable expansion cycles based on player behavior:</strong></p>
+          <ul style="margin-top:8px;">
+            <li><strong>Cheapest:</strong> Expansion launch (everyone buying game time = high token supply)</li>
+            <li><strong>Most expensive:</strong> Mid-tier raids (player count drops = fewer tokens listed)</li>
+            <li><strong>Current state (Midnight launch):</strong> Tokens are near all-time lows (~200k gold)</li>
+          </ul>
+          <p style="margin-top:12px;"><strong>If you're converting gold → battle.net balance:</strong> Wait until mid-season when token prices peak for better rates.</p>
+          <p style="margin-top:8px;"><strong>If you're buying tokens for gold:</strong> Buy now while they're cheap. More gold per token is always better.</p>
+          <p style="margin-top:8px;"><strong>Real-time pricing:</strong> Check <a href="https://wowtoken.info" target="_blank" rel="noopener">wowtoken.info</a> for current token prices on your region.</p>
+        </div>
+
         </div>
       </div>
 
