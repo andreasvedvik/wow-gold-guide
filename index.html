@@ -3,11 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta property="og:title" content="The Gold Compendium — WoW Midnight Gold Guide">
-<meta property="og:description" content="Every gold method ranked for Patch 12.0. Professions, farming routes, AH flipping, housing economy.">
-<meta property="og:type" content="website">
-<meta name="description" content="Comprehensive WoW Midnight gold-making guide. All professions ranked, gathering routes, AH strategies, housing economy.">
-<meta name="theme-color" content="#D4A847">
 <title>Midnight — Gold Making Compendium</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -31,9 +26,6 @@
   --uncommon: #22C55E;
   --common: #9CA3AF;
   --legendary: #FF8000;
-  --void: #7C3AED;
-  --void-dim: rgba(124, 58, 237, 0.15);
-  --void-glow: rgba(124, 58, 237, 0.3);
 }
 
 html { scroll-behavior: smooth; }
@@ -80,25 +72,9 @@ body::before {
   background: var(--bg-panel);
   border-right: 1px solid var(--border);
   overflow-y: auto;
-  overflow-x: hidden;
   z-index: 100;
   display: flex;
   flex-direction: column;
-}
-
-/* === SIDEBAR OVERLAY === */
-.sidebar-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 99;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.sidebar-overlay.visible {
-  display: block;
-  opacity: 1;
 }
 
 .sidebar-header {
@@ -383,9 +359,9 @@ section {
 }
 
 .profit-tag.high {
-  background: rgba(34, 197, 94, 0.12);
-  color: #4ADE80;
-  border: 1px solid rgba(34, 197, 94, 0.25);
+  background: rgba(34, 197, 94, 0.1);
+  color: var(--uncommon);
+  border: 1px solid rgba(34, 197, 94, 0.2);
 }
 
 .profit-tag.very-high {
@@ -451,23 +427,15 @@ section {
 .expandable.open .arrow { transform: rotate(180deg); }
 
 .expandable-body {
-  max-height: 0;
-  overflow: hidden;
-  padding: 0 24px;
+  display: none;
+  padding: 24px;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-top: none;
   border-radius: 0 0 8px 8px;
-  opacity: 0;
-  transition: max-height 0.35s ease-out, opacity 0.25s ease-out, padding 0.35s ease-out;
 }
 
-.expandable.open .expandable-body {
-  max-height: 2000px;
-  padding: 24px;
-  opacity: 1;
-  transition: max-height 0.5s ease-in, opacity 0.3s ease-in 0.1s, padding 0.35s ease-in;
-}
+.expandable.open .expandable-body { display: block; }
 
 /* === TABLE === */
 .data-table {
@@ -622,7 +590,7 @@ section {
 /* === FOOTER === */
 .footer {
   margin-top: 96px;
-  padding: 32px 24px 48px;
+  padding-top: 32px;
   border-top: 1px solid var(--border);
   text-align: center;
   color: var(--text-dim);
@@ -631,108 +599,20 @@ section {
 
 .footer .gold-text { color: var(--gold); font-family: 'Cinzel', serif; }
 
-.footer-actions {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  margin-top: 20px;
-  flex-wrap: wrap;
-}
-
-.footer-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 18px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s;
+/* Wowhead item links */
+a[href*="wowhead.com/item"],
+a[href*="wowhead.com/spell"],
+a[href*="wowhead.com/skill"] {
+  color: var(--uncommon);
   text-decoration: none;
+  border-bottom: 1px dotted var(--uncommon);
+  transition: color 0.2s;
 }
-
-.footer-btn:hover {
-  color: var(--gold);
-  border-color: var(--border-gold);
-  background: var(--bg-card-hover);
-}
-
-/* === KO-FI === */
-.kofi-float {
-  position: fixed;
-  bottom: 32px;
-  left: 32px;
-  z-index: 200;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 18px;
-  background: rgba(17, 17, 24, 0.9);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--border-gold);
-  border-radius: 10px;
-  color: var(--gold);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  letter-spacing: 0.5px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
-  opacity: 0;
-  pointer-events: none;
-}
-
-.kofi-float:hover {
-  background: rgba(212, 168, 71, 0.12);
-  border-color: var(--gold);
-  box-shadow: 0 4px 24px rgba(212, 168, 71, 0.2);
-  transform: translateY(-2px);
-}
-
-.kofi-float .kofi-icon {
-  font-size: 18px;
-  line-height: 1;
-}
-
-.kofi-footer-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 24px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--bg-deep);
-  background: linear-gradient(135deg, var(--gold), var(--gold-light));
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.kofi-footer-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(212, 168, 71, 0.35);
-}
-
-@media (max-width: 900px) {
-  .kofi-float {
-    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
-    left: 20px;
-    padding: 8px 14px;
-    font-size: 11px;
-  }
+a[href*="wowhead.com/item"]:hover,
+a[href*="wowhead.com/spell"]:hover,
+a[href*="wowhead.com/skill"]:hover {
+  color: var(--rare);
+  border-bottom-color: var(--rare);
 }
 
 /* === MOBILE === */
@@ -742,68 +622,23 @@ section {
   top: 16px;
   left: 16px;
   z-index: 200;
-  background: rgba(17, 17, 24, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: var(--bg-panel);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 8px;
   padding: 10px 14px;
   color: var(--gold);
   cursor: pointer;
   font-size: 20px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
 }
 
 @media (max-width: 900px) {
   .app { grid-template-columns: 1fr; }
   .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
   .sidebar.open { transform: translateX(0); }
-  .main { grid-column: 1; padding: calc(32px + env(safe-area-inset-top, 0px)) 24px calc(80px + env(safe-area-inset-bottom, 0px)); }
-  .mobile-toggle { display: block; top: calc(16px + env(safe-area-inset-top, 0px)); }
+  .main { grid-column: 1; padding: 32px 24px 80px; }
+  .mobile-toggle { display: block; }
   .hero h1 { font-size: 36px; }
   .card-grid.cols-2 { grid-template-columns: 1fr; }
-
-  /* Fix section spacing */
-  section { margin-top: 56px; }
-  section:first-child { margin-top: 0; }
-
-  /* Filter pills: 44pt minimum touch targets */
-  .filter-tab { padding: 12px 20px; font-size: 13px; min-height: 44px; }
-  .filter-tabs { gap: 10px; }
-
-  /* Back-to-top: avoid collision with filter pills */
-  .back-to-top { bottom: calc(24px + env(safe-area-inset-bottom, 0px)); right: 20px; }
-
-  /* Tables: responsive card layout on mobile */
-  .data-table { display: block; }
-  .data-table thead { display: none; }
-  .data-table tbody { display: block; }
-  .data-table tr {
-    display: block;
-    padding: 16px;
-    margin-bottom: 8px;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-  }
-  .data-table td {
-    display: flex;
-    justify-content: space-between;
-    padding: 6px 0;
-    border-bottom: 1px solid rgba(42, 42, 58, 0.3);
-  }
-  .data-table td:last-child { border-bottom: none; }
-  .data-table td::before {
-    content: attr(data-label);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    font-weight: 500;
-    flex-shrink: 0;
-    margin-right: 12px;
-  }
 }
 
 /* === ANIMATIONS === */
@@ -813,104 +648,13 @@ section {
 }
 
 section { animation: fadeInUp 0.5s ease both; }
-
-/* === TL;DR CARD === */
-.tldr-card {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  padding: 24px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-gold);
-  border-radius: 8px;
-  margin-top: 32px;
-}
-.tldr-stat {
-  text-align: center;
-  padding: 12px;
-}
-.tldr-stat .number {
-  font-family: 'Cinzel', serif;
-  font-size: 36px;
-  font-weight: 900;
-  color: var(--gold);
-}
-.tldr-stat .label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  margin-top: 4px;
-}
-
-/* === BACK TO TOP === */
-.back-to-top {
-  position: fixed;
-  bottom: 32px;
-  right: 32px;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--bg-card);
-  border: 1px solid var(--border-gold);
-  color: var(--gold);
-  font-size: 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s, transform 0.3s;
-  z-index: 200;
-}
-.back-to-top.visible { opacity: 1; }
-.back-to-top:hover { transform: translateY(-2px); background: var(--bg-card-hover); }
-
-/* === TABLE SCROLL === */
-.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-
-/* === GPH DISCLAIMER === */
-.gph-disclaimer {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  color: var(--text-dim);
-  margin-top: 8px;
-  font-style: italic;
-}
-
-/* === ROUTE BOX === */
-.route-box {
-  background: rgba(59, 130, 246, 0.05);
-  border-left: 3px solid var(--rare);
-  padding: 16px 20px;
-  border-radius: 0 8px 8px 0;
-  margin: 16px 0;
-  font-size: 14px;
-}
-.route-box .route-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--rare);
-  margin-bottom: 6px;
-}
-.route-box code {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  background: rgba(0,0,0,0.3);
-  padding: 2px 6px;
-  border-radius: 3px;
-  color: var(--text-bright);
-  word-break: break-all;
-}
 </style>
+<script>const whTooltips = {colorLinks: true, iconizeLinks: true, renameLinks: false};</script>
+<script src="https://wow.zamimg.com/js/tooltips.js"></script>
 </head>
 <body>
 
-<button class="mobile-toggle" onclick="toggleSidebar()" aria-label="Toggle navigation menu">☰</button>
-<div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+<button class="mobile-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
 
 <div class="app">
   <!-- SIDEBAR -->
@@ -924,13 +668,13 @@ section { animation: fadeInUp 0.5s ease both; }
       <div class="nav-group">
         <div class="nav-group-label">Overview</div>
         <a href="#fundamentals" class="active"><span class="icon">⚔</span> Fundamentals</a>
-        <a href="#new-player"><span class="icon">🌱</span> New Player Guide</a>
+        <a href="#new-player"><span class="icon">🆕</span> New Player Basics</a>
         <a href="#quick-start"><span class="icon">⚡</span> Quick Start</a>
       </div>
       <div class="nav-group">
         <div class="nav-group-label">Professions</div>
         <a href="#gathering"><span class="icon">⛏</span> Gathering</a>
-        <a href="#infused"><span class="icon">🌟</span> Infused Herbs</a>
+        <a href="#fishing-section"><span class="icon">🎣</span> Fishing</a>
         <a href="#crafting"><span class="icon">🔨</span> Crafting</a>
       </div>
       <div class="nav-group">
@@ -938,21 +682,21 @@ section { animation: fadeInUp 0.5s ease both; }
         <a href="#dungeon-farms"><span class="icon">🏰</span> Dungeon Farms</a>
         <a href="#open-world"><span class="icon">🌍</span> Open World</a>
         <a href="#legacy"><span class="icon">📜</span> Legacy Content</a>
+        <a href="#speed-set"><span class="icon">💨</span> Speed Set</a>
       </div>
       <div class="nav-group">
         <div class="nav-group-label">Advanced</div>
         <a href="#ah-flipping"><span class="icon">📈</span> AH Flipping</a>
         <a href="#crafting-orders"><span class="icon">📋</span> Crafting Orders</a>
-        <a href="#housing"><span class="icon">🏠</span> Housing Economy</a>
+        <a href="#shuffles"><span class="icon">🔄</span> Shuffles</a>
         <a href="#passive"><span class="icon">🔄</span> Passive Income</a>
       </div>
       <div class="nav-group">
         <div class="nav-group-label">Resources</div>
-        <a href="#community"><span class="icon">🌐</span> Community</a>
         <a href="#addons"><span class="icon">🔧</span> Essential Addons</a>
         <a href="#economy"><span class="icon">💹</span> Economy Tips</a>
-        <a href="#token"><span class="icon">🪙</span> Token Timing</a>
         <a href="#checklist"><span class="icon">✅</span> Daily Checklist</a>
+        <a href="#glossary"><span class="icon">📖</span> Glossary</a>
       </div>
     </nav>
   </aside>
@@ -962,15 +706,7 @@ section { animation: fadeInUp 0.5s ease both; }
     <div class="hero">
       <h1>The Gold<br>Compendium</h1>
       <p class="tagline">A comprehensive guide to wealth in Midnight</p>
-      <span class="version-badge">Season 1 · Patch 12.0</span>
-      <div style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-dim);letter-spacing:1px;">LAST UPDATED: FEBRUARY 2026</div>
-    </div>
-
-    <div class="tldr-card">
-      <div class="tldr-stat"><div class="number">4</div><div class="label">S-Tier Professions</div></div>
-      <div class="tldr-stat"><div class="number">4</div><div class="label">Zones Ranked</div></div>
-      <div class="tldr-stat"><div class="number">16</div><div class="label">Strategies Covered</div></div>
-      <div class="tldr-stat"><div class="number">✅</div><div class="label">Interactive Checklist</div></div>
+      <span class="version-badge">Patch 12.0 · Launch</span>
     </div>
 
     <!-- FUNDAMENTALS -->
@@ -987,11 +723,11 @@ section { animation: fadeInUp 0.5s ease both; }
         </div>
         <div class="card">
           <div class="card-title"><span class="emoji">⏱</span> Gold Per Hour</div>
-          <p>Track your GPH (gold per hour) — the standard way gold-makers measure efficiency. Time spent flying between nodes or waiting on AH sales counts. Always ask: "Is this the best use of my time?"</p>
+          <p>Track your GPH (gold per hour) for every activity. Time spent flying between nodes or waiting on AH sales counts. Always ask: "Is this the best use of my time?"</p>
         </div>
         <div class="card">
           <div class="card-title"><span class="emoji">📅</span> Timing Is Everything</div>
-          <p>Prices spike on Tuesday resets (when raids and dungeons reset weekly, causing a surge in demand for consumables) and when new content drops. Consumables surge on raid nights. Gather materials early in the week and sell into Tuesday/Wednesday demand.</p>
+          <p>Prices spike on Tuesday resets and when new content drops. Consumables surge on raid nights. Gather materials early in the week and sell into Tuesday/Wednesday demand.</p>
         </div>
         <div class="card">
           <div class="card-title"><span class="emoji">🧠</span> Knowledge = Gold</div>
@@ -1000,74 +736,43 @@ section { animation: fadeInUp 0.5s ease both; }
       </div>
     </section>
 
-    <!-- NEW PLAYER GUIDE -->
+    <!-- NEW PLAYER BASICS -->
     <section id="new-player">
       <div class="section-header">
-        <h2>🌱 New Player Guide</h2>
-        <p>Your roadmap for the first week of gold-making in Midnight</p>
+        <h2>🆕 New Player Basics</h2>
+        <p>Essential knowledge before you start making gold — skip this if you're experienced</p>
       </div>
 
       <div class="card-grid cols-2">
         <div class="card">
-          <div class="card-title"><span class="emoji">📅</span> Day 1: Pick Your Professions</div>
-          <p>Visit a profession trainer in Silvermoon City (the main hub in Midnight). You can learn two primary professions per character. For your first character, we recommend Herbalism + Mining (dual gathering) — zero investment, immediate income. You'll find trainers near the crafting areas in Silvermoon.</p>
+          <div class="card-title"><span class="emoji">🏦</span> The Auction House (AH)</div>
+          <p>The AH is WoW's player-driven marketplace, located in every major city. Open it by finding an Auctioneer NPC (look for the gavel icon on your minimap). You can list items for sale with a deposit fee (you get it back if the item sells), and buy items other players have listed. Commodities (herbs, ores, cloth) sell on a region-wide AH, meaning you compete with every player in your region. Crafted gear sells on your server's local AH. The standard AH cut is 5% of the sale price.</p>
         </div>
+
         <div class="card">
-          <div class="card-title"><span class="emoji">🗺</span> Day 2-3: Learn Your Routes</div>
-          <p>Install GatherMate2 and Routes addons (see Essential Addons below). Fly loops around Eversong Woods collecting every herb and ore node you see. The addons will map nodes automatically and create efficient routes after a few laps.</p>
+          <div class="card-title"><span class="emoji">📅</span> What's "Reset Day"?</div>
+          <p>Every Tuesday (NA) or Wednesday (EU), WoW resets weekly content: raid lockouts, weekly quests, Mythic+ vaults, and crafting patron orders. This triggers a surge in demand for consumables (flasks, potions, food, enchants, gems) as raiders prep for the week. Prices spike Tuesday–Wednesday and dip over the weekend when more casual players farm and flood supply. This weekly cycle is the single most important pattern for gold-making.</p>
         </div>
+
         <div class="card">
-          <div class="card-title"><span class="emoji">💰</span> Day 4-5: Sell Everything Raw</div>
-          <p>Don't craft anything yet. List all herbs and ores on the Auction House (AH). Use Auctionator addon for a beginner-friendly selling interface — it shows you the current market price and lets you list with one click. Collect your gold from the mailbox.</p>
+          <div class="card-title"><span class="emoji">⚒</span> Profession Limits</div>
+          <p>Each character can learn exactly <strong>two</strong> primary professions (e.g., Herbalism + Mining, or Alchemy + Enchanting). You cannot have three. However, Fishing and Cooking are secondary professions — every character can learn them for free on top of your two primaries. Plan your profession pairs carefully: gathering + gathering (easy gold) or gathering + crafting (self-supply your crafter) are the most common combos for gold-making.</p>
         </div>
+
         <div class="card">
-          <div class="card-title"><span class="emoji">🎯</span> Day 6-7: Evaluate & Expand</div>
-          <p>Check how much gold you made this week. Use that as your baseline GPH. Now you can decide: stick with gathering, try a crafting profession, or start saving for AH flipping capital. Read the Quick Start Tier List below to pick your next move.</p>
+          <div class="card-title"><span class="emoji">📊</span> Gathering Stats Explained</div>
+          <p><strong style="color:var(--gold);">Perception</strong> increases your chance of finding rare materials (like Nocturnal Lotus or Brilliant Silver Ore). <strong style="color:var(--gold);">Finesse</strong> gives bonus yield per node — more herbs/ore per gather. <strong style="color:var(--gold);">Deftness</strong> speeds up your gathering cast time. These stats come from profession gear (crafted tools and accessories) and specialization nodes. Prioritize Perception early for rare procs, then Finesse for volume.</p>
         </div>
       </div>
 
-      <div class="card" style="margin-top: 24px;">
-        <div class="card-title"><span class="emoji">💵</span> How Much Gold Is Good?</div>
-        <table class="data-table">
-          <thead>
-            <tr><th>Gold Amount</th><th>What It Means</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Under 10k</td><td>Just starting out — a few hours of gathering will fix this</td></tr>
-            <tr><td>10k-50k</td><td>Comfortable casual player</td></tr>
-            <tr><td>50k-200k</td><td>Self-sufficient — can buy most things you need</td></tr>
-            <tr><td>200k-500k</td><td>Serious gold-maker territory</td></tr>
-            <tr><td>500k-1M</td><td>You can fund game time with gold alone</td></tr>
-            <tr><td>1M+</td><td>Goblin status — you understand the economy</td></tr>
-            <tr><td>10M+</td><td>Gold cap aspirant — you live on r/woweconomy</td></tr>
-          </tbody>
-        </table>
+      <div class="card">
+        <div class="card-title"><span class="emoji">🔧</span> How to Install Addons</div>
+        <p>Addons are UI modifications that enhance your gameplay. To install them: download the <a href="https://www.curseforge.com/download/app" target="_blank" rel="noopener" style="color:var(--gold);">CurseForge app</a> (the most popular addon manager). Open it, select World of Warcraft, and search for addons like "TradeSkillMaster" or "Auctionator." Click Install and they'll be active next time you launch WoW. You can also use the WoWUp addon manager as an alternative. No manual file copying needed — the app handles everything.</p>
       </div>
 
-      <div class="card" style="margin-top: 24px;">
-        <div class="card-title"><span class="emoji">📖</span> WoW Jargon Glossary</div>
-        <div class="expandable" onclick="toggleExpand(this)">
-          <div class="expandable-header">
-            <h3>Essential Terms</h3>
-          </div>
-          <div class="expandable-content">
-            <ul style="list-style: none; padding: 0;">
-              <li><strong>AH</strong> — Auction House, where players buy and sell items</li>
-              <li><strong>GPH</strong> — Gold Per Hour, the standard metric for measuring farm efficiency</li>
-              <li><strong>BoE</strong> — Bind on Equip, items that can be traded until worn</li>
-              <li><strong>BoP</strong> — Bind on Pickup, items that cannot be traded</li>
-              <li><strong>M+</strong> — Mythic Plus, repeatable endgame dungeons with scaling difficulty</li>
-              <li><strong>TSM</strong> — TradeSkillMaster, the most powerful gold-making addon</li>
-              <li><strong>Goblin</strong> — A player focused on making gold (named after the WoW race known for commerce)</li>
-              <li><strong>Flipping</strong> — Buying items cheap and reselling at a higher price</li>
-              <li><strong>Transmog</strong> — Cosmetic appearances collected from gear, sold to collectors</li>
-              <li><strong>Knowledge Points</strong> — Profession skill points earned through quests and discoveries that unlock specialization talents, making your crafts higher quality</li>
-              <li><strong>Concentration</strong> — A resource pool (up to ~1000 points, regenerates ~100/day) you spend to guarantee higher quality crafts</li>
-              <li><strong>Follower Dungeons</strong> — A system that lets you run dungeons solo with NPC companions instead of other players</li>
-              <li><strong>Reset Day</strong> — Tuesday (NA) / Wednesday (EU) when raids and dungeons reset, causing demand spikes</li>
-            </ul>
-          </div>
-        </div>
+      <div class="card">
+        <div class="card-title"><span class="emoji">🏦</span> Warband Bank &amp; Cross-Character Gold</div>
+        <p>The Warband system lets you share gold, items, and resources across all your characters on the same account via the Warband Bank. This is crucial for gold-making: farm on your gatherer, send materials to your crafter, and funnel gold from alts into one pool. Access the Warband Bank tab in any regular bank NPC. If a guide says "do this on all alts," the Warband Bank is how you move materials and gold between them efficiently.</p>
       </div>
     </section>
 
@@ -1088,7 +793,7 @@ section { animation: fadeInUp 0.5s ease both; }
       <div class="card-grid" id="tier-list">
         <div class="card" data-tier="beginner">
           <div class="card-title"><span class="emoji">🌿</span> Dual Gathering</div>
-          <p>Pick up Herbalism + Mining on your main. Fly loops in Eversong Woods and Zul'Aman. Sell everything raw on the AH. No knowledge investment needed to start earning.</p>
+          <p>Pick up Herbalism + Mining on your main. Fly loops in Eversong Woods or Harandar. Sell everything raw on the AH. No knowledge investment needed to start earning.</p>
           <div class="ratings">
             <div class="rating">
               <span>Effort</span>
@@ -1111,8 +816,7 @@ section { animation: fadeInUp 0.5s ease both; }
               </div>
             </div>
           </div>
-          <div class="profit-tag high">8k–15k GPH</div>
-          <div class="gph-disclaimer">* Varies by server economy and time since launch. Early weeks will be higher.</div>
+          <div class="profit-tag high">🚀 40k–100k+ GPH (week 1) <span style="font-size:10px;opacity:0.7;">· 📉 8k–15k GPH (steady state)</span></div>
         </div>
 
         <div class="card" data-tier="beginner">
@@ -1140,37 +844,7 @@ section { animation: fadeInUp 0.5s ease both; }
               </div>
             </div>
           </div>
-          <div class="profit-tag medium">7k–12k GPH (raw gold)</div>
-          <div class="gph-disclaimer">* Varies by server economy and time since launch. Early weeks will be higher.</div>
-        </div>
-
-        <div class="card" data-tier="beginner">
-          <div class="card-title"><span class="emoji">🎯</span> Weekly Quests & World Content</div>
-          <p>Complete weekly quests, world boss kills, and zone events for raw gold rewards. No professions or AH knowledge needed — just play the game normally and collect gold from quest rewards. Great supplement to any other method.</p>
-          <div class="ratings">
-            <div class="rating">
-              <span>Effort</span>
-              <div class="rating-bar">
-                <div class="rating-pip filled green"></div>
-                <div class="rating-pip"></div>
-                <div class="rating-pip"></div>
-                <div class="rating-pip"></div>
-                <div class="rating-pip"></div>
-              </div>
-            </div>
-            <div class="rating">
-              <span>Startup</span>
-              <div class="rating-bar">
-                <div class="rating-pip filled green"></div>
-                <div class="rating-pip"></div>
-                <div class="rating-pip"></div>
-                <div class="rating-pip"></div>
-                <div class="rating-pip"></div>
-              </div>
-            </div>
-          </div>
-          <div class="profit-tag medium">3k–8k per week</div>
-          <div class="gph-disclaimer">* Varies by available weekly content and completion speed.</div>
+          <div class="profit-tag medium">10k–17k GPH <span style="font-size:10px;opacity:0.7;">(stable — raw gold)</span></div>
         </div>
 
         <div class="card" data-tier="intermediate">
@@ -1198,13 +872,12 @@ section { animation: fadeInUp 0.5s ease both; }
               </div>
             </div>
           </div>
-          <div class="profit-tag very-high">Batch profit varies — 5k-30k+ per crafting session</div>
-          <div class="gph-disclaimer">* Alchemy is batch crafting, not hourly farming. Profit depends on material costs and sale timing.</div>
+          <div class="profit-tag very-high">🚀 50k–200k+ GPH (week 1) <span style="font-size:10px;opacity:0.7;">· 📉 15k–40k GPH (steady state)</span></div>
         </div>
 
         <div class="card" data-tier="intermediate">
           <div class="card-title"><span class="emoji">🧵</span> Cloth Farming (Tailor)</div>
-          <p>Tailors get dramatically more cloth drops through Unraveling, making Tailoring essential for cloth farming. Run Midnight dungeons like Windrunner Spire or Maisara Caverns via the Follower Dungeon system for optimized cloth drops.</p>
+          <p>Only Tailors can loot cloth in Midnight, making supply limited and prices high. Run Darkflame Cleft via the Follower Dungeon system for optimized cloth drops.</p>
           <div class="ratings">
             <div class="rating">
               <span>Effort</span>
@@ -1227,8 +900,7 @@ section { animation: fadeInUp 0.5s ease both; }
               </div>
             </div>
           </div>
-          <div class="profit-tag high">12k–25k GPH</div>
-          <div class="gph-disclaimer">* Varies by server economy and time since launch. Early weeks will be higher.</div>
+          <div class="profit-tag high">🚀 30k–80k GPH (week 1) <span style="font-size:10px;opacity:0.7;">· 📉 10k–20k GPH (steady state)</span></div>
         </div>
 
         <div class="card" data-tier="advanced">
@@ -1284,7 +956,7 @@ section { animation: fadeInUp 0.5s ease both; }
               </div>
             </div>
           </div>
-          <div class="profit-tag very-high">50k–200k+ per order</div>
+          <div class="profit-tag very-high">🚀 100k–500k+ per order (week 1) <span style="font-size:10px;opacity:0.7;">· 📉 20k–80k (mid-season)</span></div>
         </div>
       </div>
     </section>
@@ -1294,6 +966,10 @@ section { animation: fadeInUp 0.5s ease both; }
       <div class="section-header">
         <h2>⛏ Gathering Professions</h2>
         <p>The most accessible and consistent gold sources in the game</p>
+        <div class="tip-box" style="margin-top:16px;">
+          <div class="tip-label">Multiboxing's Impact on Gathering</div>
+          <p>Gathering is more profitable per-player now than in previous expansions. Blizzard's crackdown on input broadcasting software effectively ended multiboxing, which used to flood the market with cheap materials from 5-10 character farming teams. With that supply gone, solo gatherers earn significantly more per hour than the BFA/Shadowlands era.</p>
+        </div>
       </div>
 
       <div class="expandable open" onclick="toggleExpand(this)">
@@ -1309,23 +985,33 @@ section { animation: fadeInUp 0.5s ease both; }
               <tr><th>Herb</th><th>Zone</th><th>Demand</th><th>Notes</th></tr>
             </thead>
             <tbody>
-              <tr><td class="quality-uncommon">Tranquility Bloom</td><td>Zul'Aman</td><td>Very High</td><td>Used in most flask recipes</td></tr>
-              <tr><td class="quality-uncommon">Argentleaf</td><td>Eversong Woods</td><td>High</td><td>Smooth farming routes, beginner-friendly</td></tr>
-              <tr><td class="quality-rare">Azeroot</td><td>Harandar</td><td>High</td><td>Rare proc, high value each</td></tr>
-              <tr><td class="quality-uncommon">Mana Lily</td><td>Voidstorm</td><td>Medium</td><td>Good for leveling characters</td></tr>
-              <tr><td class="quality-epic">Sanguithorn</td><td>Zul'Aman</td><td>Medium</td><td>Raid consumable ingredient</td></tr>
-              <tr><td class="quality-legendary">Nocturnal Lotus</td><td>All zones</td><td>Very High</td><td>Rare proc from any node (like Black Lotus)</td></tr>
+              <tr><td class="quality-uncommon"><a href="https://www.wowhead.com/item=236761" target="_blank" rel="noopener">Tranquility Bloom</a></td><td>All Zones</td><td>Very High</td><td>Core flask and potion ingredient</td></tr>
+              <tr><td class="quality-uncommon"><a href="https://www.wowhead.com/item=236776" target="_blank" rel="noopener">Argentleaf</a></td><td>All Zones</td><td>High</td><td>Used in teas and potions</td></tr>
+              <tr><td class="quality-uncommon"><a href="https://www.wowhead.com/item=236774" target="_blank" rel="noopener">Azeroot</a></td><td>All Zones</td><td>High</td><td>Common crafting herb, high volume</td></tr>
+              <tr><td class="quality-rare"><a href="https://www.wowhead.com/item=236779" target="_blank" rel="noopener">Mana Lily</a></td><td>All Zones</td><td>High</td><td>Key Alchemy reagent, good price</td></tr>
+              <tr><td class="quality-rare"><a href="https://www.wowhead.com/item=236770" target="_blank" rel="noopener">Sanguithorn</a></td><td>All Zones</td><td>High</td><td>Blood-themed herb, raid consumables</td></tr>
+              <tr><td class="quality-epic"><a href="https://www.wowhead.com/item=236780" target="_blank" rel="noopener">Nocturnal Lotus</a></td><td>All Zones (rare)</td><td>Very High</td><td>Rare proc from any node — high gold per unit</td></tr>
             </tbody>
           </table>
 
           <div class="tip-box">
             <div class="tip-label">Pro Tip</div>
-            <p>Invest early knowledge points into Finesse to maximize yield per node. Eversong Woods has the smoothest farming routes for herbs — fly tight circles around the outer lanes near major roads. Stack Perception for rare herb procs and Nocturnal Lotus spawns.</p>
+            <p>All herbs spawn in every Midnight zone — pick your route based on mote type, not herb type. Harandar has the densest node spawns overall. Stack Perception for Nocturnal Lotus procs, which are worth significantly more per unit.</p>
           </div>
 
-          <div class="route-box">
-            <div class="route-label">Farming Route Tip</div>
-            <p style="color:var(--text);font-size:14px;">Install <strong>GatherMate2</strong> and <strong>Routes</strong> addons to generate optimized farming paths based on real node data. Fly a full loop of Eversong Woods once to populate your map, then let Routes calculate the most efficient circuit. Community-shared route data is also available on CurseForge.</p>
+          <div class="tip-box">
+            <div class="tip-label">Mounted Gathering</div>
+            <p>Herbalism has a specialization node that lets you gather herbs while mounted — no dismounting needed. This is a massive GPH boost. Prioritize unlocking it early in your Botany specialization tree. Combined with a Druid's flight-form gathering, this makes herbalism the fastest gathering profession by far.</p>
+          </div>
+
+          <div class="tip-box">
+            <div class="tip-label">Quality Tiers</div>
+            <p>Gathered herbs in Midnight use a simplified 2-tier quality system (Tier 1 and Tier 2) instead of the 5-rank crafting system. Higher Finesse and Perception stats increase your chance of gathering Tier 2 materials, which sell for significantly more on the AH and are required for high-rank crafts.</p>
+          </div>
+
+          <div class="warning-box">
+            <div class="tip-label">⚠ Bot Activity Notice</div>
+            <p>Be aware that bot activity can crater gathering prices on some realms, especially during off-peak hours. If you notice herb prices consistently below crafting cost, bots may be flooding supply. Counter-strategy: sell into peak demand (Tuesday–Wednesday) when legitimate buyer volume absorbs the bot supply, or pivot to a less-botted material.</p>
           </div>
         </div>
       </div>
@@ -1343,16 +1029,20 @@ section { animation: fadeInUp 0.5s ease both; }
               <tr><th>Ore</th><th>Zone</th><th>Demand</th><th>Notes</th></tr>
             </thead>
             <tbody>
-              <tr><td class="quality-uncommon">Refulgent Copper</td><td>All Zones</td><td>Very High</td><td>Universal crafting ore, available everywhere</td></tr>
-              <tr><td class="quality-rare">Umbral Tin</td><td>Eversong Woods</td><td>High</td><td>Required for high-end gear</td></tr>
-              <tr><td class="quality-rare">Brilliant Silver</td><td>Zul'Aman</td><td>High</td><td>Mid-tier crafting demand</td></tr>
-              <tr><td class="quality-epic">Dazzling Thorium</td><td>Harandar</td><td>Medium</td><td>Rare proc, specialty crafts</td></tr>
+              <tr><td class="quality-uncommon"><a href="https://www.wowhead.com/item=237359" target="_blank" rel="noopener">Refulgent Copper Ore</a></td><td>All Zones</td><td>Very High</td><td>Common ore, huge volume — BS/JC/Eng staple</td></tr>
+              <tr><td class="quality-rare"><a href="https://www.wowhead.com/item=237363" target="_blank" rel="noopener">Umbral Tin Ore</a></td><td>All Zones</td><td>High</td><td>Mid-tier ore, required for epic crafts</td></tr>
+              <tr><td class="quality-epic"><a href="https://www.wowhead.com/item=237365" target="_blank" rel="noopener">Brilliant Silver Ore</a></td><td>All Zones (rare)</td><td>Very High</td><td>Rare proc — highest gold per unit</td></tr>
             </tbody>
           </table>
 
           <div class="tip-box">
             <div class="tip-label">Pro Tip</div>
-            <p>Pair mining with Herbalism for dual-gathering loops. Eversong Woods is ideal for both smooth terrain. Watch for special node types: Seam, Rich, Lightfused, Wild, Primal, and Voidbound nodes yield extra ore. Sell in bulk early in the week, then let prices recover before reset day.</p>
+            <p>All ores spawn in every Midnight zone — pick your route based on mote type or pair with Herbalism for dual-gathering loops. Eversong Woods has the smoothest terrain for fast mounted loops. Sell ores in bulk on raid days when crafters stock up. Stack Perception for Brilliant Silver Ore procs.</p>
+          </div>
+
+          <div class="tip-box">
+            <div class="tip-label">Mounted Mining</div>
+            <p>Like Herbalism, Mining has a specialization node that allows gathering while mounted. Unlock this in your Excavation specialization tree as early as possible — it dramatically speeds up your farming loops and is essential for competitive GPH.</p>
           </div>
         </div>
       </div>
@@ -1370,82 +1060,49 @@ section { animation: fadeInUp 0.5s ease both; }
               <tr><th>Material</th><th>Source</th><th>Demand</th><th>Notes</th></tr>
             </thead>
             <tbody>
-              <tr><td class="quality-uncommon">Void-Tempered Leather</td><td>Various beasts</td><td>High</td><td>Primary Leatherworking material</td></tr>
-              <tr><td class="quality-uncommon">Void-Tempered Scales</td><td>Dragonkin / reptiles</td><td>High</td><td>Required for mail gear crafts</td></tr>
-              <tr><td class="quality-rare">Fantastic Fur / Peerless Plumage</td><td>Species-specific drops</td><td>Medium</td><td>Bonus reagents from specific creature types</td></tr>
-              <tr><td class="quality-epic">Majestic Claw / Hide / Fin</td><td>Lured beast kills</td><td>Very High</td><td>Epic materials — use Lure items to attract rare beasts</td></tr>
+              <tr><td class="quality-uncommon"><a href="https://www.wowhead.com/item=238511" target="_blank" rel="noopener">Void-Tempered Leather</a></td><td>Leathery beasts</td><td>High</td><td>Core Leatherworking material</td></tr>
+              <tr><td class="quality-rare"><a href="https://www.wowhead.com/item=238513" target="_blank" rel="noopener">Void-Tempered Scales</a></td><td>Scaly beasts / dragonkin</td><td>High</td><td>Required for mail gear crafts</td></tr>
+              <tr><td class="quality-epic"><a href="https://www.wowhead.com/item=238521" target="_blank" rel="noopener">Void-Tempered Plating</a></td><td>Rare drops from beasts</td><td>Very High</td><td>Epic material — high gold per unit</td></tr>
             </tbody>
           </table>
 
           <div class="tip-box">
             <div class="tip-label">Pro Tip</div>
-            <p>Group skinning farms are popular across Midnight zones — check the Group Finder. Spend your first 40 knowledge points in Tanning to unlock the third charge of Sharpen Your Knife, then go for rare leather procs for long-term profit.</p>
+            <p>Use Lure items to attract specific beasts that drop the epic Majestic Claw, Majestic Hide, and Majestic Fin materials — these are used in epic combat gear and sell for a premium. Check Group Finder for popular beast farms in Eversong Woods and Harandar. Leather and Scales now only come in two quality ranks instead of three.</p>
           </div>
         </div>
       </div>
 
-      <div class="card" style="margin-top: 24px;">
-        <div class="card-title"><span class="emoji">🧪</span> Gathering Consumables</div>
-        <p>Buff yourself while farming with these gathering-specific consumables to increase your yield:</p>
-        <table class="data-table">
-          <thead>
-            <tr><th>Consumable</th><th>Effect</th><th>Duration</th></tr>
-          </thead>
-          <tbody>
-            <tr><td class="quality-uncommon">Azeroot Tea</td><td>+50 Deftness (+16.6%)</td><td>1 hour</td></tr>
-            <tr><td class="quality-uncommon">Argentleaf Tea</td><td>+50 Finesse (+5.0%)</td><td>1 hour</td></tr>
-            <tr><td class="quality-uncommon">Sanguithorn Tea</td><td>+50 Perception (+5.0%)</td><td>1 hour</td></tr>
-            <tr><td class="quality-rare">Haranir Phial of Perception</td><td>+38 Perception, +11 Deftness</td><td>30 min</td></tr>
-            <tr><td class="quality-rare">Haranir Phial of Finesse</td><td>+38 Finesse, +11 Deftness</td><td>30 min</td></tr>
-            <tr><td class="quality-uncommon">Darkmoon Firewater</td><td>+15% Deftness</td><td>1 hour</td></tr>
-            <tr><td class="quality-rare">Enchant Gloves — Gatherer's [stat]</td><td>Permanent enchant: +Perception or +Finesse on gloves</td><td>Permanent</td></tr>
-          </tbody>
-        </table>
-        <div class="tip-box" style="margin-top:16px;">
-          <div class="tip-label">Efficiency Tip</div>
-          <p>Azeroot Tea and Darkmoon Firewater are basically mandatory for efficient farming until you have high Deftness from gear and specializations. Always farm buffed.</p>
+      <div class="expandable" id="fishing-section" onclick="toggleExpand(this)">
+        <div class="expandable-header">
+          <h3>🎣 Fishing</h3>
+          <span class="arrow">▼</span>
         </div>
-      </div>
+        <div class="expandable-body" onclick="event.stopPropagation()">
+          <p>Fishing in Midnight is more profitable than most players realize. Each zone has unique fish pools tied to specific recipes, and the new lure system lets you target rare catches. Fishing doesn't count toward your two-profession limit, so every character can fish.</p>
 
-      <div class="card" style="margin-top: 24px;">
-        <div class="card-title"><span class="emoji">🐻</span> Best Classes for Gathering</div>
-        <ul>
-          <li><strong>Druid (S-Tier):</strong> Pick herbs in flight form without dismounting. Undisputed gathering champion since classic. Tauren Druid gets a bonus gathering speed racial.</li>
-          <li><strong>Demon Hunter / Evoker (A-Tier):</strong> High mobility with glide and double jump / soar. Can reach tricky node locations faster.</li>
-          <li><strong>Any class with a fast mount (B-Tier):</strong> With Midnight's flight available immediately, most classes are viable gatherers. Speed matters less than knowing your routes.</li>
-        </ul>
-      </div>
-    </section>
+          <table class="data-table">
+            <thead>
+              <tr><th>Fish / Catch</th><th>Zone</th><th>Use</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="quality-uncommon">Zone-specific fish</td><td>All zones</td><td>Cooking recipes, Alchemy reagents</td><td>Each zone has unique pool types with different fish</td></tr>
+              <tr><td class="quality-rare"><a href="https://www.wowhead.com/skill=2911/midnight-fishing" target="_blank" rel="noopener">Midnight Darter</a></td><td>Eversong Woods</td><td>Feast recipes</td><td>High demand for raid feasts — consistent seller</td></tr>
+              <tr><td class="quality-epic"><a href="https://www.wowhead.com/item=238652/majestic-eversong-lure" target="_blank" rel="noopener">Lure-caught fish</a></td><td>Varies</td><td>Premium recipes, rare reagents</td><td>Use crafted lures to target specific rare fish from special pools</td></tr>
+              <tr><td class="quality-legendary"><a href="https://www.wowhead.com/skill=2911/midnight-fishing" target="_blank" rel="noopener">Lunker fish</a></td><td>Rare spawn</td><td>Turn-in for rare rewards</td><td>Extremely rare catches — similar to Lunker mechanic from previous expansions</td></tr>
+            </tbody>
+          </table>
 
-    <!-- INFUSED HERBS & MOTES -->
-    <section id="infused">
-      <div class="section-header">
-        <h2>🌟 Infused Herbs & Motes</h2>
-        <p>Dangerous gathering with extra rewards</p>
-      </div>
+          <div class="tip-box">
+            <div class="tip-label">Lure System</div>
+            <p>Midnight introduces crafted lures that attract specific rare fish from pools. Lures are made by Engineers and Alchemists — buy or craft them to target high-value catches. Special pools spawn in specific zones and times, so learn the rotation. Fishing is the ultimate AFK gold method: cast, wait, profit.</p>
+          </div>
 
-      <div class="card" style="margin-bottom: 24px;">
-        <p>Infused versions of herbs and ores drop extra materials (motes) but come with dangerous negative effects. Learning the Overload Infused Herb ability lets you channel these effects for bonus motes. High risk, high reward gathering for experienced farmers.</p>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><span class="emoji">📊</span> Infused Node Types</div>
-        <table class="data-table">
-          <thead>
-            <tr><th>Infusion Type</th><th>Zone</th><th>Mote Drop</th><th>Overload Effect</th></tr>
-          </thead>
-          <tbody>
-            <tr><td class="quality-uncommon">Lightfused</td><td>Eversong Woods</td><td>Mote of Light</td><td>Light circles on ground — stand in them for bonus motes</td></tr>
-            <tr><td class="quality-rare">Wild</td><td>Zul'Aman</td><td>Mote of Wild Magic</td><td>Four herb creatures spawn — kill and herb their corpses</td></tr>
-            <tr><td class="quality-epic">Primal</td><td>Harandar</td><td>Mote of Primal Energy</td><td>Minor slow and DoT. Overload: channel 50% HP for extra motes (don't interrupt!)</td></tr>
-            <tr><td class="quality-void">Voidbound</td><td>Voidstorm</td><td>Mote of Pure Void</td><td>Void zone pulls you in. Overload: portal with 4 purple orbs — grab them fast before they vanish</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="tip-box">
-        <div class="tip-label">Learning Overload</div>
-        <p>Learn the Overload Infused Herb ability by gathering your first infused herb. 12-hour cooldown, reduced by 30 minutes per herb gathered (~24 herbs to fully reset). Use it on infused nodes for bonus motes. Motes are valuable crafting reagents used in high-end recipes — they're highly sought after.</p>
+          <div class="tip-box">
+            <div class="tip-label">Fishing Gold Strategy</div>
+            <p>The real money in fishing comes from supplying Cooking materials. Raid feasts require specific fish, and serious raid guilds burn through hundreds per week. Stock up before reset day and sell into Tuesday demand. Fish are also used in some Alchemy recipes, adding another demand layer.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1454,43 +1111,43 @@ section { animation: fadeInUp 0.5s ease both; }
       <div class="section-header">
         <h2>🔨 Crafting Professions</h2>
         <p>Higher effort, higher reward — the backbone of the WoW economy</p>
+        <div class="tip-box" style="margin-top:16px;">
+          <div class="tip-label">Concentration — The Key to High-Rank Profits</div>
+          <p>Concentration is a limited resource that guarantees a higher quality result on any craft. It regenerates slowly over time across your account. The profit difference between a Rank 4 and Rank 5 craft can be 10x or more — use Concentration strategically on high-value crafts where the quality jump has the biggest price impact. Never waste it on low-margin items. This single mechanic is what separates profitable crafters from break-even ones.</p>
+        </div>
       </div>
 
       <div class="card-grid">
         <div class="card">
           <div class="card-title"><span class="emoji">🧪</span> <span class="quality-epic">Alchemy</span></div>
-          <p>The most consistently profitable crafting profession. Everyone needs flasks, phials, potions, and cauldrons — demand spikes on raid nights and new content drops. Alchemy provides a reliable income stream that rarely dries up. Midnight adds new teas that grant speed and gathering stat bonuses.</p>
+          <p>The most consistently profitable crafting profession. Everyone needs flasks, potions, and cauldrons — demand spikes on raid nights and new content drops. Alchemy provides a reliable income stream that rarely dries up, plus housing dyes for the decor market.</p>
           <ul>
             <li>Flasks and phials for raiders (constant demand)</li>
             <li>Combat potions (used in M+ and raids)</li>
             <li>Cauldrons for guild groups (high material cost, high profit margin)</li>
             <li>Transmutations for daily cooldown profit</li>
+            <li>Housing dyes for recoloring decor items (new Midnight niche)</li>
+            <li>Treasure-finding potions (if available) — a goblin staple that increases gold/material drops from mobs. Check Wowhead for the Midnight equivalent at launch</li>
           </ul>
+          <p style="margin-top:8px;font-size:14px;color:var(--text-dim);">Spec Trees: Alchemical Mastery, Potioncraft, Phial Mastery, Transmutation</p>
+          <div class="tip-box" style="margin-top:8px;">
+            <div class="tip-label">Alchemy Procs &amp; Mixology</div>
+            <p>Alchemists have a chance to proc extra items when crafting flasks and potions — this is a huge part of why Alchemy is Tier S. The Mixology passive also doubles your own flask duration, saving gold on personal consumables. Both effects scale with your specialization investment.</p>
+          </div>
           <div class="profit-tag very-high">Tier S — Best consistent earner</div>
         </div>
 
         <div class="card">
           <div class="card-title"><span class="emoji">✨</span> <span class="quality-epic">Enchanting</span></div>
-          <p>Enchanters profit from two angles: selling weapon and armor enchants (everyone re-enchants gear at launch), and crafting Enchanted Crests used for upgrading high-tier gear. Mana Oils are another steady seller.</p>
+          <p>Enchanters profit from two angles: selling weapon and armor enchants (always in demand for new gear), and crafting Enchanted Crests used for upgrading high-tier gear. Mana Oils are another steady seller.</p>
           <ul>
-            <li>Weapon enchants (big seller at patch launch and every reset)</li>
+            <li>Weapon enchants (big seller every reset)</li>
             <li>Enchanted Crests for gear upgrades</li>
             <li>Mana Oils for temporary weapon buffs</li>
             <li>Disenchanting cheap gear for materials</li>
           </ul>
+          <p style="margin-top:8px;font-size:14px;color:var(--text-dim);">Spec Trees: Enchantment, Insight of Destruction, Insight of the Siphon, Artistry</p>
           <div class="profit-tag very-high">Tier S — Dual income streams</div>
-        </div>
-
-        <div class="card">
-          <div class="card-title"><span class="emoji">⚙</span> <span class="quality-epic">Engineering</span></div>
-          <p>New recycling mechanic in Midnight makes Engineering highly profitable. Deconstruct gear for materials, then reconstruct or sell the components. Dual income stream from recycling and crafted gear sales.</p>
-          <ul>
-            <li>Gear recycling with material recovery</li>
-            <li>Crafted engineered gear (high margins)</li>
-            <li>Gadgets and utility items</li>
-            <li>Ammunition and weapon attachments</li>
-          </ul>
-          <div class="profit-tag high">Tier A — Recycling mechanic has potential</div>
         </div>
 
         <div class="card">
@@ -1500,56 +1157,96 @@ section { animation: fadeInUp 0.5s ease both; }
             <li>Crafted weapons and plate armor (crafting orders)</li>
             <li>Alloy conversions for daily profit</li>
             <li>Sharpening stones and weapon enhancements</li>
+            <li>Housing decor (metal furniture, weapon racks, anvils)</li>
           </ul>
+          <p style="margin-top:8px;font-size:14px;color:var(--text-dim);">Spec Trees: Armorsmithing, Weaponsmithing, Smelting, Hammercraft</p>
           <div class="profit-tag high">Tier A — High per-item profit</div>
         </div>
 
         <div class="card">
-          <div class="card-title"><span class="emoji">🧶</span> <span class="quality-rare">Leatherworking</span></div>
-          <p>Leatherworking covers both leather AND mail armor, meaning you serve Rogues, Monks, Druids, Demon Hunters, Hunters, Shamans, and Evokers — that's a huge customer base. Pair with Skinning for a self-sufficient crafting loop. High-rank crafted gear through personal orders is where the real money lives.</p>
-          <ul>
-            <li>Crafted leather and mail armor (crafting orders)</li>
-            <li>Leg armor enchants (permanent demand)</li>
-            <li>Armor kits for temporary stat boosts</li>
-            <li>Pairs naturally with Skinning for self-supply</li>
-          </ul>
-          <div class="profit-tag high">Tier A — Huge customer base</div>
-        </div>
-
-        <div class="card">
-          <div class="card-title"><span class="emoji">💎</span> <span class="quality-epic">Jewelcrafting</span></div>
-          <p>Nearly all gear can have gem sockets in Midnight with the quality system, making JC perpetually relevant. Crafting gems and unique embellishments provides steady income with occasional high-ticket crafting orders. Quality gems drive multiple tiers of demand.</p>
+          <div class="card-title"><span class="emoji">💎</span> <span class="quality-rare">Jewelcrafting</span></div>
+          <p>Nearly all gear can have gem sockets in Midnight, making JC perpetually relevant. Crafting gems and unique embellishments provides steady income with occasional high-ticket crafting orders.</p>
           <ul>
             <li>Cut gems for every gear slot (massive volume)</li>
-            <li>Quality gem variations for gear optimization</li>
             <li>JC-exclusive embellishments</li>
+            <li>Prospecting ore for rare gems</li>
             <li>Crafted jewelry via crafting orders</li>
+            <li>Housing decor (gem-studded items, crystal displays, chandeliers)</li>
           </ul>
-          <div class="profit-tag very-high">Tier A — Always in demand</div>
+          <p style="margin-top:8px;font-size:14px;color:var(--text-dim);">Spec Trees: Faceting, Jewelcraft, Shaping, Gemology</p>
+          <div class="profit-tag high">Tier A — High volume sales</div>
         </div>
 
         <div class="card">
-          <div class="card-title"><span class="emoji">🧵</span> <span class="quality-epic">Tailoring</span></div>
-          <p>Tailoring gets a massive boost in Midnight: Tailors gain bonus cloth through the Unraveling mechanic, dramatically increasing drop rates compared to non-tailors. This supply advantage drives up the value of having Tailoring.</p>
+          <div class="card-title"><span class="emoji">🧵</span> <span class="quality-rare">Tailoring</span></div>
+          <p>A major change in Midnight: only Tailors can loot cloth from mobs. This means the cloth supply is limited, driving up prices. Tailoring is now both a gathering and crafting profession in one.</p>
           <ul>
             <li>Exclusive cloth drops (sell raw or craft)</li>
             <li>Crafted cloth armor and embellishments</li>
             <li>Spellthread leg enchants</li>
             <li>Bags (evergreen market)</li>
+            <li>Housing decor (tapestries, curtains, cloth furnishings)</li>
           </ul>
-          <div class="profit-tag very-high">Tier S — Unique cloth monopoly</div>
+          <p style="margin-top:8px;font-size:14px;color:var(--text-dim);">Spec Trees: Tailorcraft, Clothcraft, Garmentcraft, Fabrication</p>
+          <div class="profit-tag high">Tier A — Unique cloth monopoly</div>
         </div>
 
         <div class="card">
-          <div class="card-title"><span class="emoji">📜</span> <span class="quality-epic">Inscription</span></div>
-          <p>The most versatile gold-making profession in Midnight. The core pipeline: mill herbs into pigments, craft pigments into inks, then produce Missives that control secondary stat rolls on every piece of crafted gear. Since every crafter needs Missives for their orders, demand is constant and enormous. On top of that, Inscription covers profession consumables, Vantus Runes for raiders, contracts, and housing decor items.</p>
+          <div class="card-title"><span class="emoji">📜</span> <span class="quality-uncommon">Inscription</span></div>
+          <p>Scribes make <a href="https://www.wowhead.com/item=232936" target="_blank" rel="noopener">Vantus Runes</a> (raid buffs), Missives (stat customization for crafted gear), and Darkmoon cards. Niche but profitable — especially early in raid tiers when Vantus Rune demand is high.</p>
           <ul>
-            <li>Missives for crafted gear stat customization (highest demand)</li>
-            <li>Herb milling pipeline (pigments → inks → finished goods)</li>
-            <li>Vantus Runes for raid progression weeks</li>
-            <li>Housing decor items and contracts</li>
+            <li><a href="https://www.wowhead.com/item=232936" target="_blank" rel="noopener">Vantus Runes</a> (weekly raid buff items)</li>
+            <li>Missives for stat customization</li>
+            <li>Treatises — weekly KP items every crafter needs (+1 Knowledge Point per profession per week). Guaranteed passive sales</li>
+            <li>Contracts for reputation gains</li>
+            <li>Darkmoon trinket cards</li>
+            <li>Housing decor items (scrolls, paintings, banners) and contracts</li>
           </ul>
-          <div class="profit-tag very-high">Tier S — Most versatile profession</div>
+          <p style="margin-top:8px;font-size:14px;color:var(--text-dim);">Spec Trees: Darkmoon Sigils, Archiving, Pursuit of Knowledge, Rune Mastery</p>
+          <div class="profit-tag medium">Tier B — Niche but steady</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="emoji">🎖</span> <span class="quality-rare">Leatherworking</span></div>
+          <p>Leatherworkers craft leather and mail armor for non-cloth wearers. Crafting orders for high-rank gear provide solid per-item profit, and armor kits are always in demand.</p>
+          <ul>
+            <li>Crafted leather and mail armor (crafting orders)</li>
+            <li>Armor kits for gear enhancements</li>
+            <li>Specialized bags and containers</li>
+            <li>Housing decor (leather furniture, rugs, banners)</li>
+          </ul>
+          <p style="margin-top:8px;font-size:14px;color:var(--text-dim);">Spec Trees: Leathercraft, Mailcraft, Tanning, Curing</p>
+          <div class="profit-tag high">Tier A — Steady crafting order income</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="emoji">⚙</span> <span class="quality-rare">Engineering</span></div>
+          <p>Recycle random reagents into <a href="https://www.wowhead.com/item=243581" target="_blank" rel="noopener">Evercores</a>, then use those to craft gear and items. Steady demand for engineered gear and utility items.</p>
+          <ul>
+            <li>Reagent recycling into <a href="https://www.wowhead.com/item=243581" target="_blank" rel="noopener">Evercores</a> (the core Engineering loop)</li>
+            <li>Crafted engineered gear — goggles, guns, and gadgets</li>
+            <li>Utility items (Overcharged gear, lures, bombs)</li>
+            <li>Housing decor items (mechanical furniture, lights)</li>
+          </ul>
+          <p style="margin-top:8px;font-size:14px;color:var(--text-dim);">Spec Trees: Explosives, Gear, Gadgetry, Mechanical Forging</p>
+          <div class="profit-tag high">Tier A — <a href="https://www.wowhead.com/item=243581" target="_blank" rel="noopener">Evercore</a> recycling has potential</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="emoji">🍳</span> <span class="quality-rare">Cooking</span></div>
+          <p>Often overlooked but massively profitable. Raid feasts and stat food are consumed by the hundreds every week by serious guilds. Since Cooking is a secondary profession, every character can learn it — no profession slot required. Buy fish and meat from the AH or farm it yourself.</p>
+          <ul>
+            <li>Raid feasts (the highest-demand consumable in the game)</li>
+            <li>Individual stat food for M+ and PvP</li>
+            <li>Haste/Crit/Vers food for different specs</li>
+            <li>Low barrier to entry — no profession slot needed</li>
+          </ul>
+          <p style="margin-top:8px;font-size:14px;color:var(--text-dim);">Secondary profession — everyone can learn it. Pairs with Fishing for self-supplied materials.</p>
+          <div class="tip-box" style="margin-top:8px;">
+            <div class="tip-label">Feast Material Cost Warning</div>
+            <p>Feast profit depends entirely on material sourcing. If you buy fish and meat at AH prices, margins can be razor-thin or negative. Self-supply through Fishing to maximize profits, or buy materials on weekends when prices dip. Always check CraftSim before committing to a batch — feast margins shift daily.</p>
+          </div>
+          <div class="profit-tag high">Tier A — Consistent weekly feast demand</div>
         </div>
       </div>
     </section>
@@ -1563,8 +1260,8 @@ section { animation: fadeInUp 0.5s ease both; }
 
       <div class="card-grid">
         <div class="card">
-          <div class="card-title"><span class="quality-legendary">★</span> Midnight Dungeons (Follower Dungeon)</div>
-          <p>Midnight's eight new dungeons (Magister's Terrace, Windrunner Spire, Den of Nalorakk, Maisara Caverns, and more) are farmable via the Follower Dungeon system. The limited cloth supply in Midnight makes exclusive Tailor drops incredibly profitable. Use solo at your own pace with optimized routes.</p>
+          <div class="card-title"><span class="quality-legendary">★</span> Darkflame Cleft (Follower Dungeon)</div>
+          <p>The premier cloth farm in Midnight. Requires Tailoring with points invested in Textile Treasures. Use the Follower Dungeon system to run solo at your own pace. The limited cloth supply in Midnight makes this incredibly profitable.</p>
           <div class="ratings">
             <div class="rating"><span>Profit</span>
               <div class="rating-bar"><div class="rating-pip filled" style="background:var(--legendary)"></div><div class="rating-pip filled" style="background:var(--legendary)"></div><div class="rating-pip filled" style="background:var(--legendary)"></div><div class="rating-pip filled" style="background:var(--legendary)"></div><div class="rating-pip filled" style="background:var(--legendary)"></div></div>
@@ -1577,8 +1274,8 @@ section { animation: fadeInUp 0.5s ease both; }
         </div>
 
         <div class="card">
-          <div class="card-title"><span class="quality-rare">★</span> Midnight Dungeon Alternatives</div>
-          <p>Multiple dungeons available with different specialization requirements. Faster clears for well-geared players. Can combine multiple professions for varied material drops based on your specializations.</p>
+          <div class="card-title"><span class="quality-rare">★</span> Priory of the Sacred Flame</div>
+          <p>Faster clears for well-geared tanks. Can combine with Inscription for extra material drops. Higher skill ceiling than Darkflame Cleft but potentially more rewarding.</p>
           <div class="ratings">
             <div class="rating"><span>Profit</span>
               <div class="rating-bar"><div class="rating-pip filled purple"></div><div class="rating-pip filled purple"></div><div class="rating-pip filled purple"></div><div class="rating-pip filled purple"></div><div class="rating-pip"></div></div>
@@ -1596,39 +1293,66 @@ section { animation: fadeInUp 0.5s ease both; }
     <section id="open-world">
       <div class="section-header">
         <h2>🌍 Open World Farming</h2>
-        <p>Gathering routes and mob farms across the Midnight zones</p>
+        <p>Gathering routes and mob farms across Midnight</p>
+      </div>
+
+      <div class="tip-box" style="margin-bottom:24px;">
+        <div class="tip-label">Zone → Mote Reference</div>
+        <p>Each zone drops a specific mote type from infused herb nodes. Specialize into Midnight Overload Herbalism for maximum mote yields. Farm the zone that drops the mote you need:</p>
+        <table class="data-table" style="margin-top:12px;">
+          <thead><tr><th>Zone</th><th>Infusion Type</th><th>Mote Drop</th></tr></thead>
+          <tbody>
+            <tr><td>Eversong Woods</td><td class="quality-uncommon">Lightfused</td><td><a href="https://www.wowhead.com/item=236949" target="_blank" rel="noopener">Mote of Light</a></td></tr>
+            <tr><td>Zul'Aman</td><td class="quality-rare">Wild</td><td><a href="https://www.wowhead.com/item=236951" target="_blank" rel="noopener">Mote of Wild Magic</a></td></tr>
+            <tr><td>Harandar</td><td class="quality-epic">Primal</td><td><a href="https://www.wowhead.com/item=236950" target="_blank" rel="noopener">Mote of Primal Energy</a></td></tr>
+            <tr><td>Voidstorm</td><td style="color:var(--void)">Voidbound</td><td><a href="https://www.wowhead.com/item=236952" target="_blank" rel="noopener">Mote of Pure Void</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tip-box" style="margin-bottom:24px;">
+        <div class="tip-label">Treasure-Finding & Lucky-Looting Potions</div>
+        <p>Always use a treasure-finding or lucky-looting potion while farming open world mobs. These potions add bonus loot drops (gold, cloth, materials) from every mob kill. The Midnight equivalent will be discovered at launch — check Alchemy recipes and r/woweconomy for the current best option. This single consumable can increase your open-world GPH by 10-20%.</p>
       </div>
 
       <div class="card-grid">
         <div class="card">
-          <div class="card-title"><span class="emoji">🌅</span> Eversong Woods — Herb/Ore Loops</div>
-          <p>The best dual-gathering zone in Midnight. Smooth terrain with efficient circular routes around outer lanes near major roads. Beginner-friendly with consistent node spawns making it perfect for steady farming.</p>
-          <div class="profit-tag high">15k–25k GPH (dual gathering)</div>
+          <div class="card-title"><span class="emoji">🌞</span> Eversong Woods</div>
+          <div class="route-map-placeholder" style="width:100%;border-radius:8px;overflow:hidden;margin:16px 0;border:1px solid var(--border);"><img id="map-eversong" src="map-eversong.jpg" alt="Eversong Woods farming route" style="width:100%;display:block;"/></div>
+          <p>The best dual-gathering zone in Midnight. Stick close to rivers where herb nodes cluster heavily. Look for Rich Soil patches along riverbanks to plant seeds for extra herbs. Smooth terrain makes this the most beginner-friendly zone with consistent node respawns.</p>
+          <div class="route-box"><div class="route-label">Route Strategy</div><p style="color:var(--text);font-size:14px;">Follow the rivers in a large loop. Herb and ore nodes spawn densely along waterways. Use Rich Soil to plant seeds for bonus herbs. This zone is ideal for dual Herb/Mining characters.</p></div>
+          <div class="profit-tag high">🚀 30k–50k GPH (week 1) <span style="font-size:10px;opacity:0.7;">· 📉 12k–22k GPH (steady state)</span></div>
         </div>
 
         <div class="card">
-          <div class="card-title"><span class="emoji">🌿</span> Zul'Aman — Jungle Farming</div>
-          <p>Jungle terrain with landmark-heavy navigation. Best zone for Tranquility Bloom and Sanguithorn. Features two parallel patrol lines for efficient farming. High Deftness recommended for optimal routes and avoiding mobs.</p>
-          <div class="profit-tag high">12k–22k GPH</div>
+          <div class="card-title"><span class="emoji">🐯</span> Zul'Aman</div>
+          <div class="route-map-placeholder" style="width:100%;border-radius:8px;overflow:hidden;margin:16px 0;border:1px solid var(--border);"><img id="map-zulaman" src="map-zulaman.jpg" alt="Zul'Aman farming route" style="width:100%;display:block;"/></div>
+          <p>Stick to the edges of the zone — this keeps you at roughly the same elevation so you won't struggle to find herbs on awkward ledges. Overloading Wild nodes here spawns lashers you can kill and herb their corpses for bonus materials. Best zone for <a href="https://www.wowhead.com/item=236761" target="_blank" rel="noopener">Tranquility Bloom</a> and <a href="https://www.wowhead.com/item=236770" target="_blank" rel="noopener">Sanguithorn</a>.</p>
+          <div class="route-box"><div class="route-label">Route Strategy</div><p style="color:var(--text);font-size:14px;">Hug the outer edge in a full loop. Wild Overload gives a buff for additional rare materials, and lashers from wild nodes yield bonus herbs. One of the best zones for mote farming if specced into Overload.</p></div>
+          <div class="profit-tag high">🚀 25k–40k GPH (week 1) <span style="font-size:10px;opacity:0.7;">· 📉 11k–18k GPH (steady state)</span></div>
         </div>
 
         <div class="card">
-          <div class="card-title"><span class="emoji">🍄</span> Harandar — Rare Material Farming</div>
-          <p>Vertical terrain with mushrooms and root nodes everywhere. Lightfused nodes reward patient, well-geared gatherers with premium materials. Less competition due to terrain complexity. Best for focused material farming.</p>
-          <div class="profit-tag medium">10k–20k GPH (solo, geared)</div>
+          <div class="card-title"><span class="emoji">🏔</span> Harandar — Herb-Rich Farming</div>
+          <div class="route-map-placeholder" style="width:100%;border-radius:8px;overflow:hidden;margin:16px 0;border:1px solid var(--border);"><img id="map-harandar" src="map-harandar.jpg" alt="Harandar farming route" style="width:100%;display:block;"/></div>
+          <p>The most herb-rich zone in Midnight — nodes spawn densely everywhere. Run a figure-eight loop through the central area. However, the Primal Overload results are lackluster compared to other zones. If you're not specced into Midnight Overload, this is the best zone for pure herb volume.</p>
+          <div class="route-box"><div class="route-label">Route Strategy</div><p style="color:var(--text);font-size:14px;">Two interlocking loops through the central valleys. Highest node density of any zone. Best for pure herb farming without Overload spec. Primal Overload: channel 50% HP for extra motes — don't interrupt the cast!</p></div>
+          <div class="profit-tag high">🚀 28k–48k GPH (week 1) <span style="font-size:10px;opacity:0.7;">· 📉 12k–22k GPH (steady state)</span></div>
         </div>
 
         <div class="card">
-          <div class="card-title"><span class="emoji">⚡</span> Voidstorm — Burst Sessions</div>
-          <p>Short, intense farming sessions on ridge highways. Optimal for 10-15 minute bursts between other activities. Leave immediately if fight-heavy areas spawn. Best for time-efficient gatherers with mobility abilities.</p>
-          <div class="profit-tag medium">12k–18k GPH (short bursts)</div>
+          <div class="card-title"><span class="emoji">💜</span> Voidstorm — Mote Farming</div>
+          <div class="route-map-placeholder" style="width:100%;border-radius:8px;overflow:hidden;margin:16px 0;border:1px solid var(--border);"><img id="map-voidstorm" src="map-voidstorm.jpg" alt="Voidstorm farming route" style="width:100%;display:block;"/></div>
+          <p>Awkward zone with lots of ledges and aggressive mobs, but Voidbound Overload yields the most extra herbs and motes of any zone. The overload effect spawns a portal with 4 purple orbs — grab them fast before they vanish. Requires most of the campaign completed to access.</p>
+          <div class="route-box"><div class="route-label">Route Strategy</div><p style="color:var(--text);font-size:14px;">Follow ridgeline paths to avoid mobs. Best for short 10-15 min bursts rather than long sessions. Voidbound Overload is the highest-reward overload type: portal spawns 4 orbs for extra motes and herbs. Campaign completion required for zone access.</p></div>
+          <div class="warning-box" style="margin-top:12px;"><div class="tip-label">⚠ Warning</div><p>Voidstorm has the highest mob density of any gathering zone. Bring self-healing or a tanky spec. Leave fight-heavy areas immediately — dead time kills GPH.</p></div>
+          <div class="profit-tag medium">🚀 20k–32k GPH (week 1) <span style="font-size:10px;opacity:0.7;">· 📉 8k–14k GPH (steady state)</span></div>
         </div>
+      </div>
 
-        <div class="card">
-          <div class="card-title"><span class="emoji">👑</span> Silvermoon Hub</div>
-          <p>The main hub city in Midnight. Contains two crafting zones nearby for optimal profession setup and testing. Bank and vendor access make this the home base for serious crafters managing multiple professions.</p>
-          <div class="profit-tag high">Perfect hub location</div>
-        </div>
+      <div class="tip-box" style="margin-top:24px;">
+        <div class="tip-label">Detailed Route Maps</div>
+        <p>For in-game overlay screenshots of these routes with exact node positions, check Method's <a href="https://www.method.gg/guides/midnight-herb-and-mote-farming-routes" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline;">Midnight Herb and Mote Farming Routes</a> guide. Pair with GatherMate2 + Routes addons for automated path optimization based on your own gathered node data.</p>
       </div>
     </section>
 
@@ -1644,63 +1368,111 @@ section { animation: fadeInUp 0.5s ease both; }
           <div class="card-title"><span class="quality-legendary">★</span> The Motherlode (BFA)</div>
           <p>The king of raw gold farms. Vendor everything — no AH dependency means no risk. Build a speed set with movement enchants, Straddling items, and sprint abilities to maximize runs per lockout hour.</p>
           <ul>
-            <li>8-9 runs per hour with a speed set (10/hr instance cap)</li>
+            <li>10 runs per hour with a speed set</li>
             <li>All vendor trash, zero AH interaction</li>
             <li>Great for funding other ventures</li>
             <li>Perfect "brain off" farm while watching content</li>
           </ul>
-          <div class="profit-tag high">8k–14k GPH (raw gold)</div>
-          <div class="tip-box" style="margin-top:16px;">
-            <div class="tip-label">Class Performance</div>
-            <p>DH/Druid: 12-14k GPH (best mobility, 10-12 runs/hr). Paladin/DK: 10-12k GPH. Casters: 8-10k GPH. Speed set with movement enchants and sprint items is mandatory for hitting the ceiling.</p>
-          </div>
+          <div class="profit-tag high">10k–17k GPH (raw gold) <span style="font-size:10px;opacity:0.7;">(launch est.)</span></div>
         </div>
 
         <div class="card">
           <div class="card-title"><span class="quality-rare">★</span> Legacy Raids</div>
           <p>Weekly lockout raids across expansions offer raw gold from vendoring plus rare drops. Transmog from older raids can sell for thousands to collectors. Run on multiple alts for multiplied returns.</p>
           <ul>
-            <li>Molten Core, Black Temple, Firelands — classic transmog</li>
-            <li>Antorus, Ny'alotha, Castle Nathria — high vendor gold from later expansions</li>
-            <li>Warlords of Draenor raids — high vendor gold</li>
-            <li>Run across alts for weekly passive income</li>
+            <li><strong>Firelands 25H</strong> — top transmog drops, Pureblood Fire Hawk mount (0.5%), 2-3k raw gold per run</li>
+            <li><strong>Blackrock Foundry 25M</strong> — Ironhoof Destroyer mount, high vendor gold</li>
+            <li><strong>Antorus 25H</strong> — Shackled Ur'zul mount, very high vendor gold per clear</li>
+            <li><strong>ICC 25H</strong> — Invincible's Reins (1%), classic transmog, quick clear</li>
+            <li><strong>WoD raids (Mythic)</strong> — Highest raw gold per clear of any expansion's raids</li>
+            <li>Run on every alt weekly — Warband Bank makes gold pooling effortless</li>
           </ul>
           <div class="profit-tag medium">5k–15k per character per week</div>
         </div>
+      </div>
+    </section>
 
+    <!-- SPEED SET -->
+    <section id="speed-set">
+      <div class="section-header">
+        <h2>💨 Speed Set Guide</h2>
+        <p>Move faster, farm faster, earn faster — the secret to efficient legacy runs</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="emoji">⚡</span> Why You Need a Speed Set</div>
+        <p>A proper speed set can push your movement speed to 220–240%, turning a 5-minute dungeon clear into under 2 minutes. Over dozens of runs farming mounts or transmog, this saves hours. Legacy content doesn't challenge your combat power at level 80 — the only bottleneck is how fast you can move between packs and bosses.</p>
+        <p style="margin-top:8px;font-size:14px;color:var(--text-dim);">Note: Building a speed set is a mid-to-long-term investment. If you're a brand new player with one character and limited gold, focus on gathering and basic gold-making first — come back to this once you have 50k+ gold and are ready to optimize your legacy farming.</p>
+      </div>
+
+      <div class="card-grid cols-2">
         <div class="card">
-          <div class="card-title"><span class="emoji">👑</span> Transmog Farming (Long-Tail Gold)</div>
-          <p>The transmog market is slow but incredibly profitable. Rare appearances from old dungeons and raids sell for 5k-500k+ gold. The key is volume — list hundreds of items and wait. This is passive income for patient goblins.</p>
-          <ul>
-            <li><strong>Best farms:</strong> Dire Maul, Uldaman, Razorfen Kraul, Blackrock Depths — low-level instances with rare BoE drops</li>
-            <li><strong>Plate transmog</strong> sells fastest (Warriors, Paladins, DKs all need appearances)</li>
-            <li><strong>Post at 24h or 48h</strong> — transmog is slow. Expect 1-5% sell rate per day</li>
-            <li><strong>Use TSM groups</strong> to bulk-post at DBRegionMarketAvg. Never price manually.</li>
-            <li><strong>Storage alt required</strong> — you'll accumulate 500+ items in your bags</li>
-          </ul>
-          <div class="ratings">
-            <div class="rating"><span>Profit</span><div class="rating-bar"><div class="rating-pip filled purple"></div><div class="rating-pip filled purple"></div><div class="rating-pip filled purple"></div><div class="rating-pip filled purple"></div><div class="rating-pip filled purple"></div></div></div>
-            <div class="rating"><span>Patience</span><div class="rating-bar"><div class="rating-pip filled"></div><div class="rating-pip filled"></div><div class="rating-pip filled"></div><div class="rating-pip filled"></div><div class="rating-pip filled"></div></div></div>
-          </div>
-          <div class="profit-tag legendary">5k-500k+ per rare drop</div>
+          <div class="card-title"><span class="emoji">🐱</span> Best Class: Feral Druid</div>
+          <p>Druid is the undisputed king of speed farming. Travel Form means instant mount with no cast time. Cat Form gives stealth to skip trash. <a href="https://www.wowhead.com/spell=131768/feline-swiftness" target="_blank" rel="noopener">Feline Swiftness</a> adds a passive 15% speed bonus. Stack that with <a href="https://www.wowhead.com/spell=1850/dash" target="_blank" rel="noopener">Dash</a> (+60%), <a href="https://www.wowhead.com/spell=77761/stampeding-roar" target="_blank" rel="noopener">Stampeding Roar</a> (+60%), and <a href="https://www.wowhead.com/spell=252216/tiger-dash" target="_blank" rel="noopener">Tiger Dash</a> for burst movement. No other class comes close.</p>
+          <p style="margin-top:8px;font-size:14px;color:var(--text-dim);">Runner-ups: Demon Hunter (double jump + Fel Rush), Monk (Roll), Hunter (Aspect of the Cheetah)</p>
         </div>
 
         <div class="card">
-          <div class="card-title"><span class="emoji">🐾</span> Battle Pet Flipping</div>
-          <p>Cross-server pet arbitrage remains one of the safest flipping methods in the game. Buy underpriced pets on one server, cage them, and sell on high-pop servers for 2-10x profit. Midnight introduces new collectible pets from Quel'Thalas content, with new dungeon drop pets high-demand at launch.</p>
-          <ul>
-            <li><strong>How it works:</strong> Buy cheap pet → Learn → Cage → List on another server's AH</li>
-            <li><strong>Best targets:</strong> Raid drop pets, TCG pets, holiday event pets</li>
-            <li><strong>Use warcraftpets.com</strong> to check prices across servers</li>
-            <li><strong>Midnight-specific:</strong> New Quel'Thalas-themed pets will be high-demand at launch</li>
-            <li><strong>Zero risk of loss</strong> — worst case you keep the pet. Unlike gear, pets don't depreciate.</li>
-          </ul>
-          <div class="ratings">
-            <div class="rating"><span>Profit</span><div class="rating-bar"><div class="rating-pip filled purple"></div><div class="rating-pip filled purple"></div><div class="rating-pip filled purple"></div><div class="rating-pip"></div><div class="rating-pip"></div></div></div>
-            <div class="rating"><span>Effort</span><div class="rating-bar"><div class="rating-pip filled blue"></div><div class="rating-pip filled blue"></div><div class="rating-pip"></div><div class="rating-pip"></div><div class="rating-pip"></div></div></div>
-          </div>
-          <div class="profit-tag high">10k-200k per flip</div>
+          <div class="card-title"><span class="emoji">🏃</span> Best Races</div>
+          <p><strong style="color:var(--gold);">Horde:</strong> Zandalari Troll — <a href="https://www.wowhead.com/spell=292492/embrace-of-the-loa" target="_blank" rel="noopener">Embrace of the Loa</a> (Gonk) gives a permanent 5% movement speed buff. The best passive racial for speed farming, no contest.</p>
+          <p style="margin-top:8px;"><strong style="color:var(--gold);">Alliance:</strong> Night Elf — <a href="https://www.wowhead.com/spell=58984/shadowmeld" target="_blank" rel="noopener">Shadowmeld</a> lets you drop combat instantly to skip trash packs, and <a href="https://www.wowhead.com/spell=20585/wisp-spirit" target="_blank" rel="noopener">Wisp Spirit</a> gives 75% faster ghost run speed if you die.</p>
         </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="emoji">🛡</span> Core Gear: Azerite Armor + Longstrider</div>
+        <p>The backbone of every speed set is BFA Azerite Armor with the <strong style="color:var(--gold);">Longstrider</strong> trait. This gives a permanent ~25% movement speed boost based on your highest secondary stat. You need three pieces (head, shoulders, chest) plus the <a href="https://www.wowhead.com/item=158075" target="_blank" rel="noopener">Heart of Azeroth</a> neck to activate the traits. Farm these on <strong>Normal mode only</strong> — normal versions give higher Longstrider values.</p>
+        <table class="data-table" style="margin-top:12px;">
+          <thead>
+            <tr><th>Piece</th><th>Item</th><th>Source</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Chest</td><td class="quality-rare"><a href="https://www.wowhead.com/item=159298/venture-co-plenipotentiary-vest" target="_blank" rel="noopener">Venture Co. Plenipotentiary Vest</a></td><td>Mogul Razdunk — The MOTHERLODE!!</td></tr>
+            <tr><td>Shoulders</td><td class="quality-rare"><a href="https://www.wowhead.com/item=159299/gold-tasseled-epaulets" target="_blank" rel="noopener">Gold-Tasseled Epaulets</a></td><td>Harlan Sweete — Freehold</td></tr>
+            <tr><td>Head</td><td class="quality-rare"><a href="https://www.wowhead.com/item=159334/flashpowder-hood" target="_blank" rel="noopener">Flashpowder Hood</a></td><td>Overseer Korgus — Tol Dagor</td></tr>
+            <tr><td>Neck</td><td class="quality-epic"><a href="https://www.wowhead.com/item=158075" target="_blank" rel="noopener">Heart of Azeroth</a></td><td>BFA quest chain from Magni in Silithus</td></tr>
+          </tbody>
+        </table>
+        <div class="tip-box" style="margin-top:12px;">
+          <div class="tip-label">Longstrider Scaling</div>
+          <p>Longstrider scales off your highest secondary stat. Stack one stat (Critical Strike works best) across all your other gear to maximize the bonus. This means a full Crit set amplifies both your Longstrider speed and your Elusive Blasphemite gem bonus.</p>
+        </div>
+      </div>
+
+      <div class="card-grid cols-2">
+        <div class="card">
+          <div class="card-title"><span class="emoji">💎</span> Gems &amp; Enchants</div>
+          <ul>
+            <li><a href="https://www.wowhead.com/item=213746/elusive-blasphemite" target="_blank" rel="noopener">Elusive Blasphemite</a> — primal gem, +2% speed per unique gem color (up to 10% flat speed!)</li>
+            <li><a href="https://www.wowhead.com/item=38837/enchant-boots-minor-speed" target="_blank" rel="noopener">Enchant Boots - Minor Speed</a> — +10% movement speed (use legacy boots)</li>
+            <li><a href="https://www.wowhead.com/item=223725/enchant-bracer-chant-of-armored-speed" target="_blank" rel="noopener">Enchant Bracer - Chant of Armored Speed</a> — +1000 Speed rating</li>
+            <li><a href="https://www.wowhead.com/item=200027/enchant-chest-accelerated-agility" target="_blank" rel="noopener">Enchant Chest - Accelerated Agility</a> — +250 Speed rating</li>
+            <li><a href="https://www.wowhead.com/item=223800/enchant-cloak-chant-of-burrowing-rapidity" target="_blank" rel="noopener">Enchant Cloak - Chant of Burrowing Rapidity</a> — +250 Speed rating</li>
+            <li>Fill remaining gem slots with <a href="https://www.wowhead.com/item=213464/deadly-ruby" target="_blank" rel="noopener">Deadly Ruby</a> (Crit) + diverse colors for Blasphemite</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="emoji">🧪</span> Trinkets &amp; Consumables</div>
+          <ul>
+            <li><a href="https://www.wowhead.com/item=225649/quickwick-candlestick" target="_blank" rel="noopener">Quickwick Candlestick</a> — on-use +20% speed (from Delves)</li>
+            <li><a href="https://www.wowhead.com/item=222671/darkmoon-deck-vivacity" target="_blank" rel="noopener">Darkmoon Deck: Vivacity</a> — passive Crit + Speed (cheap on AH)</li>
+            <li><a href="https://www.wowhead.com/spell=54861/nitro-boosts" target="_blank" rel="noopener">Nitro Boosts</a> — Engineering belt enchant, burst speed</li>
+            <li><a href="https://www.wowhead.com/item=172063/fried-bonefish" target="_blank" rel="noopener">Fried Bonefish</a> — food buff, 20% speed for 5s on every kill</li>
+            <li><a href="https://www.wowhead.com/item=191350/charged-phial-of-alacrity" target="_blank" rel="noopener">Charged Phial of Alacrity</a> — +744 Speed rating for 1 hour</li>
+            <li><a href="https://www.wowhead.com/item=109076/goblin-glider-kit" target="_blank" rel="noopener">Goblin Glider Kit</a> + <a href="https://www.wowhead.com/item=60854/loot-a-rang" target="_blank" rel="noopener">Loot-A-Rang</a> — quality of life essentials</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="emoji">🛒</span> Filling Remaining Slots</div>
+        <p>For every slot not covered by Azerite gear, buy cheap BoE greens from the AH that have the <strong style="color:var(--gold);">+Speed tertiary stat</strong>. Use <a href="https://undermine.exchange" target="_blank" rel="noopener">Undermine Exchange</a> to search for level 80 items with Speed — filter by armor type and sort by price. Stack Critical Strike as your primary secondary stat across all pieces. For boots specifically, you need legacy boots that accept the Minor Speed enchant — <a href="https://www.wowhead.com/item=146669/the-sentinels-eternal-refuge" target="_blank" rel="noopener">The Sentinel's Eternal Refuge</a> (~200–250k) is best-in-slot, or <a href="https://www.wowhead.com/item=172251/shadebound-treads" target="_blank" rel="noopener">Shadebound Treads</a> as a budget option.</p>
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-label">Speed Set Gold Math</div>
+        <p>A speed set costs 50–300k to assemble depending on boot choice, but pays for itself within a week of legacy farming. The Motherlode alone at 10 runs/hour with a speed set generates 10–17k GPH in pure vendor gold. Add in transmog drops from weekly raid clears and you're looking at 50k+ per week across alts — all while half-watching Netflix.</p>
       </div>
     </section>
 
@@ -1721,27 +1493,10 @@ section { animation: fadeInUp 0.5s ease both; }
           <span class="arrow">▼</span>
         </div>
         <div class="expandable-body" onclick="event.stopPropagation()">
-          <p><strong>Step 1: Build capital.</strong> You need at least 50k–100k gold to start flipping effectively. Use Midnight gathering or dungeon farms to build your starting fund.</p>
-          <p style="margin-top: 12px;"><strong>Step 2: Install TSM.</strong> TradeSkillMaster is non-negotiable for serious AH work. Set up pricing operations, sniper scans, and shopping lists for region-wide commodity tracking.</p>
-          <p style="margin-top: 12px;"><strong>Step 3: Learn your markets.</strong> Spend a full week just watching prices. Note daily patterns, reset-day spikes, and which items have the widest price swings in Midnight's economy.</p>
-          <p style="margin-top: 12px;"><strong>Step 4: Start small.</strong> Begin with high-volume commodities (herbs, ores, cloth) where you can buy in bulk at low points and sell into demand. The margins are thin but the volume is safe with region-wide markets.</p>
-
-          <h4 style="font-family:'Cinzel',serif;color:var(--text-bright);margin-top:20px;">Flip Categories by Capital</h4>
-          <table class="data-table">
-            <tr><th>Category</th><th>Starting Capital</th><th>Avg Margin</th><th>Risk</th></tr>
-            <tr><td>Materials (herbs, ore, cloth)</td><td>5-20k</td><td>10-25%</td><td class="quality-uncommon">Low</td></tr>
-            <tr><td>Consumables (flasks, pots, food)</td><td>10-50k</td><td>15-40%</td><td class="quality-uncommon">Low</td></tr>
-            <tr><td>BoE Gear (current tier)</td><td>50-500k</td><td>20-50%</td><td class="quality-rare">Medium</td></tr>
-            <tr><td>Transmog (rare appearances)</td><td>1-10k per item</td><td>200-5000%</td><td class="quality-epic">High (slow)</td></tr>
-            <tr><td>Battle Pets</td><td>5-50k</td><td>50-200%</td><td class="quality-rare">Medium</td></tr>
-            <tr><td>Market Resets (cornering supply)</td><td>200k+</td><td>50-100%</td><td class="quality-legendary">Very High</td></tr>
-          </table>
-          <div class="tip-box" style="margin-top:16px;">
-            <div class="tip-label">Beginner TSM Sniper String</div>
-            <p>Paste this into TSM > Sniper > Below Custom Price to catch underpriced items:</p>
-            <code style="display:block;margin-top:8px;padding:8px;background:rgba(0,0,0,0.3);border-radius:4px;font-size:12px;word-break:break-all;">max(DBMarket, DBRegionMarketAvg) * 0.5</code>
-            <p style="margin-top:8px;font-size:14px;color:var(--text-dim);">This catches anything listed at 50% or below market value. Adjust the multiplier (0.3 for aggressive, 0.7 for conservative).</p>
-          </div>
+          <p><strong>Step 1: Build capital.</strong> You need at least 50k–100k gold to start flipping effectively. Use gathering or dungeon farms to build your starting fund.</p>
+          <p style="margin-top: 12px;"><strong>Step 2: Install TSM.</strong> TradeSkillMaster is non-negotiable for serious AH work. Set up pricing operations, sniper scans, and shopping lists.</p>
+          <p style="margin-top: 12px;"><strong>Step 3: Learn your markets.</strong> Spend a full week just watching prices. Note daily patterns, reset-day spikes, and which items have the widest price swings.</p>
+          <p style="margin-top: 12px;"><strong>Step 4: Start small.</strong> Begin with high-volume commodities (herbs, ores, cloth) where you can buy in bulk at low points and sell into demand. The margins are thin but the volume is safe.</p>
         </div>
       </div>
 
@@ -1758,16 +1513,33 @@ section { animation: fadeInUp 0.5s ease both; }
             <tbody>
               <tr><td><strong>Commodity Flipping</strong><br><small>Buy herbs/ores low, sell high</small></td><td class="quality-uncommon">Low</td><td>50k+</td><td class="quality-uncommon">Steady 5–15% margins</td></tr>
               <tr><td><strong>Reset Markets</strong><br><small>Buy out all supply, relist higher</small></td><td class="quality-rare">Medium</td><td>200k+</td><td class="quality-rare">20–50% margins</td></tr>
-              <tr><td><strong>Transmog Flipping</strong><br><small>Buy rare appearances cheap</small></td><td class="quality-epic">High</td><td>100k+</td><td class="quality-epic">100–1000% margins (slow sales)</td></tr>
+              <tr><td><strong>Transmog Flipping</strong><br><small>Buy removed items, raid tier look-alikes, and rare BoEs. Sales take weeks-to-months — patience required.</small></td><td class="quality-epic">High</td><td>100k+</td><td class="quality-epic">100–1000% margins (slow sales)</td></tr>
               <tr><td><strong>Patch Speculation</strong><br><small>Stockpile before content drops</small></td><td class="quality-legendary">Very High</td><td>500k+</td><td class="quality-legendary">Massive (if you're right)</td></tr>
+              <tr><td><strong>Realm Transfer Arbitrage</strong><br><small>Buy server-specific items cheap, transfer to sell high</small></td><td class="quality-epic">Medium-High</td><td>100k+ (plus transfer cost)</td><td class="quality-epic">30-100% margins on transmog, pets, crafted gear</td></tr>
             </tbody>
           </table>
+          <div class="tip-box">
+            <div class="tip-label">Understanding Commodity Walls</div>
+            <p>A wall is when someone lists a massive quantity (50k-200k+) of a material at a fixed price. This anchors the market — nobody can sell above the wall price. When you see a wall, decide: is it underpriced (buy the wall for profit later) or overpriced (don't bother listing, wait for it to sell through). Learning to read walls is a core goblin skill.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="expandable" onclick="toggleExpand(this)">
+        <div class="expandable-header">
+          <h3>🔁 Cancel Scanning — Staying on Top</h3>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="expandable-body" onclick="event.stopPropagation()">
+          <p>The AH is last-in-first-out for commodities — the cheapest listing sells first. If someone undercuts you by 1 copper, your listing goes to the back of the queue. Serious goblins run cancel scans every 15-30 minutes on raid nights to stay competitive.</p>
+          <p style="margin-top: 12px;"><strong>TSM's Cancel Scan Feature:</strong> TSM can automate this process. It finds your undercut auctions, cancels them, and lets you repost at the new lowest price. This keeps your listings at the front of the queue so they sell before competitors.</p>
+          <p style="margin-top: 12px;"><strong>Warning:</strong> Cancel scanning burns deposit gold on non-commodity items. Your deposit is only refunded when an item sells, so canceling and reposting costs you money on low-velocity items. Only use cancel scanning on high-margin items and commodities where the deposit is minimal and sales velocity is high.</p>
         </div>
       </div>
 
       <div class="warning-box">
         <div class="tip-label">⚠ Warning</div>
-        <p>The region-wide commodity AH means you're competing with every player in your region, not just your server. Margins on commodities are thinner than ever. Remember: the AH takes a 5% cut on every sale — factor this into all your margin calculations. Focus on learning price patterns and timing your purchases rather than trying to undercut constantly.</p>
+        <p>The region-wide commodity AH means you're competing with every player in your region, not just your server. Margins on commodities are thinner than ever. Focus on learning price patterns and timing your purchases rather than trying to undercut constantly.</p>
       </div>
     </section>
 
@@ -1775,29 +1547,30 @@ section { animation: fadeInUp 0.5s ease both; }
     <section id="crafting-orders">
       <div class="section-header">
         <h2>📋 Crafting Orders</h2>
-        <p>Midnight's commission system for skilled crafters</p>
+        <p>Midnight's built-in commission system</p>
       </div>
 
       <div class="card" style="margin-bottom: 24px;">
-        <p>Crafting Orders in Midnight let players commission items from skilled crafters. If you've invested knowledge points to reach max-rank crafting in any profession, this is potentially the highest per-item gold method in the game. Building a reputation as a reliable crafter brings repeat customers. Use Silvermoon's two crafting zones to manage multiple professions efficiently.</p>
+        <p>Crafting Orders let players commission items from skilled crafters. If you've invested knowledge points to reach max-rank crafting in any profession, this is potentially the highest per-item gold method in the game. Building a reputation as a reliable crafter brings repeat customers. Tips follow a steep decline curve: Week 1 tips can reach 50k–200k+ per craft when few crafters have max rank. By weeks 2–4, tips drop to 10k–50k as more crafters catch up. By month 2, expect 2k–10k tips as the market saturates. Over 80% of your crafting order income for an entire season comes in the first 2–3 weeks. Invest in Knowledge Points aggressively at launch — every day you delay costs real gold.</p>
+        <p style="margin-top:12px;">The system uses three order types — Public, Personal, and Guild — plus NPC Patron Orders for guaranteed weekly income. Your Artisan Moxie reputation grows as you fill orders, unlocking better Patron rewards over time.</p>
       </div>
 
       <div class="card-grid cols-2">
         <div class="card">
           <div class="card-title">Public Orders</div>
-          <p>Listed on the crafting order board for anyone to fill. Lower tips but higher volume. Great for leveling your skill and building patron reputation.</p>
+          <p>Listed on the crafting order board for anyone to fill. Lower tips but higher volume. Great for leveling your skill and building Artisan Moxie. Public orders have a <strong>30-minute completion timer</strong> once claimed — don't claim orders you can't fill quickly. If you fail to complete it, the order returns to the board and your Moxie takes a hit.</p>
         </div>
         <div class="card">
           <div class="card-title">Personal Orders</div>
-          <p>Direct commissions from players who trust your skill level. Higher tips (often 5k–50k+ per craft). Build your reputation in trade chat and community discords.</p>
+          <p>Direct commissions from players who trust your skill level. Higher tips (often 5k–50k+ per craft). Build your reputation in trade chat and community discords. Personal orders also support Recrafting — upgrading existing gear quality.</p>
         </div>
         <div class="card">
           <div class="card-title">Guild Orders</div>
-          <p>Fulfill orders for your guild members. Tips may be lower but volume is steady. Position yourself as the go-to crafter in your guild for reliable income.</p>
+          <p>Fulfill orders for your guild members. Tips may be lower but volume is steady. Position yourself as the go-to crafter in your guild for reliable income. Guild orders are visible only to your guild's crafters.</p>
         </div>
         <div class="card">
           <div class="card-title">Patron Orders</div>
-          <p>Weekly NPC crafting orders that provide free materials and guaranteed income. Complete these first every week — they're essentially free gold. Check all your alts.</p>
+          <p>Weekly NPC crafting orders that provide free materials and guaranteed gold + Artisan Moxie. Complete these first every week — they're essentially free income. Higher Moxie unlocks better-paying Patron Orders over time. Check all your alts.</p>
         </div>
       </div>
 
@@ -1805,52 +1578,68 @@ section { animation: fadeInUp 0.5s ease both; }
         <div class="tip-label">Pro Tip</div>
         <p>Advertise your max-rank specializations in Trade Chat with a clear format: profession, what you can craft at max rank, and your typical tip range. Players will add you to their friends list for repeat business. Consistency builds a customer base that pays for itself.</p>
       </div>
-
-      <div class="card" style="margin-top: 24px;">
-        <div class="card-title"><span class="emoji">⏰</span> Timing Your Crafting Orders</div>
-        <p>When you complete crafting orders matters as much as what you craft. The best gold from public orders comes mid-to-late week:</p>
-        <ul>
-          <li><strong>Mid-week (Wed-Thu):</strong> Many crafters have exhausted their weekly public order quota. Less competition = bigger tips on remaining orders.</li>
-          <li><strong>Before raid hours:</strong> Players rush to get gear crafted before raid night. They'll pay premium tips for fast turnaround.</li>
-          <li><strong>After raid hours:</strong> Raiders want upgrades after getting new crests. Quick crafters catch the post-raid rush.</li>
-          <li><strong>Save Concentration:</strong> Concentration is a resource pool (not a single charge) that regenerates slowly over time. Different crafts cost different amounts. Spend it on your highest-value craft that needs the quality boost most — never waste Concentration on items you can already naturally hit Silver on.</li>
-        </ul>
-      </div>
     </section>
 
-    <!-- HOUSING ECONOMY -->
-    <section id="housing">
+    <!-- SHUFFLES -->
+    <section id="shuffles">
       <div class="section-header">
-        <h2>🏠 Player Housing Economy</h2>
-        <p>Midnight's newest gold frontier — decorating is big business</p>
+        <h2>🔄 Material Shuffles</h2>
+        <p>Convert cheap materials into expensive ones through profession chains</p>
       </div>
 
       <div class="card" style="margin-bottom: 24px;">
-        <p>Player Housing is one of Midnight's headline features, and every profession can craft placeable decor items. Housing decor recipes span all expansion tiers (Classic through Midnight), meaning old profession skills suddenly have new value. This is a brand-new market with volatile prices and huge opportunity.</p>
-      </div>
-
-      <div class="card-grid cols-2">
-        <div class="card">
-          <div class="card-title"><span class="emoji">🪵</span> Lumber</div>
-          <p>All housing decor requires Lumber alongside profession materials. Lumber gathering doesn't require a profession — you get an axe from your neighborhood NPC. Farm lumber while doing other activities for free crafting materials.</p>
-        </div>
-        <div class="card">
-          <div class="card-title"><span class="emoji">🎨</span> Dyes (Alchemy)</div>
-          <p>Alchemy can create dyes used to recolor housing items. This is a unique niche that adds another revenue stream on top of the usual consumable market.</p>
-        </div>
-        <div class="card">
-          <div class="card-title"><span class="emoji">📜</span> Decor Crafting</div>
-          <p>Inscription, Blacksmithing, Tailoring, Engineering, Jewelcrafting, and Leatherworking all have housing decor recipes. Check your recipe list — some of the most expensive decor items come from obscure old-world recipe tiers.</p>
-        </div>
-        <div class="card">
-          <div class="card-title"><span class="emoji">💰</span> Market Opportunity</div>
-          <p>Housing decor is a brand-new market with no established price history. Early crafters setting prices have an advantage. Watch for which decor items trend on social media — popular designs sell at premium prices. Start with cheap-to-craft items (wooden furniture from Lumber + basic mats) to learn the market, then invest in expensive rare recipes.</p>
-        </div>
+        <div class="card-title">What Is a Shuffle?</div>
+        <p>A shuffle is a profession chain where you buy cheap Material A on the AH, process it through multiple professions to create expensive Material B, then sell the result for profit. The key is finding price inefficiencies — sometimes the raw materials are cheaper than the crafted output. Shuffles are discovered by the community in the first weeks of an expansion and spread through sites like r/woweconomy and the TSM Discord.</p>
       </div>
 
       <div class="tip-box">
-        <div class="tip-label">Goblin Insight</div>
-        <p>Don't sleep on old-world profession tiers. Housing decor recipes pull from Classic, TBC, Wrath, and other expansion skill trees. If you have a neglected alt with maxed Pandaria Enchanting or Wrath Blacksmithing, they might suddenly be sitting on a gold mine of exclusive decor recipes.</p>
+        <div class="tip-label">Early Discovery Phase</div>
+        <p>The exact Midnight shuffle will be discovered in the first 1-2 weeks. Check r/woweconomy and the TSM Discord for the latest chains. Early adopters who find shuffles before they go viral make the most gold.</p>
+      </div>
+
+      <div class="card" style="margin-bottom: 24px;">
+        <div class="card-title">Classic Shuffle Example</div>
+        <p><strong>Ore → Gems → Disenchant Materials</strong></p>
+        <p style="margin-top: 8px;">Buy cheap ore → prospect into gems (Jewelcrafting) → cut low-value gems into rings/necklaces → disenchant into enchanting materials (Disenchanting) → sell shards/crystals or craft enchants with them. Each step adds value if priced correctly.</p>
+      </div>
+
+      <div class="card" style="margin-bottom: 24px;">
+        <div class="card-title">Vendor Shuffles</div>
+        <p>Some crafted items vendor for more than their material cost. This is rarer but happens with niche items. Check CraftSim's vendor profit column after every patch to discover new vendor shuffles. These often have shorter profit windows before the market corrects.</p>
+      </div>
+
+      <div class="warning-box">
+        <div class="tip-label">⚠ Shuffles Get Nerfed Fast</div>
+        <p>Once a shuffle goes viral on Reddit and Discord, everyone copies it. Supply floods the market, prices collapse, and the profit window closes. The best shuffles only last 1-3 weeks. Act fast once you identify a profitable chain, and keep your best shuffles private — don't advertise them publicly if you want to keep profiting.</p>
+      </div>
+    </section>
+
+    <!-- HOUSING DECOR -->
+    <section id="housing-decor">
+      <div class="section-header">
+        <h2>🏠 Housing Decor Crafting</h2>
+        <p>The new cosmetic market — every profession can make house decorations</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-title"><span class="emoji">📜</span> Decor Crafting by Profession</div>
+          <p>Every crafting profession has housing decor recipes. Here's what each one makes:</p>
+          <ul>
+            <li><strong>Inscription:</strong> Scrolls, paintings, maps, banners — some of the most popular wall decor</li>
+            <li><strong>Blacksmithing:</strong> Metal furniture, weapon racks, anvils, iron chandeliers</li>
+            <li><strong>Tailoring:</strong> Tapestries, curtains, rugs, cloth furnishings, pillows</li>
+            <li><strong>Engineering:</strong> Mechanical items, lights, automated gadgets, novelty furniture</li>
+            <li><strong>Jewelcrafting:</strong> Crystal displays, gem-studded items, chandeliers, decorative stones</li>
+            <li><strong>Leatherworking:</strong> Leather furniture, mounted trophies, rugs, saddlework</li>
+            <li><strong>Alchemy:</strong> Dyes for recoloring any decor item (unique niche)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="warning-box" style="margin-top:16px;">
+        <div class="tip-label">⚠ Early Market Warning</div>
+        <p>Housing decor is a brand-new market with no established price history. Current prices are inflated by early-adopter demand and limited supply. Expect prices to drop significantly as more players unlock recipes and supply increases. Sell early and aggressively if you have recipes — margins will shrink over time. Don't stockpile decor items hoping prices will rise.</p>
       </div>
     </section>
 
@@ -1870,8 +1659,14 @@ section { animation: fadeInUp 0.5s ease both; }
 
         <div class="card">
           <div class="card-title"><span class="emoji">⚗</span> Profession Cooldowns</div>
-          <p>Several professions have daily or weekly cooldowns that generate value in Midnight. Alchemy transmutes, Tailoring cloth cooldowns, Blacksmithing alloy conversions, and Engineering recycling all add up across alts.</p>
-          <div class="profit-tag medium">2k–8k per cooldown</div>
+          <p>Several professions have daily or weekly cooldowns that generate value. Alchemy transmutes, Tailoring cloth cooldowns, and Blacksmithing alloy conversions all add up across alts. Engineering Evercore recycling all add up across alts.</p>
+          <div class="profit-tag medium">1k–5k per cooldown</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="emoji">📜</span> Inscription Treatises</div>
+          <p>If you have Inscription, crafting Treatises is one of the most reliable weekly income sources in the game. Every crafter needs one Treatise per profession per week for their +1 Knowledge Point. With 11 professions needing Treatises, demand is enormous and consistent. Craft in bulk and list on the AH — they sell fast, especially early in the week when players do their weekly KP routine.</p>
+          <div class="profit-tag high">Consistent passive income — sells every week</div>
         </div>
 
         <div class="card">
@@ -1882,26 +1677,8 @@ section { animation: fadeInUp 0.5s ease both; }
 
         <div class="card">
           <div class="card-title"><span class="emoji">🎯</span> Weekly Activities</div>
-          <p>Weekly quests, world boss kills, and zone events provide raw gold. Combined with legacy raid clears on alts, this adds up to significant passive income each week.</p>
+          <p>Callings, weekly quests, and world boss kills provide raw gold. Combined with legacy raid clears on alts, this adds up to significant passive income each week.</p>
           <div class="profit-tag medium">5k–15k per character per week</div>
-        </div>
-
-        <div class="card">
-          <div class="card-title"><span class="emoji">🔢</span> Alt Army Economics</div>
-          <p>The real power of passive income scales with alts. Here's the math on why serious goblins maintain 8+ max-level characters:</p>
-          <table class="data-table">
-            <tr><th>Activity</th><th>Per Char/Week</th><th>×8 Alts</th></tr>
-            <tr><td>Patron Orders (daily)</td><td>14-35k</td><td class="quality-uncommon">112-280k</td></tr>
-            <tr><td>Profession Cooldowns</td><td>7-35k</td><td class="quality-uncommon">56-280k</td></tr>
-            <tr><td>Weekly Activities (callings/WQs)</td><td>5-15k</td><td class="quality-uncommon">40-120k</td></tr>
-            <tr><td>Legacy Raid Clears</td><td>8-12k</td><td class="quality-uncommon">64-96k</td></tr>
-            <tr><td><strong>Weekly Total</strong></td><td><strong>34-97k</strong></td><td class="quality-epic"><strong>272-776k</strong></td></tr>
-          </table>
-          <div class="gph-disclaimer">* Assumes 8 characters with crafting professions. Setup time: ~2-3 weeks to level and equip alts.</div>
-          <div class="tip-box" style="margin-top:16px;">
-            <div class="tip-label">Warbank System</div>
-            <p>Midnight continues the Warbound/Warbank system: gold, BoA items, and crafting materials transfer freely across all characters on your account via the Warbank in any major city. This makes alt-army logistics seamless — farm on one character, craft on another, sell on a third.</p>
-          </div>
         </div>
       </div>
     </section>
@@ -1923,6 +1700,10 @@ section { animation: fadeInUp 0.5s ease both; }
             <li>Crafting module to calculate profit margins</li>
             <li>Accounting to track your income over time</li>
           </ul>
+          <div class="tip-box">
+            <div class="tip-label">Pre-Made Group Strings</div>
+            <p>Import pre-made TSM groups to skip hours of manual setup. Popular sources include Sheyrah's TSM groups and SamadanPlaysWoW. Join the TSM Community Discord (discord.gg/woweconomy) for updated group strings and strategies.</p>
+          </div>
         </div>
 
         <div class="card">
@@ -1947,33 +1728,14 @@ section { animation: fadeInUp 0.5s ease both; }
         </div>
 
         <div class="card">
-          <div class="card-title"><span class="quality-rare">★</span> Altoholic</div>
-          <p>Track all characters' professions, gold, items across realms. Essential for alt-army gold strategies. See your complete inventory on every character at a glance.</p>
-        </div>
-
-        <div class="card">
-          <div class="card-title"><span class="quality-rare">★</span> Myu's Knowledge Points Tracker</div>
-          <p>Track missing one-time and weekly knowledge point sources across all characters. Never miss free profession points. Stay on top of your alt progression without guesswork.</p>
-        </div>
-
-        <div class="card">
-          <div class="card-title"><span class="quality-rare">★</span> WeeklyKnowledge</div>
-          <p>Track weekly knowledge point status for all professions on all alts. Perfect for alt-o-holics managing multiple crafters. Know exactly which weekly quests you've completed.</p>
-        </div>
-
-        <div class="card">
-          <div class="card-title"><span class="quality-rare">★</span> CraftScan</div>
-          <p>Set keyword filters in chat channels with auto-replies. Be the first crafter to respond to work orders in Trade Chat. Catch high-tip commissions before your competition.</p>
-        </div>
-
-        <div class="card">
-          <div class="card-title"><span class="quality-uncommon">★</span> No Mats; No Make</div>
-          <p>Filter out public crafting orders where the customer didn't provide materials. Track NPC Patron Work Orders at a glance. Focus only on the orders worth your time.</p>
-        </div>
-
-        <div class="card">
-          <div class="card-title"><span class="quality-uncommon">★</span> BuyEmAll</div>
-          <p>Improved vendor purchasing UI. Buy stacks of reagents quickly instead of one at a time. Save time on bulk buying during material runs.</p>
+          <div class="card-title"><span class="quality-epic">★</span> Undermine Exchange</div>
+          <p>The go-to website for tracking AH prices across all realms. Use it to check regional price trends, identify profitable markets, and verify if an item is worth crafting before you invest materials. Replaced the old Undermine Journal — bookmark <a href="https://undermine.exchange" target="_blank" rel="noopener" style="color:var(--gold);">undermine.exchange</a> and check it daily.</p>
+          <ul>
+            <li>Regional and realm-specific price data</li>
+            <li>Historical price graphs and trend analysis</li>
+            <li>Commodity pricing for materials and consumables</li>
+            <li>Pairs with TSM for in-game price sources</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -2002,101 +1764,15 @@ section { animation: fadeInUp 0.5s ease both; }
           <div class="card-title"><span class="emoji">🏠</span> Server Population Matters</div>
           <p>High-pop servers have more buyers but fierce competition. Low-pop servers have slower sales but less undercutting. For crafted gear (non-commodity), your server's population still matters since these aren't region-wide.</p>
         </div>
+        <div class="card">
+          <div class="card-title"><span class="emoji">🪙</span> WoW Token Timing</div>
+          <p>Tokens are cheapest at expansion launches — returning players buy Tokens with real money (increasing supply), while the in-game gold supply is still low (less demand from gold-rich players). Right now during Midnight's launch, Token prices are near historic lows. As the season progresses and players accumulate more gold, more people can afford Tokens, driving prices up. If you're buying Tokens with gold for game time, buy now while they're cheap. If you're selling Tokens for gold, wait until mid-season when gold-rich players push prices higher.</p>
+        </div>
       </div>
 
       <div class="tip-box">
         <div class="tip-label">Golden Rule</div>
-        <p>Never sell materials on reset day — that's when everyone else is selling too. Buy on weekends when prices are lowest. Sell consumables and enchants Tuesday through Thursday when demand peaks. On Midnight launch, expect token prices to spike 30-50% at expansion release. This simple timing adjustment alone can increase your profits by 20–30%.</p>
-      </div>
-
-      <div class="card" id="token" style="margin-top: 24px;">
-        <div class="card-title"><span class="emoji">🪙</span> WoW Token Timing</div>
-        <p>If your goal is buying game time with gold, when you buy the token matters as much as how much gold you make. Token prices follow predictable patterns:</p>
-        <ul>
-          <li><strong>Cheapest:</strong> Mid-week (Tuesday-Thursday), mid-month, during content droughts</li>
-          <li><strong>Most expensive:</strong> Expansion launches, major patch drops, holiday events, beginning of month</li>
-          <li><strong>Season resets & patches:</strong> Token prices spike 30-50% when new seasons and major patches drop. Buy tokens during content droughts when prices are lowest</li>
-          <li><strong>Track prices</strong> at wowtoken.info — set alerts for price drops below your threshold</li>
-        </ul>
-        <div class="tip-box" style="margin-top:16px;">
-          <div class="tip-label">Pro Tip</div>
-          <p>If you're earning 200k+/week passively (see Alt Army Economics), you can fund a permanent WoW subscription with gold alone. That's the real endgame for most goblins.</p>
-        </div>
-      </div>
-
-      <div class="card" style="margin-top: 24px;">
-        <div class="card-title"><span class="emoji">📊</span> Price-Checking Methodology</div>
-        <p>Knowing which crafts or flips are profitable right now requires reading data, not guessing. Here's how experienced goblins evaluate every trade:</p>
-        <ul>
-          <li><strong>TSM Tooltips:</strong> Hover any item — check "DBMarket" (your server) vs "DBRegionMarketAvg" (all servers). If your server price is 20%+ above region, sell. If below, buy.</li>
-          <li><strong>Crafting Cost:</strong> TSM shows "Crafting Cost" vs "DBMarket" on crafted items. Only craft when Market > Cost × 1.15 (to cover AH cut + risk).</li>
-          <li><strong>Undermine Exchange</strong> (undermine.exchange) — check price history graphs. Avoid items on a downward trend. Buy into items with cyclical patterns at their trough.</li>
-          <li><strong>Region vs Server:</strong> If an item sells for 100g on your server but 500g region-wide, someone is dumping. Buy their stock and wait for the price to normalize.</li>
-          <li><strong>Sale Rate:</strong> TSM's "RegionSaleRate" tells you how fast an item moves. Anything above 0.2 is fast. Below 0.05 is transmog-tier patience.</li>
-        </ul>
-      </div>
-
-      <div class="card" style="margin-top: 24px;">
-        <div class="card-title"><span class="emoji">⭐</span> Crafting Quality Tiers</div>
-        <p>Every crafted item in Midnight has quality ranks from Rank 1 (lowest) to Rank 5 (highest). Higher ranks give better stats and sell for dramatically more gold. Your crafting skill, specialization talents, and Concentration spending all determine what rank you can hit.</p>
-        <ul>
-          <li><strong>Rank 1-2:</strong> Low quality — barely sells above material cost. Avoid crafting at these ranks for profit.</li>
-          <li><strong>Rank 3 (Silver):</strong> The baseline for sellable gear. Most crafters can hit this with moderate Knowledge Point investment.</li>
-          <li><strong>Rank 4-5 (Gold/Orange):</strong> Premium quality — commands massive premiums and tip amounts. Requires deep specialization + Concentration. This is where the real gold is.</li>
-        </ul>
-        <p style="margin-top:12px;color:var(--text-dim);font-size:14px;">The quality system is why Knowledge Points matter so much — each point invested pushes your crafting skill higher, letting you hit better quality tiers consistently.</p>
-      </div>
-
-      <div class="card" style="margin-top: 24px;">
-        <div class="card-title"><span class="emoji">🔮</span> Understanding Concentration</div>
-        <p>Concentration is Midnight's system for guaranteeing higher-quality crafts. It's a resource pool (up to 1000 points) that regenerates slowly over time — roughly 100 points per day. When spent on a craft, it significantly boosts your chance of reaching a higher quality tier.</p>
-        <ul>
-          <li><strong>It's a pool, not a charge</strong> — different crafts cost different amounts of Concentration (some high-end items cost 200+)</li>
-          <li><strong>Spend it on your highest-value craft</strong> — the item furthest from guaranteed Gold quality without help</li>
-          <li><strong>Never waste it</strong> on cheap items you can already hit Silver quality on naturally</li>
-          <li><strong>Gear crafter alts</strong> each have their own Concentration pool — more alts = more high-quality crafts per day</li>
-        </ul>
-      </div>
-
-      <div class="card" style="margin-top: 24px;">
-        <div class="card-title"><span class="emoji">📈</span> Expansion Economy Phases</div>
-        <p>Midnight's economy revolves around three distinct phases. Knowing which phase you're in determines what to farm and sell:</p>
-        <ul>
-          <li><strong>Launch Phase (Week 1-3):</strong> Raw materials and consumables sell instantly at inflated prices. Gathering professions dominate. Everyone is leveling professions and there's zero existing supply.</li>
-          <li><strong>Stabilization Phase (Week 4-8):</strong> Crafted gear and enchants take over as the primary gold source. This is when Concentration is most valuable — fewer crafters have reached max-rank recipes yet, so those who have can charge premium tips. Material prices normalize but crafting margins peak.</li>
-          <li><strong>Late Season:</strong> Margins thin on consumables. Transmog, mounts, and niche items hold value. Smart goblins stockpile materials for the next patch/season reset.</li>
-        </ul>
-        <div class="tip-box" style="margin-top:16px;">
-          <div class="tip-label">Strategy</div>
-          <p>Build a diversified portfolio: one liquid gathering route, one endgame consumable category, and one crafting/service lane. Rotate focus based on which economy phase you're in.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- COMMUNITY -->
-    <section id="community">
-      <div class="section-header">
-        <h2>🌐 Community Resources</h2>
-        <p>Where serious gold-makers learn and share strategies</p>
-      </div>
-
-      <div class="card-grid cols-2">
-        <div class="card">
-          <div class="card-title"><span class="emoji">💬</span> r/woweconomy</div>
-          <p>The largest WoW gold-making community on Reddit. Daily questions thread, weekly flipping reports, and real-time market discussion. This is where goblins share discoveries, debate strategies, and post their monthly gold reports. Essential reading.</p>
-        </div>
-        <div class="card">
-          <div class="card-title"><span class="emoji">🎮</span> WoW Economy Discord</div>
-          <p>Active Discord server with real-time market alerts, profession-specific channels, and experienced goblins willing to help. Join the server linked in r/woweconomy's sidebar for live discussion and TSM help.</p>
-        </div>
-        <div class="card">
-          <div class="card-title"><span class="emoji">📺</span> Content Creators</div>
-          <p>YouTube and Twitch creators covering gold-making include Samadan, Manthieus, and others in the gold-making community. Watch for real-time market analysis, route demonstrations, and patch speculation guides.</p>
-        </div>
-        <div class="card">
-          <div class="card-title"><span class="emoji">📊</span> External Tools</div>
-          <p>Undermine Exchange (undermine.exchange) for price history and server comparisons. WoWToken.info for real-time token prices. Wowhead profession guides for Knowledge Point planning and recipe locations.</p>
-        </div>
+        <p>Never sell materials on reset day — that's when everyone else is selling too. Buy on weekends when prices are lowest. Sell consumables and enchants Tuesday through Thursday when demand peaks. This simple timing adjustment alone can increase your profits by 20–30%.</p>
       </div>
     </section>
 
@@ -2124,11 +1800,19 @@ section { animation: fadeInUp 0.5s ease both; }
         <div class="checklist" id="weekly-checklist">
           <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)">✓</div><span>Clear legacy raids on all alts (vendor + transmog)</span></div>
           <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)">✓</div><span>Complete weekly profession knowledge quests</span></div>
+          <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)">✓</div><span>Use Treatises on all alts for +1 KP per profession</span></div>
           <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)">✓</div><span>Stock up on materials (buy low on weekends)</span></div>
           <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)">✓</div><span>Craft and list consumables for reset-day demand</span></div>
           <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)">✓</div><span>Check crafting order board for high-tip personal orders</span></div>
           <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)">✓</div><span>Review TSM Accounting — which items made the most gold?</span></div>
           <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)">✓</div><span>Adjust strategy based on last week's data</span></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 16px;">
+        <div class="card-title">Monthly Tasks</div>
+        <div class="checklist" id="monthly-checklist">
+          <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)">✓</div><span>Complete Darkmoon Faire profession quests on all alts (free KP — first week of each month)</span></div>
         </div>
       </div>
 
@@ -2148,38 +1832,74 @@ section { animation: fadeInUp 0.5s ease both; }
       </div>
     </section>
 
-    <div class="footer">
-      <p class="gold-text">May your bags overflow with gold.</p>
-      <p style="margin-top: 8px;">Guide compiled for Midnight Season 1 · Patch 12.0</p>
-      <p style="margin-top: 16px; color: var(--text-dim); font-size: 14px; font-family: 'Crimson Pro', serif; line-height: 1.6;">Free guide, no paywalls. If it helped you make gold,<br>consider buying the author a coffee.</p>
-      <div class="footer-actions">
-        <a href="https://ko-fi.com/wowgoldguide" target="_blank" rel="noopener" class="kofi-footer-btn">☕ Support on Ko-fi</a>
-        <button class="footer-btn" onclick="navigator.clipboard.writeText(window.location.href).then(()=>{this.textContent='✓ Copied!';setTimeout(()=>{this.textContent='📋 Copy Link'},2000)})">📋 Copy Link</button>
-        <button class="footer-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Back to Top</button>
+    <!-- GLOSSARY -->
+    <section id="glossary">
+      <div class="section-header">
+        <h2>📖 Glossary</h2>
+        <p>Key terms every gold-maker should know</p>
       </div>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-title"><span class="emoji">🔑</span> Knowledge Points (KP)</div>
+          <p>Profession progression currency earned weekly from quests, Treatises, treasures, and first-crafts. Spent in specialization trees to unlock bonuses and new recipes. Capped weekly — don't miss any sources.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="emoji">⭐</span> Artisan Moxie</div>
+          <p>Reputation earned by completing crafting orders. Higher Moxie unlocks better-paying NPC Patron Orders and shows clients you're a reliable crafter. Lost if you abandon claimed orders.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="emoji">🧪</span> Concentration</div>
+          <p>A limited resource that guarantees a higher quality result on a craft. Regenerates slowly over time. Use it strategically on high-value crafts where the quality jump significantly increases the sale price.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="emoji">📜</span> Treatises</div>
+          <p>Weekly consumable items crafted by Inscriptionists that grant +1 Knowledge Point to a specific profession. Every crafter needs one per profession per week — massive demand makes these a reliable income source for Inscription.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="emoji">📋</span> Work Orders</div>
+          <p>The crafting commission system. Three types: Public (open board, lower tips), Personal (direct, higher tips), and Guild (internal). Plus NPC Patron Orders for guaranteed weekly income. 30-minute timer on claimed public orders.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="emoji">🔄</span> Recrafting</div>
+          <p>Upgrading existing crafted gear to a higher quality tier without making a new item from scratch. Done through Personal crafting orders. Costs fewer materials than a fresh craft — profitable service for skilled crafters.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="emoji">💎</span> Unalloyed Abundance</div>
+          <p>A rare proc when smelting ore that yields bonus refined materials. Higher Mining specialization increases proc chance. Makes high-volume smelting more profitable over time.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="emoji">📊</span> GPH (Gold Per Hour)</div>
+          <p>The standard metric for comparing farming methods. Always factor in AH fees (5%), deposit costs, and time spent listing. A farm that earns 50k GPH raw might net 45k after fees.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      <div style="margin-bottom:24px;">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-dim);margin-bottom:12px;letter-spacing:1px;">USEFUL RESOURCES</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+          <a href="https://www.wowhead.com/guide/midnight/professions" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;padding:8px 16px;border:1px solid var(--border-gold);border-radius:6px;font-family:'Crimson Pro',serif;font-size:16px;transition:all 0.2s;">Wowhead Professions</a>
+          <a href="https://www.wowhead.com/midnight" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;padding:8px 16px;border:1px solid var(--border-gold);border-radius:6px;font-family:'Crimson Pro',serif;font-size:16px;transition:all 0.2s;">Wowhead Midnight Hub</a>
+          <a href="https://www.icy-veins.com/wow/professions" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;padding:8px 16px;border:1px solid var(--border-gold);border-radius:6px;font-family:'Crimson Pro',serif;font-size:16px;transition:all 0.2s;">Icy Veins Professions</a>
+          <a href="https://undermine.exchange" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;padding:8px 16px;border:1px solid var(--border-gold);border-radius:6px;font-family:'Crimson Pro',serif;font-size:16px;transition:all 0.2s;">Undermine Exchange</a>
+          <a href="https://www.method.gg/guides/midnight-herb-and-mote-farming-routes" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;padding:8px 16px;border:1px solid var(--border-gold);border-radius:6px;font-family:'Crimson Pro',serif;font-size:16px;transition:all 0.2s;">Method Farm Routes</a>
+        </div>
+      </div>
+      <p class="gold-text">May your bags overflow with gold.</p>
+      <p style="margin-top: 8px;">Guide compiled for Midnight · Patch 12.0 · GPH estimates reflect launch-week data and will shift as the season matures</p>
     </div>
   </main>
-
-  <a href="https://ko-fi.com/wowgoldguide" target="_blank" rel="noopener" class="kofi-float" id="kofiFloat">
-    <span class="kofi-icon">☕</span>
-    <span>Buy me a coffee</span>
-  </a>
-  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 </div>
 
 <script>
-// Sidebar toggle with overlay
-function toggleSidebar() {
-  const sidebar = document.querySelector('.sidebar');
-  const overlay = document.querySelector('.sidebar-overlay');
-  const isOpen = sidebar.classList.toggle('open');
-  if (isOpen) {
-    overlay.classList.add('visible');
-  } else {
-    overlay.classList.remove('visible');
-  }
-}
-
 // Expandable sections
 function toggleExpand(el) {
   el.classList.toggle('open');
@@ -2237,36 +1957,6 @@ sections.forEach(section => observer.observe(section));
 navLinks.forEach(link => {
   link.addEventListener('click', () => {
     document.querySelector('.sidebar').classList.remove('open');
-    document.querySelector('.sidebar-overlay').classList.remove('visible');
-  });
-});
-
-// Back to top + Ko-fi button — only show after scrolling past first viewport
-const backBtn = document.getElementById('backToTop');
-const kofiBtn = document.getElementById('kofiFloat');
-window.addEventListener('scroll', () => {
-  const pastFirstScreen = window.scrollY > window.innerHeight;
-  backBtn.classList.toggle('visible', pastFirstScreen);
-  if (kofiBtn) kofiBtn.style.opacity = pastFirstScreen ? '1' : '0';
-  if (kofiBtn) kofiBtn.style.pointerEvents = pastFirstScreen ? 'auto' : 'none';
-});
-
-// Accessibility: add aria-labels to rating bars
-document.querySelectorAll('.rating').forEach(rating => {
-  const label = rating.querySelector('span')?.textContent.trim() || '';
-  const filled = rating.querySelectorAll('.rating-pip.filled').length;
-  const total = rating.querySelectorAll('.rating-pip').length;
-  rating.setAttribute('role', 'img');
-  rating.setAttribute('aria-label', label + ': ' + filled + ' out of ' + total);
-});
-
-// Mobile table: add data-label attributes from <th> headers
-document.querySelectorAll('.data-table').forEach(table => {
-  const headers = Array.from(table.querySelectorAll('th')).map(th => th.textContent.trim());
-  table.querySelectorAll('tbody tr, tr:not(:first-child)').forEach(row => {
-    row.querySelectorAll('td').forEach((td, i) => {
-      if (headers[i]) td.setAttribute('data-label', headers[i]);
-    });
   });
 });
 </script>
