@@ -1193,6 +1193,7 @@ section { animation: fadeInUp 0.5s ease both; }
         <div class="nav-group-label">Farming</div>
         <a href="#dungeon-farms"><span class="icon">🏰</span> Dungeon Farms</a>
         <a href="#open-world"><span class="icon">🌍</span> Open World</a>
+        <a href="#prey"><span class="icon">🎯</span> Prey System</a>
         <a href="#legacy"><span class="icon">📜</span> Legacy Content</a>
         <a href="#speed-set"><span class="icon">💨</span> Speed Set</a>
         <a href="#gph-calc"><span class="icon">🧮</span> GPH Calculator</a>
@@ -1821,6 +1822,47 @@ section { animation: fadeInUp 0.5s ease both; }
           </div>
         </div>
       </div>
+
+      <div class="expandable" data-profession="skinning" onclick="toggleExpand(this)">
+        <div class="expandable-header">
+          <h3>🔪 Skinning</h3>
+          <span class="arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+        </div>
+        <div class="expandable-body" onclick="event.stopPropagation()">
+          <p><strong>One of the most profitable gathering professions at Midnight launch.</strong> Skinning supplies Leatherworking with essential leather and scales, and the new Lure system creates a path to epic Majestic Materials worth thousands of gold each. Skinning also pairs naturally with open-world farming since you're killing mobs anyway.</p>
+
+          <table class="data-table mt-12">
+            <thead><tr><th>Material</th><th>Source</th><th>Used For</th><th>Value</th></tr></thead>
+            <tbody>
+              <tr><td class="quality-uncommon">Void-Tempered Leather</td><td>Leathery beasts</td><td>Leatherworking armor</td><td>Base material, high volume</td></tr>
+              <tr><td class="quality-uncommon">Void-Tempered Scales</td><td>Scaly beasts</td><td>Mail armor crafting</td><td>Base material, high volume</td></tr>
+              <tr><td class="quality-rare">Void-Tempered Hide</td><td>Rare from leathery beasts</td><td>Premium LW recipes</td><td>Rare drop, sells well</td></tr>
+              <tr><td class="quality-rare">Void-Tempered Plating</td><td>Rare from scaly beasts</td><td>Premium mail recipes</td><td>Rare drop, sells well</td></tr>
+              <tr><td class="quality-epic">Majestic Hide / Claw / Fin</td><td>Renowned Beasts (via Lures)</td><td>Epic-quality crafting</td><td>Very high value</td></tr>
+              <tr><td class="quality-rare">Void-Soaked Membrane</td><td>Void-Infused beasts</td><td>Specialty crafting</td><td>Zone-specific drop</td></tr>
+              <tr><td class="quality-uncommon">Carving Canine</td><td>Fanged creatures</td><td>Specialty reagent</td><td>Species-specific</td></tr>
+              <tr><td class="quality-uncommon">Peerless Plumage</td><td>Winged/flying beasts</td><td>Specialty reagent</td><td>Species-specific</td></tr>
+            </tbody>
+          </table>
+
+          <p class="spec-trees" style="margin-top:16px;">Spec Trees: Thorough Tanning, Gainful Gathering, Talented Tracker</p>
+
+          <div class="tip-box mt-8">
+            <div class="tip-label">Spec Builds for Gold</div>
+            <p><strong>Farming Build:</strong> Invest in Thorough Tanning + Gainful Gathering for maximum leather/scale yield per skin. Finesse scaling gives you more materials per mob. Unlock extra charges of Sharpen Your Knife for guaranteed hide drops.</p>
+            <p class="mt-8"><strong>Lure &amp; Renowned Beast Build:</strong> Invest in Talented Tracker to craft Majestic Lures that attract Renowned Beasts. These epic beasts drop Majestic Hide, Majestic Claw, and Majestic Fin — the highest-value skinning materials. Requires more setup but the payoff per kill is massive.</p>
+          </div>
+
+          <div class="tip-box mt-8">
+            <div class="tip-label">Best Races for Skinning</div>
+            <ul class="mt-8">
+              <li><strong>Worgen:</strong> +5 Skinning skill (Flayer racial)</li>
+              <li><strong>Kul Tiran:</strong> +2 to all profession skills</li>
+              <li><strong>Tauren:</strong> +5 gathering skill, 25% Deftness bonus</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- CRAFTING -->
@@ -1841,7 +1883,7 @@ section { animation: fadeInUp 0.5s ease both; }
           <li><strong>Flasks:</strong> 500-2000g per raid night (varies by flask type and prices)</li>
           <li><strong>Potions:</strong> 200-1000g per raid night (2+ per pull × 20+ pulls minimum)</li>
           <li><strong>Food/Feasts:</strong> Free if guild provides; 500g if buying individually</li>
-          <li><strong>Augment Runes:</strong> 2000-5000g per raid night (optional but expected in Cutting Edge guilds)</li>
+          <li><strong>Augment Runes:</strong> Obtained from reputation vendors or drops — not an AH expense, but Cutting Edge guilds expect them</li>
           <li><strong>Enchants:</strong> One-time cost per gear piece: 2-15k each (5-6 slots per character)</li>
           <li><strong>Repair Costs:</strong> 500-1000g per progression night (wipes cost gold)</li>
           <li><strong><strong>Weekly Total:</strong></strong>
@@ -1887,7 +1929,7 @@ section { animation: fadeInUp 0.5s ease both; }
           <li><strong>Flasks:</strong> Thallasian for combat stats, Haranir for professions. Raiders burn through these nightly.</li>
           <li><strong>Combat Potions:</strong> Light and Void variants for damage/healing during key pulls. 20+ pots per raid night per player.</li>
           <li><strong>Stat Food / Feasts:</strong> Guilds provide feasts; individual raiders buy food for pre-raid buffs. Massive weekly volume.</li>
-          <li><strong>Augment Runes:</strong> High-end raiders use 20+ per night. Essential for Cutting Edge guilds. 2-3k gold each during progression.</li>
+          <li><strong>Augment Runes:</strong> Obtained from reputation vendors and drops (not craftable). Essential for Cutting Edge guilds. Check the K'aresh Trust vendor for the permanent Ethereal Augment Rune.</li>
           <li><strong>Weapon & Armor Enchants:</strong> 1-per-character cost, but mandatory. Rings get double enchants. Total demand: 2-15k per character.</li>
           <li><strong>Phials:</strong> Persistent potions lasting entire encounters. Different stat types for different specs.</li>
         </ul>
@@ -1913,7 +1955,7 @@ section { animation: fadeInUp 0.5s ease both; }
             <li>Housing dyes for recoloring decor items (new Midnight niche)</li>
             <li>Treasure-finding potions (if available) — a goblin staple that increases gold/material drops from mobs. Check Wowhead for the Midnight equivalent at launch</li>
           </ul>
-          <p class="spec-trees">Spec Trees: Alchemical Mastery, Potioncraft, Phial Mastery, Transmutation</p>
+          <p class="spec-trees">Spec Trees: Potion Prowess, Fluent in Flasks, Transmutation Authority, Alchemical Mastery</p>
           <div class="tip-box mt-8">
             <div class="tip-label">No More Experimentation</div>
             <p><strong>Major System Change:</strong> Midnight removes the Experimentation system. Recipes are now bought directly from Camberon's Cauldron using materials + Moxie prerequisites. This streamlines recipe acquisition — no more RNG on what recipes you unlock.</p>
@@ -1971,7 +2013,7 @@ section { animation: fadeInUp 0.5s ease both; }
             <li>Mana Oils for temporary weapon buffs</li>
             <li>Disenchanting cheap gear for materials</li>
           </ul>
-          <p class="spec-trees">Spec Trees: Enchantment, Insight of Destruction, Insight of the Siphon, Artistry</p>
+          <p class="spec-trees">Spec Trees: Elevating Equipment, Transitories Tonics and Tools, Disenchanting Delegate, Spellbound Shatterer</p>
           <div class="profit-tag high">Tier A — Dual income streams</div>
         </div>
 
@@ -1984,7 +2026,7 @@ section { animation: fadeInUp 0.5s ease both; }
             <li>Sharpening stones and weapon enhancements</li>
             <li>Housing decor (metal furniture, weapon racks, anvils)</li>
           </ul>
-          <p class="spec-trees">Spec Trees: Armorsmithing, Weaponsmithing, Smelting, Hammercraft</p>
+          <p class="spec-trees">Spec Trees: The Old Ways, Armorsmithing, Weaponsmithing, Craftsmithing</p>
           <div class="profit-tag high">Tier A — High per-item profit</div>
         </div>
 
@@ -1998,13 +2040,13 @@ section { animation: fadeInUp 0.5s ease both; }
             <li>Crafted jewelry via crafting orders</li>
             <li>Housing decor (gem-studded items, crystal displays, chandeliers)</li>
           </ul>
-          <p class="spec-trees">Spec Trees: Faceting, Jewelcraft, Shaping, Gemology</p>
+          <p class="spec-trees">Spec Trees: Thoughtful Throughput, Glamorous Gems, Alluring Accessories, Proficient Processor</p>
           <div class="profit-tag high">Tier A — High volume sales</div>
         </div>
 
         <div class="card" data-craft-type="gear">
           <div class="card-title"><span class="emoji">🧵</span> <span class="quality-rare">Tailoring</span></div>
-          <p>A major change in Midnight: only characters with Tailoring can loot cloth from mobs. This means the entire cloth supply comes from Tailors, driving up prices significantly. Tailoring functions as both a gathering and crafting profession — sell raw cloth for easy gold, or craft it into armor, bags, and spellthreads for higher margins.</p>
+          <p>Tailoring gives a massive advantage for cloth farming in Midnight: while all players can loot cloth from mobs, Tailors with points in the Fabric Specialist tree get significantly higher drop rates and access to rare cloth types. This makes Tailoring function as both a gathering and crafting profession — sell raw cloth for easy gold, or craft it into armor, bags, and spellthreads for higher margins.</p>
           <ul>
             <li>Exclusive cloth drops (sell raw or craft)</li>
             <li>Crafted cloth armor and embellishments</li>
@@ -2012,8 +2054,8 @@ section { animation: fadeInUp 0.5s ease both; }
             <li>Bags (evergreen market)</li>
             <li>Housing decor (tapestries, curtains, cloth furnishings)</li>
           </ul>
-          <p class="spec-trees">Spec Trees: Tailorcraft, Clothcraft, Garmentcraft, Fabrication</p>
-          <div class="profit-tag high">Tier A — Unique cloth monopoly</div>
+          <p class="spec-trees">Spec Trees: Sin'dorei Finery, Nimble Needlework, Fabric Specialist, Fiber Arts</p>
+          <div class="profit-tag high">Tier A — Best cloth drop rates</div>
         </div>
 
         <div class="card" data-craft-type="consumable">
@@ -2027,10 +2069,10 @@ section { animation: fadeInUp 0.5s ease both; }
             <li>Darkmoon trinket cards</li>
             <li>Housing decor items (scrolls, paintings, banners) and contracts</li>
           </ul>
-          <p class="spec-trees">Spec Trees: Darkmoon Sigils, Archiving, Pursuit of Knowledge, Rune Mastery</p>
+          <p class="spec-trees">Spec Trees: Calm Hands, Blueprints, Perfected Products, Darkmoon Curiosity</p>
           <div class="tip-box mt-8">
-            <div class="tip-label">Augment Runes — High-Margin Crafting</div>
-            <p>Serious raiders and M+ pushers burn through augment runes constantly — 20+ runes per raid night, each providing a flat stat boost. During progression, runes sell for 2-3k gold each. This is one of the highest gold-per-hour crafting markets available. Runes are consumable (used and gone), creating perpetual weekly demand. If you specialize in Rune Mastery within Inscription, you've found a profitable niche with relatively low competition since most players overlook this market.</p>
+            <div class="tip-label">Treatises — Your Bread and Butter</div>
+            <p>Every crafter in the game needs one Treatise per profession per week for +1 Knowledge Point. With thousands of crafters on every realm, demand is essentially infinite and consistent. Treatises are your primary passive income source as a Scribe — craft them daily and list on the AH. Prices are highest on Tuesday/Wednesday when players do their weekly profession tasks.</p>
           </div>
           <div class="profit-tag high">Tier A — Treatises guarantee weekly income</div>
         </div>
@@ -2044,7 +2086,7 @@ section { animation: fadeInUp 0.5s ease both; }
             <li>Specialized bags and containers</li>
             <li>Housing decor (leather furniture, rugs, banners)</li>
           </ul>
-          <p class="spec-trees">Spec Trees: Leathercraft, Mailcraft, Tanning, Curing</p>
+          <p class="spec-trees">Spec Trees: Learned Leatherworker, Lasting Leather, Safeguarding Scales, Flawless Fortes</p>
           <div class="profit-tag high">Tier A — Steady crafting order income</div>
         </div>
 
@@ -2061,7 +2103,7 @@ section { animation: fadeInUp 0.5s ease both; }
             <div class="tip-label">Evercore Economy</div>
             <p>The Evercore recycling loop is Engineering's bread and butter. Buy cheap surplus reagents from other professions on the AH, recycle them into Evercores, then sell the Evercores or use them in high-value crafts. Monitor AH prices to identify which reagents are cheapest to recycle — this changes weekly. Engineers who track reagent-to-Evercore conversion ratios can maintain a steady 5-15k daily profit with minimal effort.</p>
           </div>
-          <p class="spec-trees">Spec Trees: Explosives, Gear, Gadgetry, Mechanical Forging</p>
+          <p class="spec-trees">Spec Trees: Market Mobility, Combat Analytics, Recycling, Bits and Bots</p>
           <div class="profit-tag high">Tier A — <a href="https://www.wowhead.com/item=243581" target="_blank" rel="noopener">Evercore</a> recycling has potential</div>
         </div>
 
@@ -2130,8 +2172,8 @@ section { animation: fadeInUp 0.5s ease both; }
 
       <div class="card-grid">
         <div class="card">
-          <div class="card-title"><span class="quality-legendary">★</span> Darkflame Cleft (Follower Dungeon)</div>
-          <p>The premier cloth farm in Midnight. Requires Tailoring with points invested in Textile Treasures for maximum cloth drops. Use the Follower Dungeon system to run solo at your own pace with NPC companions. Since only Tailors can loot cloth, supply is naturally limited and prices stay high — making this one of the most reliable farming methods available.</p>
+          <div class="card-title"><span class="quality-legendary">★</span> Murder Row (Follower Dungeon)</div>
+          <p>Midnight's most farmable dungeon for raw materials. Dense humanoid packs in the back alleys make it ideal for cloth farming with Tailoring (spec into Fabric Specialist for maximum drops). Use the Follower Dungeon system to run solo at your own pace with NPC companions. Tailors get significantly more cloth drops through specialization, giving them a major advantage.</p>
           <div class="ratings">
             <div class="rating"><span>Profit</span>
               <div class="rating-bar"><div class="rating-pip filled" style="background:var(--legendary)"></div><div class="rating-pip filled" style="background:var(--legendary)"></div><div class="rating-pip filled" style="background:var(--legendary)"></div><div class="rating-pip filled" style="background:var(--legendary)"></div><div class="rating-pip filled" style="background:var(--legendary)"></div></div>
@@ -2140,12 +2182,12 @@ section { animation: fadeInUp 0.5s ease both; }
               <div class="rating-bar"><div class="rating-pip filled blue"></div><div class="rating-pip filled blue"></div><div class="rating-pip filled blue"></div><div class="rating-pip"></div><div class="rating-pip"></div></div>
             </div>
           </div>
-          <div class="profit-tag high">15k–25k GPH (Tailoring required)</div>
+          <div class="profit-tag high">GPH varies — check r/woweconomy for current rates</div>
         </div>
 
         <div class="card">
-          <div class="card-title"><span class="quality-rare">★</span> Priory of the Sacred Flame</div>
-          <p>Faster clear times than Darkflame Cleft for well-geared characters, with good material drops per run. Can combine with Inscription for extra reagent drops from mob corpses. Higher skill ceiling — you need solid AoE damage and survivability to chain-pull efficiently, but the GPH ceiling is higher if you can handle the pace.</p>
+          <div class="card-title"><span class="quality-rare">★</span> Den of Nalorakk</div>
+          <p>Troll-heavy dungeon in Zul'Aman with fast clear times for well-geared characters. Good raw gold from vendor trash plus material drops from mob corpses. Pairs well with Skinning since beast-type mobs are plentiful. Higher skill ceiling — you need solid AoE damage and survivability to chain-pull efficiently.</p>
           <div class="ratings">
             <div class="rating"><span>Profit</span>
               <div class="rating-bar"><div class="rating-pip filled purple"></div><div class="rating-pip filled purple"></div><div class="rating-pip filled purple"></div><div class="rating-pip filled purple"></div><div class="rating-pip"></div></div>
@@ -2154,7 +2196,21 @@ section { animation: fadeInUp 0.5s ease both; }
               <div class="rating-bar"><div class="rating-pip filled purple"></div><div class="rating-pip filled purple"></div><div class="rating-pip filled purple"></div><div class="rating-pip filled purple"></div><div class="rating-pip"></div></div>
             </div>
           </div>
-          <div class="profit-tag high">12k–20k GPH</div>
+          <div class="profit-tag high">GPH varies — check r/woweconomy for current rates</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="quality-uncommon">★</span> Shadowguard Point (Delve)</div>
+          <p>Not technically a dungeon, but this delve is one of the best solo cloth farms in Midnight. Extremely open layout with large packs of humanoids — expect ~30 cloth per clear with Tailoring spec. Faster to reset than dungeons and no instance lockout concerns.</p>
+          <div class="ratings">
+            <div class="rating"><span>Profit</span>
+              <div class="rating-bar"><div class="rating-pip filled" style="background:var(--legendary)"></div><div class="rating-pip filled" style="background:var(--legendary)"></div><div class="rating-pip filled" style="background:var(--legendary)"></div><div class="rating-pip filled" style="background:var(--legendary)"></div><div class="rating-pip"></div></div>
+            </div>
+            <div class="rating"><span>Difficulty</span>
+              <div class="rating-bar"><div class="rating-pip filled blue"></div><div class="rating-pip filled blue"></div><div class="rating-pip"></div><div class="rating-pip"></div><div class="rating-pip"></div></div>
+            </div>
+          </div>
+          <div class="profit-tag high">Great for Tailoring cloth farming</div>
         </div>
       </div>
     </section>
@@ -2407,6 +2463,56 @@ section { animation: fadeInUp 0.5s ease both; }
       <div class="tip-box" style="margin-top:24px;">
         <div class="tip-label">Go Deeper</div>
         <p>For in-game overlay screenshots of these routes with exact node positions, check Method's <a href="https://www.method.gg/guides/midnight-herb-and-mote-farming-routes" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline;">Midnight Herb and Mote Farming Routes</a> guide. Pair with GatherMate2 + Routes addons for automated path optimization based on your own gathered node data.</p>
+      </div>
+    </section>
+
+    <!-- PREY SYSTEM -->
+    <section id="prey">
+      <div class="section-header">
+        <h2>🎯 Prey System</h2>
+        <p>Midnight's new world hunt system — weekly gold, gear, and rare materials</p>
+      </div>
+
+      <div class="card" style="margin-bottom: 24px;">
+        <p><strong>Prey is a brand new world content system in Midnight</strong> where you track and hunt specific targets across zones. It's one of the best sources of <a href="https://www.wowhead.com/item=251285/petrified-root" target="_blank" rel="noopener">Petrified Root</a> — a rare, tradeable reagent needed by many crafting recipes and currently selling for premium prices on the AH.</p>
+        <p class="mt-8"><strong>Unlock:</strong> Visit <strong>Magister Astalor Bloodsworn</strong> in Murder Row, Silvermoon City at level 90. Choose a target, then search for clues in the world to find its location.</p>
+      </div>
+
+      <div class="card-grid cols-2">
+        <div class="card">
+          <div class="card-title">How Prey Works</div>
+          <p>Select a hunt target, then gather <strong>Anguish</strong> by completing activities in the target's zone — world quests, killing rares, finding treasures. Once you've gathered enough Anguish, the target's location is revealed on your map. Track it down and defeat it for rewards.</p>
+          <p class="mt-8"><strong>Weekly limit:</strong> One hunt per difficulty, per zone. Do <strong>4 hunts per week</strong> for maximum reward efficiency — after that, returns diminish significantly.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Difficulties</div>
+          <ul>
+            <li><strong>Normal:</strong> Open-world hunt, other players can help. Good for learning.</li>
+            <li><strong>Nightmare:</strong> Much harder — target is extremely challenging. Better rewards.</li>
+            <li><strong>Torment:</strong> Hardest mode — you take stacking 4% damage increase every 60 seconds while not in a rested area. Best rewards.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="emoji">💰</span> Prey Rewards (Gold-Making Relevant)</div>
+        <ul>
+          <li><strong><a href="https://www.wowhead.com/item=251285/petrified-root" target="_blank" rel="noopener">Petrified Root</a>:</strong> Rare reagent from Prey reward caches. Tradeable on the AH and in high demand — many crafting recipes need it. Higher difficulty = better drop chance.</li>
+          <li><strong>Coffer Key Shards:</strong> Used in Delves to open Bountiful Coffers for extra loot. Converting Prey rewards into Delve income.</li>
+          <li><strong>Preyseeker's Adventurer Chest:</strong> Gear drops with a chance at high item level pieces.</li>
+          <li><strong>Preyseeker's Journey Track:</strong> Progress track with cosmetic and material rewards as you complete more hunts.</li>
+          <li><strong>Raw gold:</strong> Each hunt completion awards direct gold.</li>
+        </ul>
+      </div>
+
+      <div class="tip-box" style="margin-top:16px;">
+        <div class="tip-label">Petrified Root — Other Sources</div>
+        <p>Prey isn't the only source. Petrified Root also drops from:</p>
+        <ul class="mt-8">
+          <li><strong>Delves:</strong> Collegiate Calamity is the easiest to farm at higher depths. Harder depth = better drop chance from reward chests.</li>
+          <li><strong>Heroic Dungeons:</strong> Chance to drop from the last boss of any Midnight dungeon on Heroic difficulty.</li>
+        </ul>
+        <p class="mt-8"><strong>Market tip:</strong> Petrified Root is tradeable on the AH. If you're not a crafter, sell your roots directly — prices are inflated in the first few weeks while supply is low.</p>
       </div>
     </section>
 
@@ -2732,6 +2838,19 @@ section { animation: fadeInUp 0.5s ease both; }
           <li><strong>Patch opportunity:</strong> Watch for housing-related patches and seasonal events — new decor recipes = new profit windows</li>
         </ul>
         <p class="mt-12"><strong>Risk:</strong> Market is completely unknown — prices could crash overnight once more players unlock recipes. Don't go all-in on decor speculation. Sell fast in weeks 1-2, don't hold.</p>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <div class="card-title"><span class="emoji">🪓</span> Lumber Farming — The Housing Bottleneck</div>
+        <p><strong>Lumber is the key material gating housing decor crafting, and it cannot be traded or bought on the AH.</strong> Every player must farm their own — it's Warbound (shared across your account via Warband Bank).</p>
+        <ul class="mt-8">
+          <li><strong>Getting started:</strong> Buy a Harvesting Hatchet from your Housing vendor (Lestia Goldenstrike at Founder's Point or Xiz'ro at Razorwind Shores). Once equipped, Lumber nodes appear on your map.</li>
+          <li><strong>Different types:</strong> Each expansion zone drops its own Lumber type. Midnight decor recipes require Midnight-specific lumber from Eversong, Zul'Aman, Harandar, and Voidstorm. Some recipes also need legacy lumber from older zones.</li>
+          <li><strong>Costs vary wildly:</strong> Small decor items need 5-6 lumber, while large centerpieces can require 50+. Plan your farming sessions around what you want to craft.</li>
+          <li><strong>Best class:</strong> Druids dominate lumber farming — you can gather while mounted in Travel Form after unlocking the mounted gathering perk (requires farming a bunch of lumber first to unlock it).</li>
+          <li><strong>Alt strategy:</strong> Park one character in each zone to farm zone-specific lumber types. Mail it via Warband Bank to your crafter.</li>
+        </ul>
+        <p class="mt-12"><strong>Gold impact:</strong> Since lumber is untradeable, the real gold comes from crafting the decor items and selling those. Your lumber investment translates directly to decor sales — players who can't or won't farm lumber are your customers.</p>
       </div>
 
       <div class="warning-box" style="margin-top:16px;">
